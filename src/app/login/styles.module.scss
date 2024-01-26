@@ -1,0 +1,92 @@
+@import '../../Utilities/ResponsiveUtils/';
+
+.containerLogin {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.containerContentLogin {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    @include Tablet {
+        font-size: 1rem;
+        width: 30%;
+
+    }
+
+    @include Desktop {
+        font-size: 1rem;
+        width: 30%;
+
+    }
+
+    @include DesktopLarge {
+        font-size: 1rem;
+        width: 30%;
+
+    }
+}
+
+.FormStyleField {
+    margin: 1.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    width: 100%;
+    @include MobileSmall {
+        font-size: 1.5rem;
+        width: 100%;
+
+    }
+
+    @include MobileExtraSmall {
+        font-size: 1.5rem;
+        width: 100%;
+    }
+
+    @include Tablet {
+        font-size: 1rem;
+    }
+
+    @include Desktop {
+        font-size: 1rem;
+    }
+
+    @include DesktopLarge {
+        font-size: 1rem;
+    }
+}
+
+.FormStyleButton {
+    margin: 1rem;
+    font-size: 1rem;
+    width: 50%;
+    border-radius: 7px;
+    background-color: #1c95f8;
+    color: white;
+
+    @include MobileSmall {
+        font-size: 1.5rem;
+        width: 100%;
+
+    }
+
+    @include MobileExtraSmall {
+        font-size: 1.5rem;
+        width: 100%;
+
+    }
+
+}
+
+.FormStyleErrorMessage {
+    color: #a30505;
+    text-align: center;
+}
