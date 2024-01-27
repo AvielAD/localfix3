@@ -1,0 +1,35 @@
+@import '../../Utilities/ResponsiveUtils/';
+
+.containerCards{
+    height: 30vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    @include MobileExtraSmall {
+        height: 90vh;
+    }
+    @include MobileSmall {
+        height: 90vh;
+    }
+}
+
+.containerCardsContent{
+    height: 100%;
+    width: 85%;
+    display: flex;
+    @include MobileExtraSmall {
+        flex-wrap: wrap;
+        div{
+            width: 100%;
+        }
+    }
+    @include MobileSmall {
+        flex-wrap: wrap;
+        div{
+            width: 100%;
+        }
+    }
+}
+

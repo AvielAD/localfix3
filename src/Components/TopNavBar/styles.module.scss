@@ -1,0 +1,87 @@
+@import '../../Utilities/ResponsiveUtils/';
+
+.containerNavBar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(0, 0, 0, 0.7);
+    color: white;
+
+}
+
+.containerContentNavBar {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    div {
+        display: flex;
+        align-items: center;
+        a {
+            padding: 15px;
+        }
+
+    }
+    ul {
+        display: flex;
+        a {
+            padding: 15px;
+        }
+        @include MobileExtraSmall {
+            display: none;
+        }
+        @include MobileSmall {
+            display: none;
+        }
+        @include Tablet {
+            display: none;
+        }
+    }
+    .menuTop {
+        font-size: 30px;
+        @include Desktop {
+            display: none;
+        }
+        @include DesktopLarge {
+            display: none;
+        }
+    }
+}
+
+.menuTop:hover {
+    cursor: pointer;
+}
+
+.menuTopMobile {
+    position: fixed;
+    right: 0;
+    height: 100%;
+    width: 70%;
+    background-color: rgb(0, 0, 0, 0.7);
+    .listMenu {
+        height: 70%;
+        display:list-item;
+        display: flex;
+        flex-wrap: wrap;
+        a {
+            color: white !important;
+            width: 90%;
+        }
+        a:hover{
+            background-color: rgb(0, 0, 0, 0.2);
+        }
+    }
+    @include Desktop {
+        display: none !important;
+    }
+    @include DesktopLarge {
+        display: none !important;
+    }
+}
+
+.menuView {
+    display: block !important;
+}
+
+.menuHidden {
+    display: none !important;
+}
