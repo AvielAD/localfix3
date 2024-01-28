@@ -1,10 +1,10 @@
-const Dashboard = ()=>{
+const Reparaciones = ()=>{
     
     return (<>
         <div>
-            prueba dashboard
+            prueba reparaciones
         </div>
     </>)
 }
 
-export default Dashboard
+export default Reparaciones

@@ -13,7 +13,7 @@ const menusrutas: Array<menuoption> = [
   },
   {
     nombreruta: "Reparaciones", 
-    urlruta: "/eventos/reparaciones"
+    urlruta: "/dashboard/reparaciones"
   },
 ] 
 
