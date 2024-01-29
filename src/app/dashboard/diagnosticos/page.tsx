@@ -11,13 +11,8 @@ const Diagnosticos = () => {
     let equiposList: DevicesDto[] = [] 
 
     const diagnosticosData = useSWR('/api/diagnosticos', fetcher)
-    const equiposData = useSWR('/api/equipos', fetcher)
 
-    if (!diagnosticosData.data && !equiposData.data) return <>loading...</>
-    
-    if(diagnosticosData.data && equiposData.data)
-        equiposList = equiposData.data
-
+    if (!diagnosticosData.data) return <>loading...</>
 
     return (<>
         <h1 className="text-center">Diagnosticos esta semana</h1>
@@ -36,7 +31,7 @@ const Diagnosticos = () => {
                         diagnosticosData.data.map((item: DiagnosticosDto, index: number) => {
                             return (
                                 <tr key={index}>
-                                    <td>{equiposList.find(x => x.id == item.idequipo)?.model}</td>
+                                    <td>{item.nombre} {item.modelopopular}</td>
                                     <td>{item.fecha.toLocaleString().split("T")[0]}</td>
                                     <td>{item.descripcionfalla.split(" ")[0]}</td>
                                     <td>{item.costopresupuesto}</td>

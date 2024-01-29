@@ -1,10 +1,10 @@
 export interface DiagnosticosDto{
-    fecha: Date
-    cliente: string,
+    id: number,
+    nombre: string,
+    modelopopular: string,
+    fecha: Date,
     descripcionfalla: string,
-    sugerenciareparacion: string,
-    costopresupuesto: number,
-    idequipo: number
+    costopresupuesto: number
 }
 
 export interface DiagnosticoInputDto{
