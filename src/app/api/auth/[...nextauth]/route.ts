@@ -27,6 +27,8 @@ const auth = NextAuth({
                         email,
                         passkey: password
                     })
+
+                    console.log("response: "+response)
                     const responseUserInfo = response.data.data
                     const user = {
                         id: "1",
@@ -34,7 +36,7 @@ const auth = NextAuth({
                         email: String(responseUserInfo.email),
                         token: String(responseUserInfo.token)
                     }
-
+                    console.log(user)
                     cookies().set({
                         name: "token",
                         value: responseUserInfo.token,
@@ -44,6 +46,7 @@ const auth = NextAuth({
 
                     return user
                 } catch (error) {
+                    console.log(error)
                     return null
                 }
             }

@@ -30,7 +30,7 @@ const Login = () => {
                                 //redirect: false,
                                 callbackUrl: '/dashboard/'
                             })
-
+                            console.log(response)
                         }}
                     >
                         {(props) => (
