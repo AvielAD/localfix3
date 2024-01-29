@@ -28,7 +28,6 @@ const auth = NextAuth({
                         passkey: password
                     })
 
-                    console.log("response: "+JSON.stringify(response))
                     const responseUserInfo = response.data.data
                     const user = {
                         id: "1",
@@ -36,7 +35,6 @@ const auth = NextAuth({
                         email: String(responseUserInfo.email),
                         token: String(responseUserInfo.token)
                     }
-                    console.log(user)
                     cookies().set({
                         name: "token",
                         value: responseUserInfo.token,
