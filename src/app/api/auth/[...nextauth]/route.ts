@@ -28,7 +28,7 @@ const auth = NextAuth({
                         passkey: password
                     })
 
-                    console.log("response: "+response)
+                    console.log("response: "+JSON.stringify(response))
                     const responseUserInfo = response.data.data
                     const user = {
                         id: "1",
