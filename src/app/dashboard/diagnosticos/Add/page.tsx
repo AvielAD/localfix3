@@ -8,6 +8,15 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 const addFetcher = async (url: string, data: DiagnosticoInputDto) => fetch(url, { method: "POST", body: JSON.stringify(data) }).then(r => r.json())
 const getFetcher = async (url: string) => fetch(url, { method: "GET" }).then(r => r.json())
 
+const compareBrandEquipos = (a: DevicesDto, b: DevicesDto)=>{
+    if(a.brand.toLocaleLowerCase() < b.brand.toLocaleLowerCase())
+        return -1
+    if(a.brand.toLocaleLowerCase() > b.brand.toLocaleLowerCase())
+        return 1
+    return 0
+}
+
+
 const Add = () => {
     const [dataEquipos, setDataEquipos] = useState<Array<DevicesDto>>([])
     const [formDiagnostico, setFormDiagnostico] = useState({
@@ -22,7 +31,7 @@ const Add = () => {
 
     useEffect(() => {
         getFetcher('/api/equipos').then((data) => {
-            setDataEquipos(data)
+            setDataEquipos(data.sort(compareBrandEquipos))
         })
 
     }, [])
@@ -45,6 +54,7 @@ const Add = () => {
         })
 
     }
+
 
     return (<>
         <h1 className="text-center">Agregar Diagnostico</h1>

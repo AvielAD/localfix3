@@ -13,6 +13,7 @@ const Diagnosticos = () => {
     const diagnosticosData = useSWR('/api/diagnosticos', fetcher)
 
     if (!diagnosticosData.data) return <>loading...</>
+    
 
     return (<>
         <h1 className="text-center">Diagnosticos esta semana</h1>
