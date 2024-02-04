@@ -8,12 +8,12 @@ const fetcher = (url: string) => fetch(url).then(r => r.json())
 
 const Diagnosticos = () => {
     const router = useRouter()
-    let equiposList: DevicesDto[] = [] 
+    let equiposList: DevicesDto[] = []
 
     const diagnosticosData = useSWR('/api/diagnosticos', fetcher)
 
     if (!diagnosticosData.data) return <>loading...</>
-    
+
 
     return (<>
         <h1 className="text-center">Diagnosticos esta semana</h1>
@@ -25,6 +25,7 @@ const Diagnosticos = () => {
                         <th scope="col">Fecha</th>
                         <th scope="col">Falla</th>
                         <th scope="col">Presupuesto</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,6 +37,12 @@ const Diagnosticos = () => {
                                     <td>{item.fecha.toLocaleString().split("T")[0]}</td>
                                     <td>{item.descripcionfalla.split(" ")[0]}</td>
                                     <td>{item.costopresupuesto}</td>
+                                    <td>
+                                        <i onClick={
+                                            () => router.push(`/dashboard/reparaciones/${item.id}`)
+
+                                        } className='m-2 bi bi-tools'></i>
+                                    </td>
                                 </tr>)
                         })
                     }

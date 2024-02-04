@@ -34,7 +34,6 @@ export async function POST(req: NextRequest) {
     let Response = {} as response
     const testcookies = cookies().get('token')
     const data:ReparacionInputDto = await req.json()
-    
     try {
         if (testcookies)
             await fetch('https://localfixback2.localfix.mx/api/reparacion', {
