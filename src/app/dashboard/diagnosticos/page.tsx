@@ -6,6 +6,14 @@ import { DiagnosticosDto } from "@/DTOS/diagnosticos/diagnosticos"
 import { DevicesDto } from "@/DTOS/equipos/devices"
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 
+
+const compareFecha = (a: DiagnosticosDto, b: DiagnosticosDto)=>{
+    if(a.fecha < b.fecha)
+        return 1
+    if(a.fecha > b.fecha)
+        return -1
+    return 0
+}
 const Diagnosticos = () => {
     const router = useRouter()
     let equiposList: DevicesDto[] = []
@@ -30,7 +38,7 @@ const Diagnosticos = () => {
                 </thead>
                 <tbody>
                     {
-                        diagnosticosData.data.map((item: DiagnosticosDto, index: number) => {
+                        diagnosticosData.data.sort(compareFecha).map((item: DiagnosticosDto, index: number) => {
                             return (
                                 <tr key={index}>
                                     <td>{item.nombre} {item.modelopopular}</td>
