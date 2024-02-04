@@ -1,9 +1,6 @@
 'use client'
-import axios from 'axios';
-import { Formik, Field, Form, FormikHelpers, ErrorMessage } from 'formik';
-import styles from './styles.module.scss'
 import { useRouter } from 'next/navigation';
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { ReparacionInputDto } from '@/DTOS/reparaciones/reparacion';
 
 const addFetcher = async (url: string, data: ReparacionInputDto) => fetch(url, { method: "POST", body: JSON.stringify(data) }).then(r => r.json())

@@ -30,6 +30,12 @@ const Reparaciones = () => {
                                     <td>{item.recepcion.toString().split("T")[0]}</td>
                                     <td>{item.entrega.toString().split("T")[0]}</td>
                                     <td>{item.falla}</td>
+                                    <td>
+                                    <i onClick={
+                                            () => router.push(`/dashboard/reparaciones/details/${item.uuid}`)
+
+                                        } className='m-2 bi bi-eye'></i>
+                                    </td>
                                 </tr>)
                         })
                     }

@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import styles from './styles.module.scss'
 import { FormularioLogin } from '@/DTOS/FormularioLogin';
 import { signIn } from 'next-auth/react';
+import { useState } from 'react';
 
 const instanceAxios = axios.create({
     baseURL: 'https://authmodule.localfix.mx',
@@ -14,7 +15,10 @@ const instanceAxios = axios.create({
 })
 
 const Login = () => {
+    const [disabledBL, setDissabledBL] = useState(false)
+
     const router = useRouter()
+
     return (
         <>
             <div>
@@ -24,6 +28,7 @@ const Login = () => {
                         initialValues={initialValues}
                         validate={validations}
                         onSubmit={async (values) => {
+
                            var response = await signIn('credentials', {
                                 email: values.email,
                                 password: values.passkey,
@@ -70,6 +75,7 @@ const Login = () => {
                                             }</ErrorMessage>
                                         <button
                                             type="submit"
+                                            disabled={disabledBL}
                                             className={styles.FormStyleButton}
                                         >Iniciar Sesion</button>
                                     </div>

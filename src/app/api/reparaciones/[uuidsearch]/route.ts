@@ -2,11 +2,12 @@ import { cookies } from "next/headers";
 import { ReparacionAllDto} from "@/DTOS/reparaciones/reparacion";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest, {params}: {params: {uuidsearch: string}}) {
     let EventosView = {} as ReparacionAllDto
     const testcookies = cookies().get('token')
 
-    const uuidsearch = req.nextUrl.searchParams.get("uuidsearch") || ""
+    const uuidsearch = params.uuidsearch
+
     try {
         if (testcookies)
             await fetch(`https://localfixback2.localfix.mx/api/reparacion/${uuidsearch}`, {
@@ -20,7 +21,6 @@ export async function GET(req: NextRequest, res: NextResponse) {
                     EventosView = userInfo
                 }).catch((error) => {
                 })
-
         if(EventosView)
             return NextResponse.json(EventosView)
         else
