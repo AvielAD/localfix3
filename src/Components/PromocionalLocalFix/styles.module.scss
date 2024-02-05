@@ -1,0 +1,24 @@
+.container{
+    color: black;
+    border: solid 1px black;
+    height: 450pt;
+    width: 300pt;
+    display: flex;
+    justify-content: center;
+
+}
+.containerContent{
+    color: black;
+    text-align: center;
+    line-height: 0.5rem;
+}
+.containerImage{
+    height: 330px;
+    width: 330px;
+    position: relative;
+}
+.mainTitle {
+    font-family: Inspiration;
+    cursor: pointer;
+    font-size: 5rem;
+}

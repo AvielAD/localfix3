@@ -8,6 +8,10 @@ const inter = Inter({ subsets: ['latin'] })
 
 const menusrutas: Array<menuoption> = [
   {
+    nombreruta: "Inicio", 
+    urlruta: "/dashboard/"
+  },
+  {
     nombreruta: "Diagnosticos", 
     urlruta: "/dashboard/diagnosticos"
   },
