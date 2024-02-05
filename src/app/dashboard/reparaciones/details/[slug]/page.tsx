@@ -1,7 +1,10 @@
 'use client'
 
-import { ReparacionAllDto } from "@/DTOS/reparaciones/reparacion"
+import { ReparacionAllDto, ReparacionTicket } from "@/DTOS/reparaciones/reparacion"
 import useSWR from "swr"
+import ReactToPrint, { useReactToPrint } from 'react-to-print'
+import ComponentNota from '@/Components/NotaLocalFix/page'
+import { useRef } from "react"
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 
@@ -9,11 +12,37 @@ const Details = ({ params }: { params: { slug: string } }) => {
     let allInfo = {} as ReparacionAllDto
     const uuid = params.slug
     const reparacionDetail = useSWR(`/api/reparaciones/${uuid}`, fetcher)
+
+    const componentRef = useRef<HTMLDivElement>(null);
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+    })
+
     if (!reparacionDetail.data) return <>loading...</>
-    if(reparacionDetail.data) allInfo = reparacionDetail.data
+    if (reparacionDetail.data) allInfo = reparacionDetail.data
 
     return (<>
-        <h2>Detalles</h2>
+        <h2>Detalles 
+
+        <button onClick={handlePrint}>
+            <i className="bi bi-printer"></i>
+        </button>
+
+        </h2>
+        <div className="d-none">
+
+        <ComponentNota ref={componentRef}
+        nombreCliente={allInfo?.nombre+" "+allInfo?.apellido}
+        telCliente={allInfo?.telefono}
+        modeloEquipo={allInfo?.marca+" "+allInfo?.modelo}
+        fechaRecepcion={allInfo?.recepcion.toString().split("T")[0]}
+        fechaEntrega={allInfo?.entrega.toString().split("T")[0]}
+        descripcionFalla={allInfo?.falla}
+        descripcionReparacion={allInfo?.diagnostico}
+        costoTotal={ parseInt( allInfo?.total)}
+        ></ComponentNota>
+        </div>
+
 
         <div className="row">
             <div className="col-6">
@@ -34,8 +63,8 @@ const Details = ({ params }: { params: { slug: string } }) => {
         <div className="row">
             <div className="col-8">
                 <h2>Reparacion</h2>
-                <p>Recepcion: {allInfo?.recepcion.toString()}</p>
-                <p>Entrega: {allInfo?.entrega.toString()}</p>
+                <p>Recepcion: {allInfo?.recepcion.toString().split("T")[0]}</p>
+                <p>Entrega: {allInfo?.entrega.toString().split("T")[0]}</p>
             </div>
 
             <div className="col-4 text-justify">

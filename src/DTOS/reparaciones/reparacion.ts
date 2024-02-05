@@ -32,3 +32,14 @@ export interface ReparacionAllDto{
     presupuesto: number,
     total: string
 }
+
+export interface ReparacionTicket{
+    costoTotal: number,
+    modeloEquipo: string,
+    descripcionFalla: string,
+    descripcionReparacion: string,
+    fechaRecepcion: string,
+    fechaEntrega: string,
+    nombreCliente: string,
+    telCliente: string
+}

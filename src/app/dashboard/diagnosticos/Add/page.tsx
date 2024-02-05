@@ -48,7 +48,6 @@ const Add = () => {
         } as DiagnosticoInputDto
 
         addFetcher('/api/diagnosticos', newDiagnostico).then((data)=>{
-            console.log(data)
             if(data.succeeded)
                 router.push('/dashboard/diagnosticos')
         })

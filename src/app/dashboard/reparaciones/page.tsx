@@ -19,6 +19,7 @@ const Reparaciones = () => {
                         <th scope="col">Fecha Recepcion</th>
                         <th scope="col">Fecha Entrega</th>
                         <th scope="col">Falla</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>

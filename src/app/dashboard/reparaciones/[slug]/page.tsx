@@ -28,7 +28,6 @@ const FormularioDynamic = ({ params }: { params: { slug: string } }) => {
         }
 
         addFetcher('/api/reparaciones', newRepair).then((data)=>{
-            console.log(data)
             if(data.succeeded)
                 router.push('/dashboard/reparaciones')
         })

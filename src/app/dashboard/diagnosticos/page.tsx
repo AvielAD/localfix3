@@ -49,7 +49,7 @@ const Diagnosticos = () => {
                                         <i onClick={
                                             () => router.push(`/dashboard/reparaciones/${item.id}`)
 
-                                        } className='m-2 bi bi-tools'></i>
+                                        } className='m-2 bi bi-plus-circle-dotted'></i>
                                     </td>
                                 </tr>)
                         })
