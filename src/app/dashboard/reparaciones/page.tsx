@@ -16,8 +16,8 @@ const Reparaciones = () => {
                 <thead>
                     <tr>
                         <th scope="col">Equipo</th>
-                        <th scope="col">Fecha Recepcion</th>
-                        <th scope="col">Fecha Entrega</th>
+                        <th scope="col">Recepcion</th>
+                        <th scope="col">Entrega</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -26,7 +26,7 @@ const Reparaciones = () => {
                         diagnosticosData.data.map((item: ReparacionDto, index: number) => {
                             return (
                                 <tr key={index}>
-                                    <td>{item.marca} {item.modelo}</td>
+                                    <td>{item.modelo}</td>
                                     <td>{item.recepcion.toString().split("T")[0]}</td>
                                     <td>{item.entrega.toString().split("T")[0]}</td>
                                     <td>

@@ -10,7 +10,7 @@ const AddMenu=(addMenu: AddMenu)=>{
     return (
         <>
             <div className="float-end">
-                <i onClick={()=>{ clickMenu() }} className="bi bi-plus-circle" style={{fontSize: "4rem"}}></i>
+                <i onClick={()=>{ clickMenu() }} className="bi bi-plus-square" style={{fontSize: "4rem"}}></i>
             </div>
         </>
     )

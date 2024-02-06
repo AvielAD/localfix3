@@ -25,13 +25,17 @@ const Diagnosticos = () => {
 
     return (<>
         <h1 className="text-center">Diagnosticos esta semana</h1>
+        <div className="d-flex justify-content-center">
+            <MenuAdd url='/dashboard/diagnosticos/Add'></MenuAdd>
+        </div>
+
         <div>
             <table className="table overflow-x-scroll">
                 <thead>
                     <tr>
-                        <th scope="col">Equipo</th>
-                        <th scope="col">Fecha</th>
-                        <th scope="col">Presupuesto</th>
+                        <th className="text-center" scope="col">Equipo</th>
+                        <th className="text-center" scope="col">Fecha</th>
+                        <th className="text-center" scope="col">$</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -42,7 +46,7 @@ const Diagnosticos = () => {
                                 <tr key={index}>
                                     <td>{item.nombre} {item.modelopopular}</td>
                                     <td>{item.fecha.toLocaleString().split("T")[0]}</td>
-                                    <td>{item.costopresupuesto}</td>
+                                    <td className="text-end">{item.costopresupuesto}</td>
                                     <td>
                                         <i onClick={
                                             () => router.push(`/dashboard/reparaciones/${item.id}`)
@@ -55,7 +59,6 @@ const Diagnosticos = () => {
                 </tbody>
 
             </table>
-            <MenuAdd url='/dashboard/diagnosticos/Add'></MenuAdd>
 
         </div>    </>)
 }
