@@ -31,7 +31,6 @@ const Diagnosticos = () => {
                     <tr>
                         <th scope="col">Equipo</th>
                         <th scope="col">Fecha</th>
-                        <th scope="col">Falla</th>
                         <th scope="col">Presupuesto</th>
                         <th scope="col">Acciones</th>
                     </tr>
@@ -43,7 +42,6 @@ const Diagnosticos = () => {
                                 <tr key={index}>
                                     <td>{item.nombre} {item.modelopopular}</td>
                                     <td>{item.fecha.toLocaleString().split("T")[0]}</td>
-                                    <td>{item.descripcionfalla.split(" ")[0]}</td>
                                     <td>{item.costopresupuesto}</td>
                                     <td>
                                         <i onClick={

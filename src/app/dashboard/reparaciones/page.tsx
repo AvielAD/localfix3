@@ -18,7 +18,6 @@ const Reparaciones = () => {
                         <th scope="col">Equipo</th>
                         <th scope="col">Fecha Recepcion</th>
                         <th scope="col">Fecha Entrega</th>
-                        <th scope="col">Falla</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -30,7 +29,6 @@ const Reparaciones = () => {
                                     <td>{item.marca} {item.modelo}</td>
                                     <td>{item.recepcion.toString().split("T")[0]}</td>
                                     <td>{item.entrega.toString().split("T")[0]}</td>
-                                    <td>{item.falla}</td>
                                     <td>
                                     <i onClick={
                                             () => router.push(`/dashboard/reparaciones/details/${item.uuid}`)
