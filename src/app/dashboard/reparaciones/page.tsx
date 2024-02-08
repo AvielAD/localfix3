@@ -2,6 +2,8 @@
 import useSWR from "swr"
 import { useRouter } from "next/navigation"
 import { ReparacionDto } from "@/DTOS/reparaciones/reparacion"
+import MenuAdd from "@/Components/AddMenu"
+
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 
 const Reparaciones = () => {
@@ -11,6 +13,10 @@ const Reparaciones = () => {
 
     return (<>
         <h1 className="text-center">Reparaciones</h1>
+        <div className="d-flex justify-content-center">
+            <MenuAdd url='/dashboard/reparaciones/first'></MenuAdd>
+        </div>
+
         <div>
             <table className="table overflow-x-scroll">
                 <thead>

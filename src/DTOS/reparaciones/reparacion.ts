@@ -43,3 +43,27 @@ export interface ReparacionTicket{
     nombreCliente: string,
     telCliente: string
 }
+
+export interface ReparacionFirstDto{
+    nombre: string,
+    apellido: string,
+    telefono: string,
+    fechaentrega: Date,
+    costototal: number,
+    descripcionfalla:string,
+    sugerenciareparacion:string,
+    idequipo: number
+
+}
+
+export interface ReparacionFirstInputDto{
+    nombre: string,
+    apellido: string,
+    telefono: string,
+    fechaentrega: string,
+    costototal: string,
+    descripcionfalla:string,
+    sugerenciareparacion:string,
+    idequipo: string
+
+}
