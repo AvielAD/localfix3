@@ -5,7 +5,13 @@ import { ReparacionDto } from "@/DTOS/reparaciones/reparacion"
 import MenuAdd from "@/Components/AddMenu"
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
-
+const compareFecha = (a: ReparacionDto, b: ReparacionDto)=>{
+    if(a.recepcion < b.recepcion)
+        return 1
+    if(b.recepcion > b.recepcion)
+        return -1
+    return 0
+}
 const Reparaciones = () => {
     const router = useRouter()
     const diagnosticosData = useSWR('/api/reparaciones', fetcher)
@@ -29,7 +35,7 @@ const Reparaciones = () => {
                 </thead>
                 <tbody>
                     {
-                        diagnosticosData.data.map((item: ReparacionDto, index: number) => {
+                        diagnosticosData.data.sort(compareFecha).map((item: ReparacionDto, index: number) => {
                             return (
                                 <tr key={index}>
                                     <td>{item.modelo}</td>

@@ -48,10 +48,10 @@ const First = () => {
             idequipo: parseInt(formReparacion.idequipo)
         } as ReparacionFirstDto
         //console.log(newReparacion)
-                addFetcher('/api/reparaciones/first', newReparacion).then((data)=>{
-                  if(data.succeeded)
-                    router.push('/dashboard/reparaciones')
-          })
+        addFetcher('/api/reparaciones/first', newReparacion).then((data) => {
+            if (data.succeeded)
+                router.push('/dashboard/reparaciones')
+        })
 
     }
 
