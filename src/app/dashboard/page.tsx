@@ -16,7 +16,9 @@ const Dashboard = () => {
 
             <div className='row'>
                 <div className='col'>
-                    <p className='d-flex justify-content-center'><i onClick={handlePrint} className="display-4 bi bi-printer"></i></p>
+                    <p className='d-flex justify-content-center'>
+                        <i onClick={handlePrint} className="display-2 bi bi-printer">
+                            </i></p>
                 </div>
             </div>
 
