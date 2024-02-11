@@ -8,9 +8,10 @@ const fetcher = (url: string) => fetch(url).then(r => r.json())
 const compareFecha = (a: ReparacionDto, b: ReparacionDto)=>{
     if(a.recepcion < b.recepcion)
         return 1
-    if(b.recepcion > b.recepcion)
+    else if(b.recepcion > b.recepcion)
         return -1
-    return 0
+    else
+        return 0
 }
 const Reparaciones = () => {
     const router = useRouter()
