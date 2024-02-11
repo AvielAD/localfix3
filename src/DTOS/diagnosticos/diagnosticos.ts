@@ -22,3 +22,9 @@ export interface DiagnosticoFormDto{
     costopresupuesto: string,
     idequipo: string
 }
+
+export interface UpdateDiagnosticoInputDto{
+    iddiagnostico: number
+    descripcionfalla: string,
+    sugerenciareparacion: string,
+}
