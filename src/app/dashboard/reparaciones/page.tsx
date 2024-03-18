@@ -6,18 +6,21 @@ import MenuAdd from "@/Components/AddMenu"
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 const compareFecha = (a: ReparacionDto, b: ReparacionDto)=>{
-    if(a.recepcion < b.recepcion)
-        return 1
-    else if(b.recepcion > b.recepcion)
+    if(a.recepcion > b.recepcion)
         return -1
+    else if(b.recepcion < b.recepcion)
+        return 1
     else
         return 0
 }
 const Reparaciones = () => {
+    let repairData = [] as Array<ReparacionDto>
     const router = useRouter()
     const diagnosticosData = useSWR('/api/reparaciones', fetcher)
     if (!diagnosticosData.data) return <>loading...</>
-
+    if(diagnosticosData.data) {
+        repairData = diagnosticosData.data.sort(compareFecha)
+    }
     return (<>
         <h1 className="text-center">Reparaciones</h1>
         <div className="d-flex justify-content-center">
@@ -36,7 +39,7 @@ const Reparaciones = () => {
                 </thead>
                 <tbody>
                     {
-                        diagnosticosData.data.sort(compareFecha).map((item: ReparacionDto, index: number) => {
+                        repairData?.map((item: ReparacionDto, index: number) => {
                             return (
                                 <tr key={index}>
                                     <td>{item.modelo}</td>
