@@ -5,9 +5,12 @@ import { useReactToPrint } from 'react-to-print';
 import MenuAdd from "@/Components/AddMenu"
 import ModalGeneral from '@/Components/ModalGeneral/page'
 import FormDiagnostic from '@/Components/Formularios/AddDiagnosticForm/page'
+import FormRepair from '@/Components/Formularios/AddReparacionForm/page'
+
 const Dashboard = () => {
     const componentRef = useRef<HTMLDivElement>(null);
     const [modalDiag, setModalDiag] = useState(false)
+    const [modalRep, setModalRep] = useState(false)
 
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
@@ -17,6 +20,10 @@ const Dashboard = () => {
 
         <ModalGeneral show={modalDiag} close={setModalDiag} >
             <FormDiagnostic show={modalDiag} close={setModalDiag} />
+        </ModalGeneral>
+
+        <ModalGeneral show={modalRep} close={setModalRep} >
+            <FormRepair show={modalRep} close={setModalRep} />
         </ModalGeneral>
 
         <div className='d-none'>
@@ -52,7 +59,7 @@ const Dashboard = () => {
 
                 <div className='col-6 d-flex justify-content-center align-items-center'>
                     <div className=''>
-                        <button className='btn btn-primary'>
+                        <button onClick={()=>setModalRep(true)} className='btn btn-primary'>
                             <div className='row text-center'>
                                 <i style={{ fontSize: '2rem' }} className='bi bi-tools'></i>
                                 <p>Reparaciones</p>
