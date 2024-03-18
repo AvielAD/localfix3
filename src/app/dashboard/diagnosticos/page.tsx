@@ -16,13 +16,15 @@ const compareFecha = (a: DiagnosticosDto, b: DiagnosticosDto)=>{
 }
 const Diagnosticos = () => {
     const router = useRouter()
-    let equiposList: DevicesDto[] = []
+    let equiposList = [] as DiagnosticosDto[]
 
     const diagnosticosData = useSWR('/api/diagnosticos', fetcher)
 
     if (!diagnosticosData.data) return <>loading...</>
 
-
+    if(diagnosticosData.data){
+        equiposList = diagnosticosData.data.sort(compareFecha)
+    }
     return (<>
         <h1 className="text-center">Diagnosticos esta semana</h1>
         <div className="d-flex justify-content-center">
@@ -41,7 +43,7 @@ const Diagnosticos = () => {
                 </thead>
                 <tbody>
                     {
-                        diagnosticosData.data.sort(compareFecha).map((item: DiagnosticosDto, index: number) => {
+                        equiposList?.map((item: DiagnosticosDto, index: number) => {
                             return (
                                 <tr key={index}>
                                     <td>{item.nombre} {item.modelopopular}</td>
