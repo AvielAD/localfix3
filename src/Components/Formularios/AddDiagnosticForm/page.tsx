@@ -1,5 +1,6 @@
 'use client'
-import { DiagnosticoInputDto, DiagnosticosDto } from "@/DTOS/diagnosticos/diagnosticos";
+import { DiagnosticoFormDto, DiagnosticoInputDto, DiagnosticosDto } from "@/DTOS/diagnosticos/diagnosticos";
+import { DevicesDto } from "@/DTOS/equipos/devices";
 import { modalpropsdto } from "@/DTOS/modalgeneral/modal.dto";
 import { Field, Form, Formik, FormikProps, ErrorMessage } from "formik";
 import { useRouter } from "next/navigation";
@@ -14,22 +15,38 @@ const Add = (props: modalpropsdto) => {
 
     const router = useRouter()
     const formTicket = {
-        idequipo: 0,
-        cliente: '',
+        idequipo: '0',
         descripcionfalla: '',
         sugerenciareparacion: '',
-        costopresupuesto: 0
-    } as DiagnosticoInputDto
+        costopresupuesto: '0',
+        cliente: 'N/A'
+    } as DiagnosticoFormDto
 
-    const submitAdd = async (values: DiagnosticoInputDto) => {
-        props.close(false)
+    const submitAdd = async (values: DiagnosticoFormDto) => {
+        console.log(values)
+        let newDiagnostic = { 
+            cliente: values.cliente,
+            descripcionfalla: values.descripcionfalla,
+            sugerenciareparacion: values.sugerenciareparacion,
+            costopresupuesto: parseFloat(values.costopresupuesto),
+            idequipo: parseInt(values.idequipo)
+         } as DiagnosticoInputDto
+        addFetcher('/api/diagnosticos', newDiagnostic).then((data)=>{
+            if(data.succeeded){
+                console.log('peticion exitosa')
+                router.push('/dashboard/diagnosticos')
+                props.close(false)
+            }
+        }).catch((e)=>{
+        })
+
+
     }
-
     return (<>
-        <div className="container mt-5">
+        <div className="container">
             <div className="row d-flex justify-content-center">
-                <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-4 col-sm-6 col-10">
-                    <div className="h3 text-center">Agregar Ticket</div>
+                <div className="text-white">
+                    <div className="h4">Diagnostico</div>
                     <Formik
                         initialValues={formTicket}
                         onSubmit={submitAdd}
@@ -38,44 +55,40 @@ const Add = (props: modalpropsdto) => {
                         {
                             (props: FormikProps<any>) => (
                                 <Form>
-                                    <Field as="select" name="idequipo" className="form-select">
+                                    <label>Equipo</label>
+                                    <Field as="select" name="idequipo" className="form-select text-dark">
                                         <option value={0}>Seleccionar Equipo...</option>
                                         {
-                                            dataEquipos?.data?.map((item: DiagnosticosDto, index: number) => {
-                                                return <option key={index} value={item.id}>{item.nombre}</option>
+                                            dataEquipos?.data?.map((item: DevicesDto, index: number) => {
+                                                return <option key={index} value={item.id}>{item.brand} {item.model} </option>
                                             })
                                         }
                                     </Field>
                                     <ErrorMessage name="idequipo">{(msg) => (<div className="text-danger text-center">{msg}</div>)}</ErrorMessage>
-
-                                    <Field
-                                        name="cliente"
-                                        className="form-control mt-4"
-                                    ></Field>
-                                    <ErrorMessage name="cliente">{(msg) => (<div className="text-danger text-center">{msg}</div>)}</ErrorMessage>
-
+                                    <label>Descripcion Falla</label>
                                     <Field
                                         name="descripcionfalla"
-                                        className="form-control mt-4"
+                                        className="form-control"
                                     ></Field>
-                                    <ErrorMessage name="descricionfalla">{(msg) => (<div className="text-danger text-center">{msg}</div>)}</ErrorMessage>
+                                    <ErrorMessage name="descripcionfalla">{(msg) => (<div className="text-danger text-center">{msg}</div>)}</ErrorMessage>
                                     
+                                    <label>Sugerencia Reparacion</label>
                                     <Field
                                         name="sugerenciareparacion"
-                                        className="form-control mt-4"
+                                        className="form-control"
                                     ></Field>
                                     <ErrorMessage name="sugerenciareparacion">{(msg) => (<div className="text-danger text-center">{msg}</div>)}</ErrorMessage>
 
+                                    <label>Equipo</label>
                                     <Field
                                         name="costopresupuesto"
-                                        className="form-control mt-4"
-                                        as="number"
+                                        className="form-control"
                                     ></Field>
                                     <ErrorMessage name="costopresupuesto">{(msg) => (<div className="text-danger text-center">{msg}</div>)}</ErrorMessage>
                                     
 
                                     <div className="row d-flex justify-content-center">
-                                        <button type="submit" className="mt-5 btn btn-primary col-8">Agregar</button>
+                                        <button type="submit" className="btn btn-primary col-8">Agregar</button>
                                     </div>
                                 </Form>
                             )
@@ -92,7 +105,6 @@ export default Add
 
 
 const addTicketSchema = object({
-    cliente: string().required('Campo Requerido'),
     descripcionfalla: string().required('Campo Requerido'),
     sugerenciareparacion: string().required('Campo Requerido'),
     costopresupuesto: number().min(1, 'El valor no puede ser negativo').required('Campo Requerido'),

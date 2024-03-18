@@ -7,7 +7,7 @@ import ModalGeneral from '@/Components/ModalGeneral/page'
 import FormDiagnostic from '@/Components/Formularios/AddDiagnosticForm/page'
 const Dashboard = () => {
     const componentRef = useRef<HTMLDivElement>(null);
-    const [modal, setModal] = useState(false)
+    const [modalDiag, setModalDiag] = useState(false)
 
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
@@ -15,8 +15,8 @@ const Dashboard = () => {
 
     return (<>
 
-        <ModalGeneral show={modal} close={setModal} >
-            <FormDiagnostic show={modal} close={setModal} />
+        <ModalGeneral show={modalDiag} close={setModalDiag} >
+            <FormDiagnostic show={modalDiag} close={setModalDiag} />
         </ModalGeneral>
 
         <div className='d-none'>
@@ -25,7 +25,7 @@ const Dashboard = () => {
 
         <div style={{height: '90vh'}} className='container'>
             <div className='h-100 row'>
-                <div className='col-6 d-flex align-items-center'>
+                <div className='col-6 d-flex justify-content-center align-items-center'>
 
                     <button onClick={handlePrint} className='btn btn-primary'>
                         <div className='row text-center'>
@@ -36,9 +36,10 @@ const Dashboard = () => {
 
                 </div>
 
-                <div className='col-6 d-flex align-items-center'>
+                <div className='col-6 d-flex justify-content-center align-items-center'>
                     <div>
-                        <button className='btn btn-primary'>
+                        <button  onClick={()=>setModalDiag(true)}
+                        className='btn btn-primary'>
                             <div className='row text-center'>
                                 <i style={{ fontSize: '2rem' }} className='bi bi-cloud-arrow-up'></i>
                                 <p>Diagnosticos</p>
@@ -49,7 +50,7 @@ const Dashboard = () => {
                     </div>
                 </div>
 
-                <div className='col-6 d-flex align-items-center'>
+                <div className='col-6 d-flex justify-content-center align-items-center'>
                     <div className=''>
                         <button className='btn btn-primary'>
                             <div className='row text-center'>
