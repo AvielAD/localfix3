@@ -105,6 +105,8 @@ const Add = (props: modalpropsdto) => {
                                     <Field
                                         name="descripcionfalla"
                                         className="form-control"
+                                        as="textarea"
+                                        rows={5}
                                     ></Field>
                                     <ErrorMessage name="descripcionfalla">{(msg) => (<div className="text-danger text-center">{msg}</div>)}</ErrorMessage>
                                     
@@ -112,6 +114,8 @@ const Add = (props: modalpropsdto) => {
                                     <Field
                                         name="sugerenciareparacion"
                                         className="form-control"
+                                        as="textarea"
+                                        rows={5}
                                     ></Field>
                                     <ErrorMessage name="sugerenciareparacion">{(msg) => (<div className="text-danger text-center">{msg}</div>)}</ErrorMessage>
 

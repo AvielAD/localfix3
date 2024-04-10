@@ -17,6 +17,7 @@ const Reparaciones = () => {
     let repairData = [] as Array<ReparacionDto>
     const router = useRouter()
     const diagnosticosData = useSWR('/api/reparaciones', fetcher)
+    
     if (!diagnosticosData.data) return <>loading...</>
     if(diagnosticosData.data) {
         repairData = diagnosticosData.data.sort(compareFecha)
