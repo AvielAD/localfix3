@@ -20,7 +20,7 @@ const Page = React.forwardRef<HTMLDivElement, ReparacionTicket>((
   return (
     <div ref={ref} className={styles.container}>
       <div className={styles.containerContent}>
-        <div>
+        <div style={{lineHeight: '0.5rem'}}>
           <h1 className={styles.mainTitle}>LocalFix</h1>
           <p>Reparacion de celulares y computadoras</p>
           <p>14 sur 6715 local A. Puebla Puebla</p>
@@ -28,23 +28,23 @@ const Page = React.forwardRef<HTMLDivElement, ReparacionTicket>((
           <p> Fecha Entrega Aprox.: {fechaEntrega}</p>
         </div>
 
-        <div className={styles.formularioCliente}>
+        <div className={styles.formularioCliente} style={{lineHeight: '0.5rem'}}>
           <p>Datos Cliente</p>
           <p>Nombre: {nombreCliente}</p>
           <p>Telefono: {telCliente}</p>
         </div>
 
-        <div className={styles.formularioCliente}>
+        <div className={styles.formularioCliente} >
           <p className='font-weight-bold'>Datos Dispositivo</p>
           <p >Modelo: {modeloEquipo}</p>
           <p>Falla Presentada:</p>
-          <textarea name="areaPres1" id="areaPres1" cols={30} rows={4} defaultValue={descripcionFalla}></textarea>
+          <textarea name="areaPres1" id="areaPres1" cols={30} rows={5} defaultValue={descripcionFalla}></textarea>
         </div>
 
         <div className={styles.formularioCliente}>
           <p>Prespuesto / Costo Reparacion</p>
           <p>total: ${costoTotal} mxn</p>
-          <textarea name="areaPres" id="areaPres" cols={30} rows={4} defaultValue={descripcionReparacion}></textarea>
+          <textarea name="areaPres" id="areaPres" cols={30} rows={5} defaultValue={descripcionReparacion}></textarea>
         </div>
 
 
