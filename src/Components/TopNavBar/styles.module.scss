@@ -1,4 +1,4 @@
-@import '../../Utilities/ResponsiveUtils/';
+@import '../../Utilities//ResponsiveUtils/';
 
 .containerNavBar {
     width: 100%;
@@ -84,4 +84,15 @@
 
 .menuHidden {
     display: none !important;
+}
+.menuHover{
+    color: white;
+    margin: 1rem;
+    border-radius: 8px;
+    height: 100%;
+}
+
+.menuHover:hover{
+    background-color: white;
+    color: black;
 }

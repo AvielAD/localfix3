@@ -1,3 +1,4 @@
+
 'use client'
 import Link from "next/link"
 import styles from './styles.module.scss'
@@ -28,41 +29,20 @@ const Index = (props: menunav) => {
 
     return (
         <>
-            <div className={styles.containerNavBar}>
-                <div className={styles.containerContentNavBar}>
-                    <div>
-                        <Link href=''>A</Link>
-                    </div>
-
-                    <div className={styles.menuTop}>
-                        
-                        <i ref={logowrapRef} className="bi bi-list" onClick={() => setMenu(!menu)}></i>
-                    </div>
-
-                    <div ref={wrapperRef}
-                        className={`${styles.menuTopMobile} 
-                    ${menu ? styles.menuView : styles.menuHidden}`}>
-                        <ul className={styles.listMenu}>
-                            {
-                                rutas.map((item: menuoption, index: number) => {
-                                    return <Link key={index} href={item.urlruta}>{item.nombreruta}</Link>
-                                })
-                            }
-                        </ul>
-
-                    </div>
-
-                    <ul>
-
+            <div className="bg-secondary rounded shadow h-100 w-100">
+                <div className="container">
+                    <h1 className="text-center">Menu</h1>
+                    <hr />
+                    <ul className="list-group">
                         {
                             rutas.map((item: menuoption, index: number) => {
-                                return <Link key={index} href={item.urlruta}>{item.nombreruta}</Link>
+                                return <Link className={styles.menuHover} key={index} href={item.urlruta}>{item.nombreruta}</Link>
                             })
                         }
                     </ul>
-
                 </div>
             </div>
+
         </>
     )
 }
