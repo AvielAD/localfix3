@@ -41,7 +41,12 @@ export interface ReparacionTicket{
     fechaRecepcion: string,
     fechaEntrega: string,
     nombreCliente: string,
-    telCliente: string
+    telCliente: string,
+    nombreEmpresa: string,
+    descripcionEmpresa: string,
+    direccionEmpresa: string,
+    telefonoEmpresa: string,
+    webEmpresa: string
 }
 
 export interface ReparacionFirstDto{

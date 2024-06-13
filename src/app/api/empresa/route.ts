@@ -1,16 +1,13 @@
-import { cookies } from "next/headers";
-import { ReparacionAllDto} from "@/DTOS/reparaciones/reparacion";
 import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
+import { empresadto } from "@/DTOS/empresa/empresa.dto";
 
-export async function GET(req: NextRequest, {params}: {params: {uuidsearch: string}}) {
-    let EventosView = {} as ReparacionAllDto
+export async function GET() {
+    let EventosView = {} as empresadto
     const testcookies = cookies().get('token')
-
-    const uuidsearch = params.uuidsearch
-
     try {
         if (testcookies)
-            await fetch(`https://localfixback2.localfix.mx/api/reparacion/${uuidsearch}`, {
+            await fetch('https://localfixback2.localfix.mx/api/empresa/info', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${testcookies.value}`
@@ -21,12 +18,8 @@ export async function GET(req: NextRequest, {params}: {params: {uuidsearch: stri
                     EventosView = userInfo
                 }).catch((error) => {
                 })
-                console.log(EventosView)
-        if(EventosView)
-            return NextResponse.json(EventosView)
-        else
-            return NextResponse.json({})
-                
+
+                return NextResponse.json(EventosView)
     } catch (error) {
         return NextResponse.json(EventosView)
     }

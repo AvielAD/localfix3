@@ -5,13 +5,16 @@ import useSWR from "swr"
 import ReactToPrint, { useReactToPrint } from 'react-to-print'
 import ComponentNota from '@/Components/NotaLocalFix/page'
 import { useRef } from "react"
+import { empresadto } from "@/DTOS/empresa/empresa.dto"
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 
 const Details = ({ params }: { params: { slug: string } }) => {
     let allInfo = {} as ReparacionAllDto
+    let empresaInfo = {} as empresadto
     const uuid = params.slug
     const reparacionDetail = useSWR(`/api/reparaciones/${uuid}`, fetcher)
+    const empresaData = useSWR(`/api/empresa`, fetcher)
 
     const componentRef = useRef<HTMLDivElement>(null);
     const handlePrint = useReactToPrint({
@@ -20,6 +23,9 @@ const Details = ({ params }: { params: { slug: string } }) => {
 
     if (!reparacionDetail.data) return <>loading...</>
     if (reparacionDetail.data) allInfo = reparacionDetail.data
+    if (empresaData.data) empresaInfo = empresaData.data
+    
+    console.log(allInfo)
 
     return (<>
         <h2 className="text-center">Detalles</h2>
@@ -31,11 +37,16 @@ const Details = ({ params }: { params: { slug: string } }) => {
                 nombreCliente={allInfo?.nombre + " " + allInfo?.apellido}
                 telCliente={allInfo?.telefono}
                 modeloEquipo={allInfo?.marca + " " + allInfo?.modelo}
-                fechaRecepcion={allInfo?.recepcion.toString().split("T")[0]}
-                fechaEntrega={allInfo?.entrega.toString().split("T")[0]}
+                fechaRecepcion={allInfo?.recepcion?.toString().split("T")[0]}
+                fechaEntrega={allInfo?.entrega?.toString().split("T")[0]}
                 descripcionFalla={allInfo?.falla}
                 descripcionReparacion={allInfo?.diagnostico}
                 costoTotal={parseInt(allInfo?.total)}
+                nombreEmpresa={empresaInfo.nombre}
+                descripcionEmpresa={empresaInfo.descripcion}
+                direccionEmpresa={empresaInfo.direccion}
+                telefonoEmpresa={empresaInfo.telefono}
+                webEmpresa={empresaInfo.web}
             ></ComponentNota>
         </div>
 
@@ -67,8 +78,8 @@ const Details = ({ params }: { params: { slug: string } }) => {
             <div className="row">
                 <div className="col-4">
                     <h2>Reparacion</h2>
-                    <p>Recepcion: {allInfo?.recepcion.toString().split("T")[0]}</p>
-                    <p>Entrega: {allInfo?.entrega.toString().split("T")[0]}</p>
+                    <p>Recepcion: {allInfo?.recepcion?.toString().split("T")[0]}</p>
+                    <p>Entrega: {allInfo?.entrega?.toString().split("T")[0]}</p>
                 </div>
 
                 <div className="col-8">

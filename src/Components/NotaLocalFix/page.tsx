@@ -13,17 +13,22 @@ const Page = React.forwardRef<HTMLDivElement, ReparacionTicket>((
     fechaEntrega,
     fechaRecepcion,
     nombreCliente,
-    telCliente
+    telCliente,
+    nombreEmpresa,
+    descripcionEmpresa,
+    direccionEmpresa,
+    telefonoEmpresa,
+    webEmpresa
   }: ReparacionTicket, ref) => {
 
 
   return (
     <div ref={ref} className={styles.container}>
       <div className={styles.containerContent}>
-        <div style={{lineHeight: '0.5rem'}}>
-          <h1 className={styles.mainTitle}>LocalFix</h1>
-          <p>Reparacion de celulares y computadoras</p>
-          <p>14 sur 6715 local A. Puebla Puebla</p>
+        <div style={{lineHeight: '1rem'}}>
+          <h1 className={styles.mainTitle}>{nombreEmpresa}</h1>
+          <p>{descripcionEmpresa}</p>
+          <p>{direccionEmpresa}</p>
           <p> Fecha Recepcion: {fechaRecepcion}</p>
           <p> Fecha Entrega Aprox.: {fechaEntrega}</p>
         </div>
@@ -50,8 +55,8 @@ const Page = React.forwardRef<HTMLDivElement, ReparacionTicket>((
 
 
         <div>
-          <h5><i className="bi bi-browser-safari"></i> www.localfix.mx</h5>
-          <h4><i className="bi bi-whatsapp"></i> 2229713533</h4>
+          <h5><i className="bi bi-browser-safari"></i> {webEmpresa}</h5>
+          <h4><i className="bi bi-whatsapp"></i> {telefonoEmpresa}</h4>
         </div>
 
        
