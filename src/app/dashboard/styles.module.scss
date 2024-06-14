@@ -92,6 +92,17 @@
     border-radius: 5px;
     position: sticky;
     top: 20px;
+    @include Tablet {
+
+    }
+
+    @include Desktop {
+        visibility: hidden;
+    }
+
+    @include DesktopLarge {
+        visibility: hidden;
+    }
 }
 
 .areaMain {
