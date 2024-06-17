@@ -1,17 +1,19 @@
 'use client'
-import MenuAdd from "@/Components/AddMenu"
 import useSWR from "swr"
 import { useRouter } from "next/navigation"
 import { DiagnosticosDto } from "@/DTOS/diagnosticos/diagnosticos"
-import { DevicesDto } from "@/DTOS/equipos/devices"
 import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
+import { Fab, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
+import { StyledTableCell, StyledTableRow } from "@/Utilities/TableHelpers/StyledTable"
+import Link from "next/link"
+import { Add } from "@mui/icons-material"
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 
 
-const compareFecha = (a: DiagnosticosDto, b: DiagnosticosDto)=>{
-    if(a.fecha < b.fecha)
+const compareFecha = (a: DiagnosticosDto, b: DiagnosticosDto) => {
+    if (a.fecha < b.fecha)
         return 1
-    if(a.fecha > b.fecha)
+    if (a.fecha > b.fecha)
         return -1
     return 0
 }
@@ -23,46 +25,55 @@ const Diagnosticos = () => {
 
     if (!diagnosticosData.data) return <>loading...</>
 
-    if(diagnosticosData.data){
+    if (diagnosticosData.data) {
         equiposList = diagnosticosData.data.sort(compareFecha)
     }
     return (<>
-        <h1 className="text-center">Diagnosticos esta semana</h1>
-        <div className="d-flex justify-content-center">
-            <MenuAdd url='/dashboard/diagnosticos/Add'></MenuAdd>
-        </div>
 
-        <div>
-            <table className="table overflow-x-scroll">
-                <thead>
-                    <tr>
-                        <th className="text-center" scope="col">Equipo</th>
-                        <th className="text-center" scope="col">Fecha</th>
-                        <th className="text-center" scope="col">$</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        equiposList?.map((item: DiagnosticosDto, index: number) => {
-                            return (
-                                <tr key={index}>
-                                    <td>{item.nombre} {item.modelopopular}</td>
-                                    <td>{FormatMedDate(item.fecha)}</td>
-                                    <td className="text-end">{item.costopresupuesto}</td>
-                                    <td>
-                                        <i onClick={
-                                            () => router.push(`/dashboard/reparaciones/${item.id}`)
-                                        } className='m-2 bi bi-plus-circle-dotted'></i>
-                                    </td>
-                                </tr>)
-                        })
-                    }
-                </tbody>
+        <Grid container rowSpacing={2} >
+            <Grid item xs={12}>
+                <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+                    <TableContainer sx={{ maxHeight: '48rem' }} >
+                        <Table stickyHeader>
+                            <TableHead sx={{ color: 'white' }}>
+                                <TableRow>
+                                    <StyledTableCell>Equipo</StyledTableCell>
+                                    <StyledTableCell>Fecha</StyledTableCell>
+                                    <StyledTableCell>Acciones</StyledTableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {
+                                    equiposList?.map((item: DiagnosticosDto, index: number) => {
+                                        return (
+                                            <StyledTableRow key={index}>
+                                                <StyledTableCell>{item.nombre} {item.modelopopular}</StyledTableCell>
+                                                <StyledTableCell>{FormatMedDate(item.fecha)}</StyledTableCell>
+                                                <StyledTableCell>
+                                                    <i onClick={
+                                                        () => router.push(`/dashboard/reparaciones/${item.id}`)
+                                                    } className='m-2 bi bi-plus-circle-dotted'></i>
+                                                </StyledTableCell>
+                                            </StyledTableRow>)
+                                    })
+                                }
+                            </TableBody>
+                        </Table>
 
-            </table>
+                    </TableContainer>
+                </Paper>
+            </Grid>
+            <Grid item sx={{ position: "sticky", bottom: 16, left: 16 }}>
+                <Fab color="primary" aria-label="add">
+                    <Link href='/dashboard/diagnosticos/Add'>
+                        <Add sx={{ color: "white" }} />
+                    </Link>
+                </Fab>
+            </Grid>
 
-        </div>    </>)
+        </Grid>
+
+    </>)
 }
 
 export default Diagnosticos

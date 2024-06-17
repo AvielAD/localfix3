@@ -16,26 +16,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Link from "next/link"
+import { StyledTableCell, StyledTableRow } from "@/Utilities/TableHelpers/StyledTable"
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
-    },
-  }));
-  
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
-    '&:last-child td, &:last-child th': {
-      border: 0,
-    },
-  }));
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 const compareFecha = (a: ReparacionDto, b: ReparacionDto) => {
@@ -60,7 +42,7 @@ const Reparaciones = () => {
             <Grid item xs={12}>
                 <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                     <TableContainer sx={{ maxHeight: '48rem' }} >
-                        <Table >
+                        <Table stickyHeader>
                             <TableHead sx={{color: 'white'}}>
                                 <TableRow>
                                     <StyledTableCell>Equipo</StyledTableCell>
