@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { DiagnosticoInputDto, DiagnosticosDto } from "@/DTOS/diagnosticos/diagnosticos";
 import { response } from "@/DTOS/response/response";
 import { ReparacionDto, ReparacionInputDto } from "@/DTOS/reparaciones/reparacion";
 

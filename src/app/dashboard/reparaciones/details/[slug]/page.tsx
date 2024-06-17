@@ -6,6 +6,7 @@ import ReactToPrint, { useReactToPrint } from 'react-to-print'
 import ComponentNota from '@/Components/NotaLocalFix/page'
 import { useRef } from "react"
 import { empresadto } from "@/DTOS/empresa/empresa.dto"
+import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 
@@ -78,8 +79,8 @@ const Details = ({ params }: { params: { slug: string } }) => {
             <div className="row">
                 <div className="col-4">
                     <h2>Reparacion</h2>
-                    <p>Recepcion: {allInfo?.recepcion?.toString().split("T")[0]}</p>
-                    <p>Entrega: {allInfo?.entrega?.toString().split("T")[0]}</p>
+                    <p>Recepcion: { FormatMedDate( allInfo?.recepcion)}</p>
+                    <p>Entrega: { FormatMedDate( allInfo?.entrega)}</p>
                 </div>
 
                 <div className="col-8">

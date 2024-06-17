@@ -1,3 +1,5 @@
+import { DateTime } from "luxon"
+
 export interface ReparacionDto{
     uuid: string,
     recepcion: Date,

@@ -4,6 +4,7 @@ import useSWR from "swr"
 import { useRouter } from "next/navigation"
 import { DiagnosticosDto } from "@/DTOS/diagnosticos/diagnosticos"
 import { DevicesDto } from "@/DTOS/equipos/devices"
+import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 
 
@@ -47,7 +48,7 @@ const Diagnosticos = () => {
                             return (
                                 <tr key={index}>
                                     <td>{item.nombre} {item.modelopopular}</td>
-                                    <td>{item.fecha.toLocaleString().split("T")[0]}</td>
+                                    <td>{FormatMedDate(item.fecha)}</td>
                                     <td className="text-end">{item.costopresupuesto}</td>
                                     <td>
                                         <i onClick={
