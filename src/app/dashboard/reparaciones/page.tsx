@@ -5,18 +5,37 @@ import { ReparacionDto } from "@/DTOS/reparaciones/reparacion"
 import MenuAdd from "@/Components/AddMenu"
 import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
 
-import { Button, Fab, Grid, Icon } from "@mui/material"
+import { Button, Fab, Grid, Icon, styled } from "@mui/material"
 import { AddCircle } from "@mui/icons-material"
 import { Add } from "@mui/icons-material"
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Link from "next/link"
 
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 14,
+    },
+  }));
+  
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+      border: 0,
+    },
+  }));
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 const compareFecha = (a: ReparacionDto, b: ReparacionDto) => {
@@ -42,19 +61,19 @@ const Reparaciones = () => {
                 <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                     <TableContainer sx={{ maxHeight: '48rem' }} >
                         <Table >
-                            <TableHead>
+                            <TableHead sx={{color: 'white'}}>
                                 <TableRow>
-                                    <TableCell>Equipo</TableCell>
-                                    <TableCell>Recepcion</TableCell>
-                                    <TableCell>Entrega</TableCell>
-                                    <TableCell>Acciones</TableCell>
+                                    <StyledTableCell>Equipo</StyledTableCell>
+                                    <StyledTableCell>Recepcion</StyledTableCell>
+                                    <StyledTableCell>Entrega</StyledTableCell>
+                                    <StyledTableCell>Acciones</StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {
                                     repairData?.map((item: ReparacionDto, index: number) => {
                                         return (
-                                            <TableRow key={index}>
+                                            <StyledTableRow key={index}>
                                                 <TableCell>{item.modelo}</TableCell>
                                                 <TableCell>{FormatMedDate(item.recepcion)}</TableCell>
                                                 <TableCell>{FormatMedDate(item.entrega)}</TableCell>
@@ -64,7 +83,7 @@ const Reparaciones = () => {
 
                                                     } className='m-2 bi bi-eye'></i>
                                                 </TableCell>
-                                            </TableRow>)
+                                            </StyledTableRow>)
                                     })
                                 }
                             </TableBody>

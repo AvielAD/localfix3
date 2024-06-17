@@ -4,9 +4,14 @@ import Link from "next/link"
 import styles from './styles.module.scss'
 import { useEffect, useRef, useState } from "react"
 import { menunav, menuoption } from "@/DTOS/menuNav/menunav"
-import { NextPage } from "next"
+import useSWR from "swr"
+import { empresadto } from "@/DTOS/empresa/empresa.dto"
+const fetcher = (url: string) => fetch(url).then(r => r.json())
 
 const Index = (props: menunav) => {
+    const empresaData = useSWR(`/api/empresa`, fetcher)
+    let empresaInfo = {} as empresadto
+
     const { rutas } = props
     const [menu, setMenu] = useState(false);
     const wrapperRef = useRef(null) as any
@@ -26,12 +31,13 @@ const Index = (props: menunav) => {
             document.removeEventListener('click', handleOutSideClick)
         }
     })
+    if (empresaData.data) empresaInfo = empresaData.data
 
     return (
         <>
             <div className="bg-secondary rounded shadow h-100 w-100">
                 <div className="container">
-                    <h1 className="text-center">Menu</h1>
+                    <h1 className="text-center">{empresaInfo.nombre ? empresaInfo.nombre : "Menu"}</h1>
                     <hr />
                     <ul className="list-group">
                         {
