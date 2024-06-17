@@ -3,9 +3,10 @@ import useSWR from "swr"
 import { useRouter } from "next/navigation"
 import { ReparacionDto } from "@/DTOS/reparaciones/reparacion"
 import MenuAdd from "@/Components/AddMenu"
-import { DateTime } from "luxon"
 import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
-
+import { Button, Fab, Icon } from "@mui/material"
+import { AddCircle } from "@mui/icons-material"
+import { Add } from "@mui/icons-material"
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 const compareFecha = (a: ReparacionDto, b: ReparacionDto) => {
     if (a.recepcion > b.recepcion)
@@ -62,6 +63,10 @@ const Reparaciones = () => {
             </table>
 
         </div>
+
+        <Fab sx={{ position: "sticky", bottom: "1rem", left: "1rem" }} color="primary" aria-label="add">
+            <Add />
+        </Fab>
     </>)
 }
 
