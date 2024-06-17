@@ -7,6 +7,7 @@ import ComponentNota from '@/Components/NotaLocalFix/page'
 import { useRef } from "react"
 import { empresadto } from "@/DTOS/empresa/empresa.dto"
 import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
+import { Grid } from "@mui/material"
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 
@@ -25,11 +26,10 @@ const Details = ({ params }: { params: { slug: string } }) => {
     if (!reparacionDetail.data) return <>loading...</>
     if (reparacionDetail.data) allInfo = reparacionDetail.data
     if (empresaData.data) empresaInfo = empresaData.data
-    
+
     console.log(allInfo)
 
     return (<>
-        <h2 className="text-center">Detalles</h2>
 
 
         <div className="d-none">
@@ -50,58 +50,46 @@ const Details = ({ params }: { params: { slug: string } }) => {
                 webEmpresa={empresaInfo.web}
             ></ComponentNota>
         </div>
+        <Grid container rowSpacing={1} columns={12}>
+            <Grid xs={12} md={6} lg={6}>
+                <h2>Cliente</h2>
+                <p> <strong>Nombre</strong> : {allInfo?.nombre}</p>
+                <p> <strong>Apellido</strong>: {allInfo?.apellido}</p>
+                <p> <strong>Telefono</strong>: {allInfo?.telefono}</p>
 
-        <div className="container">
+            </Grid>
+            <Grid xs={12} md={6} lg={6}>
+                <h2>Equipo</h2>
+                <p><strong>Marca</strong>: {allInfo?.marca}</p>
+                <p> <strong>Modelo</strong>: {allInfo?.modelo}</p>
 
-            <div className="row">
-                <div className="col-4">
-                    <h2>Cliente</h2>
-                    <p>Nombre: {allInfo?.nombre}</p>
-                    <p>Apellido: {allInfo?.apellido}</p>
-                    <p>Telefono: {allInfo?.telefono}</p>
-                </div>
+            </Grid>
+            <Grid xs={12} md={6} lg={6}>
+                <h2>Costo</h2>
+                <p><strong>Presupuesto</strong> : ${allInfo?.presupuesto} mxn</p>
+                <p> <strong>Costo Total</strong>: ${allInfo?.total} mxn</p>
 
-                <div className="col-4">
-                    <h2>Equipo</h2>
-                    <p>Marca: {allInfo?.marca}</p>
-                    <p>Modelo: {allInfo?.modelo}</p>
+            </Grid>
 
-                </div>
-                <div className="col-4 text-justify">
-                    <h2>Costo</h2>
-                    <p>Presupuesto Inicial: ${allInfo?.presupuesto} mxn</p>
-                    <p>Costo Total: ${allInfo?.total} mxn</p>
+            <Grid xs={12} md={6} lg={6}>
+                <p> <strong>Recepcion</strong>: {FormatMedDate(allInfo?.recepcion)}</p>
+                <p> <strong>Entrega</strong>: {FormatMedDate(allInfo?.entrega)}</p>
 
-                </div>
+            </Grid>
+            <Grid xs={12} md={6} lg={6}>
+                <p> <strong>Falla</strong> {allInfo?.falla}</p>
+                <p> <strong>Recomendacion</strong> {allInfo?.diagnostico}</p>
+
+            </Grid>
+            <Grid xs={12} md={6} lg={6}>
+                <button className="btn btn-primary" onClick={handlePrint}>
+                    <i style={{ fontSize: '2rem' }} className="bi bi-printer">Ticket</i>
+                </button>
+
+            </Grid>
+        </Grid>
 
 
-            </div>
-            <div className="row">
-                <div className="col-4">
-                    <h2>Reparacion</h2>
-                    <p>Recepcion: { FormatMedDate( allInfo?.recepcion)}</p>
-                    <p>Entrega: { FormatMedDate( allInfo?.entrega)}</p>
-                </div>
-
-                <div className="col-8">
-                    <h2>Seguimiento</h2>
-                    <p> Falla Reportada: {allInfo?.falla}</p>
-                    <p> Acciones a Resolver: {allInfo?.diagnostico}</p>
-                </div>
-
-            </div>
-
-            <div className="row">
-                <div className="col-4">
-
-                    <h2>Acciones</h2>
-                    <button className="btn btn-primary" onClick={handlePrint}>
-                        <i style={{ fontSize: '2rem' }} className="bi bi-printer">Ticket</i>
-                    </button>
-                </div>
-
-            </div>
-        </div>
 
     </>)
 }

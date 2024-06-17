@@ -35,7 +35,7 @@ const Index = (props: menunav) => {
 
     return (
         <>
-            <div className="bg-secondary rounded shadow h-100 w-100">
+            <div className={`${styles.backGroundColor} rounded shadow h-100 w-100`}>
                 <div className="container">
                     <h1 className="text-center">{empresaInfo.nombre ? empresaInfo.nombre : "Menu"}</h1>
                     <hr />

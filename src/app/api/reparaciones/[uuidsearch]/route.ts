@@ -21,7 +21,6 @@ export async function GET(req: NextRequest, {params}: {params: {uuidsearch: stri
                     EventosView = userInfo
                 }).catch((error) => {
                 })
-                console.log(EventosView)
         if(EventosView)
             return NextResponse.json(EventosView)
         else
