@@ -46,6 +46,7 @@ export async function POST(req: NextRequest) {
                 .then((response) => response.json())
                 .then((userInfo) => {
                     Response = userInfo
+
                 }).catch((error) => {
                 console.log(error)
 

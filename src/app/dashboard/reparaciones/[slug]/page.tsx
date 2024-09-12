@@ -31,15 +31,11 @@ const FormularioDynamic = ({ params }: { params: { slug: string } }) => {
         }
 
         addFetcher('/api/reparaciones', newRepair).then((data) => {
-            if (data.succeeded){
                 if(formUpdateDiag.descripcionfalla !== "" && formUpdateDiag.sugerenciareparacion !== ""){
                     updateFetcherDiag('/api/diagnosticos',formUpdateDiag).then((data)=>{
-                        if(data.succeeded)
                             router.push('/dashboard/reparaciones')
                     })
                 }
-                router.push('/dashboard/reparaciones')
-            }
         })
     }
 
