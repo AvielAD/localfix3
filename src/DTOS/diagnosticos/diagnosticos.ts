@@ -1,18 +1,18 @@
 export interface DiagnosticosDto{
     id: number,
-    nombre: string,
-    modelopopular: string,
-    fecha: Date,
-    descripcionfalla: string,
-    costopresupuesto: number
+    nameDiagnostic: string,
+    namePopular: string,
+    dateDiagnostic: Date,
+    failureDescription: string,
+    budgetCost: number
 }
 
 export interface DiagnosticoInputDto{
-    cliente: string,
-    descripcionfalla: string,
-    sugerenciareparacion: string,
-    costopresupuesto: number,
-    idequipo: number
+    nameClient: string,
+    failureDescription: string,
+    repairDescription: string,
+    budgetCost: number,
+    idEquip: number
 }
 
 export interface DiagnosticoFormDto{

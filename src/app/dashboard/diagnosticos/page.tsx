@@ -11,9 +11,9 @@ const fetcher = (url: string) => fetch(url).then(r => r.json())
 
 
 const compareFecha = (a: DiagnosticosDto, b: DiagnosticosDto) => {
-    if (a.fecha < b.fecha)
+    if (a.dateDiagnostic < b.dateDiagnostic)
         return 1
-    if (a.fecha > b.fecha)
+    if (a.dateDiagnostic > b.dateDiagnostic)
         return -1
     return 0
 }
@@ -47,8 +47,8 @@ const Diagnosticos = () => {
                                     equiposList?.map((item: DiagnosticosDto, index: number) => {
                                         return (
                                             <StyledTableRow key={index}>
-                                                <StyledTableCell>{item.nombre} {item.modelopopular}</StyledTableCell>
-                                                <StyledTableCell>{FormatMedDate(item.fecha)}</StyledTableCell>
+                                                <StyledTableCell>{item.nameDiagnostic} {item.namePopular}</StyledTableCell>
+                                                <StyledTableCell>{FormatMedDate(item.dateDiagnostic)}</StyledTableCell>
                                                 <StyledTableCell>
                                                     <i onClick={
                                                         () => router.push(`/dashboard/reparaciones/${item.id}`)

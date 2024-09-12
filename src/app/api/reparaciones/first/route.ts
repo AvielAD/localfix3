@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
     const data:ReparacionFirstDto = await req.json()
     try {
         if (testcookies)
-            await fetch('https://localfixback2.localfix.mx/api/reparacion/first', {
+            await fetch('https://localfixback2.localfix.mx/api/Repair/First', {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
@@ -22,8 +22,6 @@ export async function POST(req: NextRequest) {
                 .then((userInfo) => {
                     Response = userInfo
                 }).catch((error) => {
-                console.log(error)
-
                 })
                 return NextResponse.json(Response)
     } catch (error) {

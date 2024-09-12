@@ -1,38 +1,40 @@
 import { DateTime } from "luxon"
+import { GenericModelDto } from "../genericdto/generic.dto"
 
 export interface ReparacionDto{
+    id: number,
     uuid: string,
-    recepcion: Date,
-    entrega: Date,
-    modelo: string,
-    marca: string,
-    falla: string,
-    diagnostico: string
+    dateReception: Date,
+    dateDelivery: Date,
+    model: string,
+    brand: string,
 }
 
 export interface ReparacionInputDto{
-    nombre: string,
-    apellido: string,
-    telefono: string,
-    email: string,
-    fechaentrega: Date,
-    costototal: number,
-    iddiagnostico: number
+    nameClient: string,
+    lastNameClient: string,
+    phoneNumberClient: string,
+    emailClient: string,
+    dateDelivery: Date,
+    totalCost: number,
+    idDiagnostic: number
 }
 export interface ReparacionAllDto{
     id: number,
     uuid: string,
-    nombre: string,
-    apellido: string,
-    telefono: string,
-    recepcion: Date,
-    entrega: Date,
-    modelo: string,
-    marca: string,
-    falla: string,
-    diagnostico: string,
-    presupuesto: number,
-    total: string
+    nameClient: string,
+    lastNameClient: string,
+    phoneNumberClient: string,
+    dateReception: Date,
+    dateDelivery: Date,
+    model: string,
+    brand: string,
+    failureDevice: string,
+    diagnosticDevice: string,
+    budget: number,
+    total: string,
+    idEnterprise: number,
+
 }
 
 export interface ReparacionTicket{
@@ -52,14 +54,14 @@ export interface ReparacionTicket{
 }
 
 export interface ReparacionFirstDto{
-    nombre: string,
-    apellido: string,
-    telefono: string,
-    fechaentrega: Date,
-    costototal: number,
-    descripcionfalla:string,
-    sugerenciareparacion:string,
-    idequipo: number
+    nameClient: string,
+    lastNameClient: string,
+    phoneNumberClient: string,
+    dateDelivery: Date,
+    totalCost: number,
+    failureDescription:string,
+    repairDescription:string,
+    idEquip: number
 
 }
 
@@ -72,5 +74,6 @@ export interface ReparacionFirstInputDto{
     descripcionfalla:string,
     sugerenciareparacion:string,
     idequipo: string
-
+    estado: GenericModelDto
 }
+

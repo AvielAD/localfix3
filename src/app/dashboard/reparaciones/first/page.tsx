@@ -32,24 +32,21 @@ const First = () => {
         getFetcher('/api/equipos').then((data) => {
             setDataEquipos(data.sort(compareBrandEquipos))
         })
-
     }, [])
 
     const onSubmitAdd = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const newReparacion = {
-            nombre: formReparacion.nombre,
-            apellido: formReparacion.apellido,
-            telefono: formReparacion.telefono,
-            descripcionfalla: formReparacion.descripcionfalla,
-            sugerenciareparacion: formReparacion.sugerenciareparacion,
-            fechaentrega: new Date(formReparacion.fechaentrega),
-            costototal: parseFloat(formReparacion.costototal),
-            idequipo: parseInt(formReparacion.idequipo)
+            nameClient: formReparacion.nombre,
+            lastNameClient: formReparacion.apellido,
+            phoneNumberClient: formReparacion.telefono,
+            failureDescription: formReparacion.descripcionfalla,
+            repairDescription: formReparacion.sugerenciareparacion,
+            dateDelivery: new Date(formReparacion.fechaentrega),
+            totalCost: parseFloat(formReparacion.costototal),
+            idEquip: parseInt(formReparacion.idequipo)
         } as ReparacionFirstDto
-        //console.log(newReparacion)
         addFetcher('/api/reparaciones/first', newReparacion).then((data) => {
-            if (data.succeeded)
                 router.push('/dashboard/reparaciones')
         })
 

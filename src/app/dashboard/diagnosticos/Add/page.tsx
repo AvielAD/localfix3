@@ -40,15 +40,14 @@ const Add = () => {
     const onSubmitAdd = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const newDiagnostico = {
-            cliente: formDiagnostico.cliente,
-            descripcionfalla: formDiagnostico.descripcionfalla,
-            sugerenciareparacion: formDiagnostico.sugerenciareparacion,
-            costopresupuesto: parseFloat(formDiagnostico.costopresupuesto),
-            idequipo: parseInt(formDiagnostico.idequipo)
+            nameClient: formDiagnostico.cliente,
+            failureDescription: formDiagnostico.descripcionfalla,
+            repairDescription: formDiagnostico.sugerenciareparacion,
+            budgetCost: parseFloat(formDiagnostico.costopresupuesto),
+            idEquip: parseInt(formDiagnostico.idequipo)
         } as DiagnosticoInputDto
 
         addFetcher('/api/diagnosticos', newDiagnostico).then((data)=>{
-            if(data.succeeded)
                 router.push('/dashboard/diagnosticos')
         })
 

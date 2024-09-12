@@ -35,13 +35,13 @@ const Details = ({ params }: { params: { slug: string } }) => {
         <div className="d-none">
 
             <ComponentNota ref={componentRef}
-                nombreCliente={allInfo?.nombre + " " + allInfo?.apellido}
-                telCliente={allInfo?.telefono}
-                modeloEquipo={allInfo?.marca + " " + allInfo?.modelo}
-                fechaRecepcion={allInfo?.recepcion?.toString().split("T")[0]}
-                fechaEntrega={allInfo?.entrega?.toString().split("T")[0]}
-                descripcionFalla={allInfo?.falla}
-                descripcionReparacion={allInfo?.diagnostico}
+                nombreCliente={allInfo?.nameClient + " " + allInfo?.lastNameClient}
+                telCliente={allInfo?.phoneNumberClient}
+                modeloEquipo={allInfo?.brand + " " + allInfo?.model}
+                fechaRecepcion={allInfo?.dateReception?.toString().split("T")[0]}
+                fechaEntrega={allInfo?.dateDelivery?.toString().split("T")[0]}
+                descripcionFalla={allInfo?.failureDevice}
+                descripcionReparacion={allInfo?.diagnosticDevice}
                 costoTotal={parseInt(allInfo?.total)}
                 nombreEmpresa={empresaInfo.nombre}
                 descripcionEmpresa={empresaInfo.descripcion}
@@ -53,32 +53,32 @@ const Details = ({ params }: { params: { slug: string } }) => {
         <Grid container rowSpacing={1} columns={12}>
             <Grid xs={12} md={6} lg={6}>
                 <h2>Cliente</h2>
-                <p> <strong>Nombre</strong> : {allInfo?.nombre}</p>
-                <p> <strong>Apellido</strong>: {allInfo?.apellido}</p>
-                <p> <strong>Telefono</strong>: {allInfo?.telefono}</p>
+                <p> <strong>Nombre</strong> : {allInfo?.nameClient}</p>
+                <p> <strong>Apellido</strong>: {allInfo?.lastNameClient}</p>
+                <p> <strong>Telefono</strong>: {allInfo?.phoneNumberClient}</p>
 
             </Grid>
             <Grid xs={12} md={6} lg={6}>
                 <h2>Equipo</h2>
-                <p><strong>Marca</strong>: {allInfo?.marca}</p>
-                <p> <strong>Modelo</strong>: {allInfo?.modelo}</p>
+                <p><strong>Marca</strong>: {allInfo?.brand}</p>
+                <p> <strong>Modelo</strong>: {allInfo?.model}</p>
 
             </Grid>
             <Grid xs={12} md={6} lg={6}>
                 <h2>Costo</h2>
-                <p><strong>Presupuesto</strong> : ${allInfo?.presupuesto} mxn</p>
+                <p><strong>Presupuesto</strong> : ${allInfo?.budget} mxn</p>
                 <p> <strong>Costo Total</strong>: ${allInfo?.total} mxn</p>
 
             </Grid>
 
             <Grid xs={12} md={6} lg={6}>
-                <p> <strong>Recepcion</strong>: {FormatMedDate(allInfo?.recepcion)}</p>
-                <p> <strong>Entrega</strong>: {FormatMedDate(allInfo?.entrega)}</p>
+                <p> <strong>Recepcion</strong>: {FormatMedDate(allInfo?.dateReception)}</p>
+                <p> <strong>Entrega</strong>: {FormatMedDate(allInfo?.dateDelivery)}</p>
 
             </Grid>
             <Grid xs={12} md={6} lg={6}>
-                <p> <strong>Falla</strong> {allInfo?.falla}</p>
-                <p> <strong>Recomendacion</strong> {allInfo?.diagnostico}</p>
+                <p> <strong>Falla</strong> {allInfo?.failureDevice}</p>
+                <p> <strong>Recomendacion</strong> {allInfo?.diagnosticDevice}</p>
 
             </Grid>
             <Grid xs={12} md={6} lg={6}>

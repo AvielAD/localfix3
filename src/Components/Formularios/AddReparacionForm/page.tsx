@@ -30,22 +30,23 @@ const Add = (props: modalpropsdto) => {
         console.log(values)
         
         let newRepair = { 
-            nombre: values.nombre,
-            apellido: values.apellido,
-            telefono: values.telefono,
-            fechaentrega: new Date(values.fechaentrega),
-            costototal: parseFloat(values.costototal),
-            descripcionfalla: values.descripcionfalla,
-            sugerenciareparacion: values.sugerenciareparacion,
-            idequipo: parseInt(values.idequipo)
+            nameClient: values.nombre,
+            lastNameClient: values.apellido,
+            phoneNumberClient: values.telefono,
+            dateDelivery: new Date(values.fechaentrega),
+            totalCost: parseFloat(values.costototal),
+            failureDescription: values.descripcionfalla,
+            repairDescription: values.sugerenciareparacion,
+            idEquip: parseInt(values.idequipo)
          } as ReparacionFirstDto
 
         addFetcher('/api/reparaciones/first', newRepair).then((data)=>{
             if(data.succeeded){
                 router.push('/dashboard/reparaciones')
-                props.close(false)
             }
         }).catch((e)=>{
+            console.log(e)
+
         })
 
 

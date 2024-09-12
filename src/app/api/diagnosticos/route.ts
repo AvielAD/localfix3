@@ -8,7 +8,7 @@ export async function GET() {
     const testcookies = cookies().get('token')
     try {
         if (testcookies)
-            await fetch('https://localfixback2.localfix.mx/api/diagnostico', {
+            await fetch('https://localfixback2.localfix.mx/api/Diagnostic', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${testcookies.value}`
@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
     
     try {
         if (testcookies)
-            await fetch('https://localfixback2.localfix.mx/api/diagnostico', {
+            await fetch('https://localfixback2.localfix.mx/api/Diagnostic', {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
