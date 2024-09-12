@@ -9,26 +9,25 @@ const updateFetcherDiag = async (url: string, data: UpdateDiagnosticoInputDto) =
 
 const FormularioDynamic = ({ params }: { params: { slug: string } }) => {
     const [formRepair, setFormRepair] = useState({
-        nombre: "",
-        apellido: "",
-        telefono: "",
-        email: "",
-        fechaentrega: "",
-        costototal: "",
-        iddiagnostico: params.slug.toString()
-    })
+        nameClient: "",
+        lastNameClient: "",
+        phoneNumberClient: "",
+        emailClient: "",
+        dateDelivery: "",
+        totalCost: "",
+        idDiagnostic: params.slug.toString()
+    } )
     const [formUpdateDiag, setFormUpdateDiag] = useState({} as UpdateDiagnosticoInputDto)
 
     const router = useRouter()
 
     const onSubmitAdd = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        console.log(formRepair)
         const newRepair: ReparacionInputDto = {
             ...formRepair,
-            fechaentrega: new Date(formRepair.fechaentrega),
-            costototal: parseFloat(formRepair.costototal),
-            iddiagnostico: parseInt(formRepair.iddiagnostico)
+            dateDelivery: new Date(formRepair.dateDelivery),
+            totalCost: parseFloat(formRepair.totalCost),
+            idDiagnostic: parseInt(formRepair.idDiagnostic)
         }
 
         addFetcher('/api/reparaciones', newRepair).then((data) => {
@@ -53,12 +52,12 @@ const FormularioDynamic = ({ params }: { params: { slug: string } }) => {
                 <input
                     className="form-control"
                     type="text"
-                    value={formRepair.nombre}
+                    value={formRepair.nameClient}
                     onChange={
                         (e: React.ChangeEvent<HTMLInputElement>) =>
                             setFormRepair({
                                 ...formRepair,
-                                nombre: e.target.value
+                                nameClient: e.target.value
                             })
                     }
 
@@ -68,12 +67,12 @@ const FormularioDynamic = ({ params }: { params: { slug: string } }) => {
                 <label className="form-label">Apellido Cliente</label>
                 <input className="form-control"
                     type="text"
-                    value={formRepair.apellido}
+                    value={formRepair.lastNameClient}
                     onChange={
                         (e: React.ChangeEvent<HTMLInputElement>) =>
                             setFormRepair({
                                 ...formRepair,
-                                apellido: e.target.value
+                                lastNameClient: e.target.value
                             })
                     }
                 />
@@ -81,23 +80,23 @@ const FormularioDynamic = ({ params }: { params: { slug: string } }) => {
                 <label className="form-label">Telefono</label>
                 <input className="form-control"
                     type="text"
-                    value={formRepair.telefono}
+                    value={formRepair.phoneNumberClient}
                     onChange={
                         (e: React.ChangeEvent<HTMLInputElement>) =>
                             setFormRepair({
                                 ...formRepair,
-                                telefono: e.target.value
+                                phoneNumberClient: e.target.value
                             })
                     }
                 />
                 <label className="form-label">Fecha Entrega</label>
                 <input className="form-control" type="date"
-                    value={formRepair.fechaentrega}
+                    value={formRepair.dateDelivery}
                     onChange={
                         (e: React.ChangeEvent<HTMLInputElement>) =>
                             setFormRepair({
                                 ...formRepair,
-                                fechaentrega: e.target.value
+                                dateDelivery: e.target.value
                             })
                     } />
 
@@ -130,12 +129,12 @@ const FormularioDynamic = ({ params }: { params: { slug: string } }) => {
                 <label className="form-label">Costo Total Reparacion</label>
                 <input name="costo presupuesto" className="form-control"
                     type="text"
-                    value={formRepair.costototal}
+                    value={formRepair.totalCost}
                     onChange={
                         (e: React.ChangeEvent<HTMLInputElement>) =>
                             setFormRepair({
                                 ...formRepair,
-                                costototal: e.target.value
+                                totalCost: e.target.value
                             })
                     }
                 />

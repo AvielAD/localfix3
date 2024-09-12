@@ -25,11 +25,11 @@ const Add = (props: modalpropsdto) => {
     const submitAdd = async (values: DiagnosticoFormDto) => {
         console.log(values)
         let newDiagnostic = { 
-            cliente: values.cliente,
-            descripcionfalla: values.descripcionfalla,
-            sugerenciareparacion: values.sugerenciareparacion,
-            costopresupuesto: parseFloat(values.costopresupuesto),
-            idequipo: parseInt(values.idequipo)
+            nameClient: values.cliente,
+            failureDescription: values.descripcionfalla,
+            repairDescription: values.sugerenciareparacion,
+            budgetCost: parseFloat(values.costopresupuesto),
+            idEquip: parseInt(values.idequipo)
          } as DiagnosticoInputDto
         addFetcher('/api/diagnosticos', newDiagnostic).then((data)=>{
             if(data.succeeded){
