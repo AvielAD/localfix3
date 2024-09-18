@@ -18,6 +18,8 @@ const Dashboard = () => {
 
     return (<>
 
+        
+
         <ModalGeneral show={modalDiag} close={setModalDiag} >
             <FormDiagnostic show={modalDiag} close={setModalDiag} />
         </ModalGeneral>

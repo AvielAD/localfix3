@@ -7,7 +7,6 @@ import ComponentNota from '@/Components/NotaLocalFix/page'
 import { useRef } from "react"
 import { empresadto } from "@/DTOS/empresa/empresa.dto"
 import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
-import { Grid } from "@mui/material"
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 
@@ -50,44 +49,6 @@ const Details = ({ params }: { params: { slug: string } }) => {
                 webEmpresa={empresaInfo.web}
             ></ComponentNota>
         </div>
-        <Grid container rowSpacing={1} columns={12}>
-            <Grid xs={12} md={6} lg={6}>
-                <h2>Cliente</h2>
-                <p> <strong>Nombre</strong> : {allInfo?.nameClient}</p>
-                <p> <strong>Apellido</strong>: {allInfo?.lastNameClient}</p>
-                <p> <strong>Telefono</strong>: {allInfo?.phoneNumberClient}</p>
-
-            </Grid>
-            <Grid xs={12} md={6} lg={6}>
-                <h2>Equipo</h2>
-                <p><strong>Marca</strong>: {allInfo?.brand}</p>
-                <p> <strong>Modelo</strong>: {allInfo?.model}</p>
-
-            </Grid>
-            <Grid xs={12} md={6} lg={6}>
-                <h2>Costo</h2>
-                <p><strong>Presupuesto</strong> : ${allInfo?.budget} mxn</p>
-                <p> <strong>Costo Total</strong>: ${allInfo?.total} mxn</p>
-
-            </Grid>
-
-            <Grid xs={12} md={6} lg={6}>
-                <p> <strong>Recepcion</strong>: {FormatMedDate(allInfo?.dateReception)}</p>
-                <p> <strong>Entrega</strong>: {FormatMedDate(allInfo?.dateDelivery)}</p>
-
-            </Grid>
-            <Grid xs={12} md={6} lg={6}>
-                <p> <strong>Falla</strong> {allInfo?.failureDevice}</p>
-                <p> <strong>Recomendacion</strong> {allInfo?.diagnosticDevice}</p>
-
-            </Grid>
-            <Grid xs={12} md={6} lg={6}>
-                <button className="btn btn-primary" onClick={handlePrint}>
-                    <i style={{ fontSize: '2rem' }} className="bi bi-printer">Ticket</i>
-                </button>
-
-            </Grid>
-        </Grid>
 
 
 

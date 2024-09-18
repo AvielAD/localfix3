@@ -1,4 +1,3 @@
-import styles from './styles.module.scss'
 import imgWhatsapp from './assets/WB.jpeg'
 import Image from 'next/image'
 import { ReparacionTicket } from '@/DTOS/reparaciones/reparacion'
@@ -23,30 +22,30 @@ const Page = React.forwardRef<HTMLDivElement, ReparacionTicket>((
 
 
   return (
-    <div ref={ref} className={styles.container}>
-      <div className={styles.containerContent}>
+    <div ref={ref} className="">
+      <div className="">
         <div style={{lineHeight: '1rem'}}>
-          <h1 className={styles.mainTitle}>{nombreEmpresa}</h1>
+          <h1 className="">{nombreEmpresa}</h1>
           <p>{descripcionEmpresa}</p>
           <p>{direccionEmpresa}</p>
           <p> Fecha Recepcion: {fechaRecepcion}</p>
           <p> Fecha Entrega Aprox.: {fechaEntrega}</p>
         </div>
 
-        <div className={styles.formularioCliente} style={{lineHeight: '0.5rem'}}>
+        <div className="" style={{lineHeight: '0.5rem'}}>
           <p>Datos Cliente</p>
           <p>Nombre: {nombreCliente}</p>
           <p>Telefono: {telCliente}</p>
         </div>
 
-        <div className={styles.formularioCliente} >
+        <div className="" >
           <p className='font-weight-bold'>Datos Dispositivo</p>
           <p >Modelo: {modeloEquipo}</p>
           <p>Falla Presentada:</p>
           <textarea name="areaPres1" id="areaPres1" cols={30} rows={5} defaultValue={descripcionFalla}></textarea>
         </div>
 
-        <div className={styles.formularioCliente}>
+        <div className="">
           <p>Prespuesto / Costo Reparacion</p>
           <p>total: ${costoTotal} mxn</p>
           <textarea name="areaPres" id="areaPres" cols={30} rows={5} defaultValue={descripcionReparacion}></textarea>

@@ -1,7 +1,6 @@
 
 'use client'
 import Link from "next/link"
-import styles from './styles.module.scss'
 import { useEffect, useRef, useState } from "react"
 import { menunav, menuoption } from "@/DTOS/menuNav/menunav"
 import useSWR from "swr"
@@ -35,14 +34,14 @@ const Index = (props: menunav) => {
 
     return (
         <>
-            <div className={`${styles.backGroundColor} rounded shadow h-100 w-100`}>
+            <div className={`rounded shadow h-100 w-100`}>
                 <div className="container">
                     <h1 className="text-center">{empresaInfo.nombre ? empresaInfo.nombre : "Menu"}</h1>
                     <hr />
                     <ul className="list-group">
                         {
                             rutas.map((item: menuoption, index: number) => {
-                                return <Link className={styles.menuHover} key={index} href={item.urlruta}>{item.nombreruta}</Link>
+                                return <Link className="" key={index} href={item.urlruta}>{item.nombreruta}</Link>
                             })
                         }
                     </ul>

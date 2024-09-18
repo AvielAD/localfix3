@@ -1,14 +1,13 @@
-import styles from './styles.module.scss'
 import imgWhatsapp from './assets/WB.jpeg'
 import Image from 'next/image'
 import React from 'react'
 
 const Page = React.forwardRef<HTMLDivElement>((props, ref) => {
   return (
-    <div ref={ref} className={styles.container}>
-      <div className={styles.containerContent}>
+    <div ref={ref} className="">
+      <div className="">
         <div>
-          <h1 className={styles.mainTitle}>LocalFix</h1>
+          <h1 className="">LocalFix</h1>
           <p>Reparacion de celulares y computadoras</p>
           <p>14 sur 6715 local A. Puebla Puebla</p>
         </div>
@@ -18,7 +17,7 @@ const Page = React.forwardRef<HTMLDivElement>((props, ref) => {
           <h4><i className="bi bi-whatsapp"></i> 2229713533</h4>
         </div>
 
-        <div className={styles.containerImage}>
+        <div className="">
             <Image src={imgWhatsapp} alt='sin imagen' fill></Image>
         </div>
       </div>

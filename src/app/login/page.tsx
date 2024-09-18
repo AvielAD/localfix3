@@ -1,17 +1,15 @@
 'use client'
 
-import { Formik, Field, Form, FormikHelpers, ErrorMessage } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import styles from './styles.module.scss'
 import { FormularioLogin } from '@/DTOS/FormularioLogin';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 
 const instanceAxios = axios.create({
     baseURL: 'https://authmodule.localfix.mx',
-    //baseURL: 'https://localhost:3000',
-    withCredentials:true
+    withCredentials: true
 })
 
 const Login = () => {
@@ -23,60 +21,64 @@ const Login = () => {
         <>
             <div>
                 <div>
-
                     <Formik
                         initialValues={initialValues}
                         validate={validations}
                         onSubmit={async (values) => {
 
-                           var response = await signIn('credentials', {
+                            var response = await signIn('credentials', {
                                 email: values.email,
                                 password: values.passkey,
                                 //redirect: false,
                                 callbackUrl: '/dashboard/'
                             })
-                            console.log(response)
+
                         }}
                     >
                         {(props) => (
                             <Form>
-                                <div className={styles.containerLogin}>
-                                    <div className={styles.containerContentLogin}>
-
+                                <div className="flex justify-center items-center h-screen bg-punange">
+                                    <div className="w-96 p-5 shadow-lg bg-white rounded-md text-black">
+                                        <h1 className='text-3xl block text-center'>Login</h1>
+                                        <hr className='mt-3' />
+                                        <label className='block text-base mt-3 mb-2'>
+                                            Usuario
+                                        </label>
                                         <Field
                                             type="text"
                                             name="email"
                                             autoComplete="off"
-                                            placeholder="Email"
-                                            className={styles.FormStyleField}
-
+                                            placeholder="Ingrese Correo Electronico"
+                                            className="border w-full px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 "
                                         ></Field>
                                         <ErrorMessage
                                             name='email'
                                         >{message =>
-                                            <div className={styles.FormStyleErrorMessage}>
+                                            <div className="text-pumplin">
                                                 {message}
                                             </div>
                                             }</ErrorMessage>
+                                        <label className='block text-base mt-3 mb-2'>
+                                            Contraseña
+                                        </label>
 
                                         <Field
                                             type="password"
                                             name="passkey"
                                             autoComplete="off"
-                                            placeholder="Password"
-                                            className={styles.FormStyleField}
+                                            placeholder="Ingrese Contraseña"
+                                            className="border w-full px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600"
                                         ></Field>
                                         <ErrorMessage
                                             name='passkey'
                                         >{message =>
-                                            <div className={styles.FormStyleErrorMessage}>
+                                            <div className="text-pumplin">
                                                 {message}
                                             </div>
                                             }</ErrorMessage>
                                         <button
                                             type="submit"
-                                            disabled={disabledBL}
-                                            className={styles.FormStyleButton}
+                                            className='border-2 border-pumpkin bg-pumpkin text-black py-1 px-5 w-full mt-3 rounded-md hover:bg-transparent hover:text-red-700'
                                         >Iniciar Sesion</button>
                                     </div>
                                 </div>

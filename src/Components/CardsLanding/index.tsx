@@ -1,11 +1,10 @@
-import styles from './styles.module.scss'
 import Card from '../Elements/Card'
 
 const Index = () => {
     return (
         <>
-            <div className={styles.containerCards}>
-                <div className={styles.containerCardsContent}>
+            <div >
+                <div >
                         <div>
                             <Card Icon='bi bi-journal-bookmark' Title='Cursos' Description='Aprende una nueva habilidad con nuestros cursos 100% practicos' />
                         </div>

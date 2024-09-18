@@ -1,5 +1,4 @@
 'use client'
-import { Curso } from "@/DTOS/curso.dto";
 import { DiagnosticoFormDto, DiagnosticoInputDto } from "@/DTOS/diagnosticos/diagnosticos";
 import { DevicesDto } from "@/DTOS/equipos/devices";
 import { useRouter } from "next/navigation";

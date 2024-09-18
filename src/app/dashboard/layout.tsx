@@ -1,72 +1,62 @@
 'use client'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import { Providers } from "./provider";
-import TopNavBar from '../../Components/TopNavBar'
-import { menunav, menuoption } from '@/DTOS/menuNav/menunav';
-import styles from './styles.module.scss'
-import { useEffect, useRef, useState } from 'react';
-const inter = Inter({ subsets: ['latin'] })
-
-const menusrutas: Array<menuoption> = [
-  {
-    nombreruta: "Inicio",
-    urlruta: "/dashboard/"
-  },
-  {
-    nombreruta: "Diagnosticos",
-    urlruta: "/dashboard/diagnosticos"
-  },
-  {
-    nombreruta: "Reparaciones",
-    urlruta: "/dashboard/reparaciones"
-  },
-]
+import { useState } from 'react';
+import Sidebar from '@/NewComponents/Sidebar'
+import SidebarItem from '@/NewComponents/SidebarItem'
+import useSWR from 'swr';
 
 
+const menusrutas =
+  [
+    {
+      ruta: "Inicio",
+      uri: "/dashboard/",
+      icon: "speedometer2",
+      active: true
+    },
+    {
+      ruta: "Diagnosticos",
+      uri: "/dashboard/diagnosticos",
+      icon: "clipboard-check"
 
-export default function Dashboard({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  const [menu, setMenu] = useState(true);
-  const wrapperRef = useRef(null) as any
-  const logowrapRef = useRef(null) as any
+    },
+    {
+      ruta: "Reparaciones",
+      uri: "/dashboard/reparaciones",
+      icon: "wrench-adjustable"
 
-  useEffect(() => {
-    const handleOutSideClick = (event: any) => {
-      if (menu && wrapperRef.current && logowrapRef.current &&
-        !wrapperRef.current.contains(event.target) && !logowrapRef.current.contains(event.target)) {
-        setMenu(false)
-      }
+    },
+    {
+      ruta: "Configuration",
+      uri: "/dashboard/configuration",
+      icon: "gear-wide-connected"
     }
+  ]
 
-    document.addEventListener('click', handleOutSideClick)
-    return () => {
-      document.removeEventListener('click', handleOutSideClick)
-    }
-  })
-
+export default function Dashboard({ children, }: { children: React.ReactNode }) {
+  const [menu, setMenu] = useState(false);
 
   return (
-    <div>
-      <div ref={wrapperRef} className={`${styles.SideBar} ${menu ? "d-flex" : "d-none"}`}>
-        <TopNavBar rutas={menusrutas} />
-      </div>
-      <div className={styles.ContainerLayout} >
+    <div className="h-screen">
+      <div className="h-full">
 
-        <div className={styles.areaTopbar}>
-          <div className='container'>
-            <div className='d-flex justify-content-end'>
-              <i ref={logowrapRef} style={{ fontSize: '2rem' }} className="bi bi-list" onClick={() => setMenu(!menu)}></i>
-            </div>
-          </div>
+        <div className={`text-2xl ${menu ? "hidden" : "flex"}`}>
+          <i className="bi bi-list" onClick={()=>setMenu(!menu)}></i>
         </div>
-        <div className={styles.areaMain}>
+
+        <div className={` ${menu ? "flex" : "hidden"} `}>
+          <Sidebar EnterpriseName={"Menu"} show={menu}>
+            {
+              menusrutas.map((item, index) => {
+                return <SidebarItem key={index} ruta={item.ruta} uri={item.uri} icon={item.icon} active={item.active}></SidebarItem>
+              })
+            }
+          </Sidebar>
+        </div> 
+
+        <div className="">
           <Providers>{children}</Providers>
         </div>
-
       </div>
     </div>
   )
