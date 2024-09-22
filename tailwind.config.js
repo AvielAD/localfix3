@@ -5,12 +5,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      gridTemplateColumns:{
-        'dashboardcolumns': '250px 1fr'
-      },
-      gridTemplateRows:{
-        'dashboardtop': '50px auto'
-      }
     },
   },
   plugins: [],

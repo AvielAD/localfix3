@@ -1,18 +1,17 @@
 'use client'
 import { Providers } from "./provider";
 import { useState } from 'react';
-import Sidebar from '@/NewComponents/Sidebar'
-import SidebarItem from '@/NewComponents/SidebarItem'
-import useSWR from 'swr';
-
-
+import HeaderPersonal from '@/NewComponents/Header'
+import SidebarPersonal from '@/NewComponents/Sidebar'
+import MainPersonal from '@/NewComponents/UI/Main'
+import ContentPersonal from '@/NewComponents/UI/Content'
+import Profile from '@/NewComponents/UI/Profile'
 const menusrutas =
   [
     {
       ruta: "Inicio",
       uri: "/dashboard/",
       icon: "speedometer2",
-      active: true
     },
     {
       ruta: "Diagnosticos",
@@ -36,28 +35,19 @@ const menusrutas =
 export default function Dashboard({ children, }: { children: React.ReactNode }) {
   const [menu, setMenu] = useState(false);
 
+  const showMenu = () => {
+    setMenu(!menu)
+  }
   return (
-    <div className="h-screen">
-      <div className="h-full">
+    <div className="">
+      <HeaderPersonal showSideBar={showMenu} ></HeaderPersonal>
+      <SidebarPersonal isSidebarOpen={menu} items={[...menusrutas]}></SidebarPersonal>
 
-        <div className={`text-2xl ${menu ? "hidden" : "flex"}`}>
-          <i className="bi bi-list" onClick={()=>setMenu(!menu)}></i>
-        </div>
-
-        <div className={` ${menu ? "flex" : "hidden"} `}>
-          <Sidebar EnterpriseName={"Menu"} show={menu}>
-            {
-              menusrutas.map((item, index) => {
-                return <SidebarItem key={index} ruta={item.ruta} uri={item.uri} icon={item.icon} active={item.active}></SidebarItem>
-              })
-            }
-          </Sidebar>
-        </div> 
-
-        <div className="">
+      <MainPersonal>
+        <ContentPersonal>
           <Providers>{children}</Providers>
-        </div>
-      </div>
+        </ContentPersonal>
+      </MainPersonal>
     </div>
   )
 }

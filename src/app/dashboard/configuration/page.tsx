@@ -9,21 +9,6 @@ const Index = ()=>{
     const toast1 = useToast()
 
     return (<>
-   <NewModal show={modal1.show}>
-            Mensaje Modal
-        </NewModal>
-
-        <NewToast show={toast1.toast.show} succedded={toast1.toast.response.Succedded}>
-            {toast1.toast.response.Message}
-        </NewToast>
-
-        <button onClick={modal1.changeShow}>
-            Abrir Modal
-        </button>
-
-        <button onClick={()=>toast1.changeToast({Message: "Toast prueba", Succedded: false})}>
-            Abrir Toast
-        </button>
            
     </>)
 }

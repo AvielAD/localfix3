@@ -37,7 +37,7 @@ const Login = () => {
                     >
                         {(props) => (
                             <Form>
-                                <div className="flex justify-center items-center h-screen bg-punange">
+                                <div className="flex justify-center items-center h-screen bg-blue-900">
                                     <div className="w-96 p-5 shadow-lg bg-white rounded-md text-black">
                                         <h1 className='text-3xl block text-center'>Login</h1>
                                         <hr className='mt-3' />
@@ -54,7 +54,7 @@ const Login = () => {
                                         <ErrorMessage
                                             name='email'
                                         >{message =>
-                                            <div className="text-pumplin">
+                                            <div className="text-red-700">
                                                 {message}
                                             </div>
                                             }</ErrorMessage>
@@ -72,7 +72,7 @@ const Login = () => {
                                         <ErrorMessage
                                             name='passkey'
                                         >{message =>
-                                            <div className="text-pumplin">
+                                            <div className="text-red-700">
                                                 {message}
                                             </div>
                                             }</ErrorMessage>

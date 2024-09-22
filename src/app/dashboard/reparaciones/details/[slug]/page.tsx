@@ -31,7 +31,7 @@ const Details = ({ params }: { params: { slug: string } }) => {
     return (<>
 
 
-        <div className="d-none">
+        <div className="hidden">
 
             <ComponentNota ref={componentRef}
                 nombreCliente={allInfo?.nameClient + " " + allInfo?.lastNameClient}

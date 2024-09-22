@@ -3,38 +3,52 @@ import useSWR from "swr"
 import { useRouter } from "next/navigation"
 import { ReparacionDto } from "@/DTOS/reparaciones/reparacion"
 import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
-
-
-const fetcher = (url: string) => fetch(url).then(r => r.json())
-const compareFecha = (a: ReparacionDto, b: ReparacionDto) => {
-    if (a.dateReception > b.dateReception)
-        return -1
-    else if (b.dateReception < b.dateReception)
-        return 1
-    else
-        return 0
-}
+import { fetcher } from '@/Utilities/FetchHelper/Fetch.helper'
+import { useState } from "react"
+import Modal from '@/NewComponents/Modal'
+import FormReparacion from '@/NewComponents/Formularios/AddReparacionForm'
 const Reparaciones = () => {
-
-    let repairData = [] as Array<ReparacionDto>
+    const [showModal, setShowModal] = useState(false)
     const router = useRouter()
-    const diagnosticosData = useSWR('/api/reparaciones', fetcher)
 
-    if (!diagnosticosData.data) return <>loading...</>
-    if (diagnosticosData.data) {
-        repairData = diagnosticosData.data.sort(compareFecha)
-    }
+    const infoRepairs = useSWR('/api/reparaciones', fetcher)
 
-    
-    return (<>
-        <div  >
-            <div >
+
+    if (!infoRepairs.data) return <>loading...</>
+
+    return (
+        <div className="flex justify-center items-center h-90">
+            <table className='shadow-2xl rounded-lg w-8/12 overflow-hidden'>
+                <thead>
+                    <tr className="text-white">
+                        <th className="py-3 bg-gray-800">Id</th>
+                        <th className="py-3 bg-gray-800">Equipo</th>
+                        <th className="py-3 bg-gray-800">Recepcion</th>
+                        <th className="py-3 bg-gray-800">Entrega</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        infoRepairs.data?.map((item: ReparacionDto, index: number) => {
+                            return <tr key={index} onClick={()=>{router.push(`/dashboard/reparaciones/details/${item.uuid}`)}} className="hover:bg-gray-700 hover:text-white cursor-pointer hover:scale-105 duration-300">
+                                <td className="py-3 px-6 ">{item.id}</td>
+                                <td className="py-3 px-6">{item.model + " " + item.brand}</td>
+                                <td className="py-3 px-6">{FormatMedDate(item.dateReception)}</td>
+                                <td className="py-3 px-6">{FormatMedDate(item.dateDelivery)}</td>
+                            </tr>
+                        })
+                    }
+                </tbody>
+            </table>
+
+            <Modal show={showModal} close={()=>setShowModal(false)}>
+                    <FormReparacion close={()=>setShowModal(false)}/>
+            </Modal>
+
+            <div className="fixed justify-center items-center bottom-5 xl:right-52 lg:right-20 md:right-14 sm:right-10 right-5 cursor-pointer text-blue-800 text-6xl rounded-full">
+                <i className="bi bi-plus-circle-fill" onClick={()=>setShowModal(true)}></i>
             </div>
-        </div>
-
-
-
-    </>)
+        </div>)
 }
 
 export default Reparaciones
