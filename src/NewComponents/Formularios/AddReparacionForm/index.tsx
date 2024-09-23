@@ -66,14 +66,14 @@ const Add = (params: { close: Function }) => {
                                 <Field name="idequipo">
                                     {({ field, form, meta }: FieldProps) => (
                                         <div>
-                                            <input type="search" list="list" autoComplete="on" id="" {...field} placeholder="Seleccionar equipo"
+                                            <input type="search" list="list" autoComplete="on" id="" {...field} placeholder="Seleccionar equipo" 
                                                 className={`ring-1 w-3/4 sm:w-full rounded-md outline-none focus:ring-2 focus:ring-blue-600 ${props.errors.idequipo && props.touched.idequipo ? "ring-red-600" : ""}`}
                                             />
                                             <datalist id="list">
 
                                                 {
                                                     dataEquipos.data?.map((item: DevicesDto, index: number) => {
-                                                        return <option key={index} data-value={item.id} value={item.model}>{item.brand}</option>
+                                                        return <option key={index} value={item.id}>{item.company} {item.brand} {item.model}</option>
                                                     })
                                                 }
                                             </datalist>
@@ -140,7 +140,7 @@ const Add = (params: { close: Function }) => {
 
                             <div className="flex items-center justify-center sm:justify-between mt-5">
                                 <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Agregar</button>
-                                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => params.close()}>Cancelar</button>
+                                <button type="button" className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => params.close()}>Cancelar</button>
                             </div>
                         </Form>
                     )
