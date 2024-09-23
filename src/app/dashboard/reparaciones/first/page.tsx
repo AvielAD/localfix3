@@ -1,6 +1,7 @@
 'use client'
 import { DevicesDto } from "@/DTOS/equipos/devices"
 import { ReparacionFirstDto, ReparacionFirstInputDto } from "@/DTOS/reparaciones/reparacion"
+import { DateTime } from "luxon"
 import { useRouter } from "next/navigation"
 import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 
@@ -42,10 +43,11 @@ const First = () => {
             phoneNumberClient: formReparacion.telefono,
             failureDescription: formReparacion.descripcionfalla,
             repairDescription: formReparacion.sugerenciareparacion,
-            dateDelivery: new Date(formReparacion.fechaentrega),
+            dateDelivery: DateTime.fromISO(formReparacion.fechaentrega).toString(),
             totalCost: parseFloat(formReparacion.costototal),
             idEquip: parseInt(formReparacion.idequipo)
         } as ReparacionFirstDto
+        
         addFetcher('/api/reparaciones/first', newReparacion).then((data) => {
                 router.push('/dashboard/reparaciones')
         })

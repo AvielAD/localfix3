@@ -5,7 +5,6 @@ import { useReactToPrint } from 'react-to-print';
 import MenuAdd from "@/Components/AddMenu"
 import ModalGeneral from '@/Components/ModalGeneral/page'
 import FormDiagnostic from '@/Components/Formularios/AddDiagnosticForm/page'
-import FormRepair from '@/Components/Formularios/AddReparacionForm/page'
 
 const Dashboard = () => {
     const componentRef = useRef<HTMLDivElement>(null);
