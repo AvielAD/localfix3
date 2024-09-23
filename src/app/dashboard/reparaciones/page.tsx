@@ -20,21 +20,19 @@ const Reparaciones = () => {
         <div className="flex justify-center items-center h-90">
             <table className='shadow-2xl rounded-lg w-8/12 overflow-hidden'>
                 <thead>
-                    <tr className="text-white">
-                        <th className="py-3 bg-gray-800">Id</th>
+                    <tr className="text-white ml-5">
                         <th className="py-3 bg-gray-800">Equipo</th>
                         <th className="py-3 bg-gray-800">Recepcion</th>
                         <th className="py-3 bg-gray-800">Entrega</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="">
                     {
                         infoRepairs.data?.map((item: ReparacionDto, index: number) => {
                             return <tr key={index} onClick={()=>{router.push(`/dashboard/reparaciones/details/${item.uuid}`)}} className="hover:bg-gray-700 hover:text-white cursor-pointer hover:scale-105 duration-300">
-                                <td className="py-3 px-6 ">{item.id}</td>
                                 <td className="py-3 px-6">{item.model + " " + item.brand}</td>
-                                <td className="py-3 px-6">{FormatMedDate(item.dateReception)}</td>
-                                <td className="py-3 px-6">{FormatMedDate(item.dateDelivery)}</td>
+                                <td className="py-3 px-6 text-center">{FormatMedDate(item.dateReception)}</td>
+                                <td className="py-3 px-6 text-center">{FormatMedDate(item.dateDelivery)}</td>
                             </tr>
                         })
                     }

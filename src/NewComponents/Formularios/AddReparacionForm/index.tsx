@@ -26,7 +26,6 @@ const Add = (params: { close: Function }) => {
 
     const submitAdd = async (values: ReparacionFirstInputDto) => {
         console.log(values)
-
         let newRepair = {
             nameClient: values.nombre,
             lastNameClient: values.apellido,
@@ -39,8 +38,9 @@ const Add = (params: { close: Function }) => {
         } as ReparacionFirstDto
 
         addFetcher('/api/reparaciones/first', newRepair).then((data) => {
+            console.log(data)
             if (data.succeeded) {
-                router.push('/dashboard/reparaciones')
+                params.close()
             }
         }).catch((e) => {
             console.log(e)
@@ -52,7 +52,7 @@ const Add = (params: { close: Function }) => {
     if (!dataEquipos.data) return <>loading...</>
 
     return (<>
-        <div className="p-8 w-full rounded-xl ">
+        <div className="rounded-xl ">
             <Formik
                 initialValues={formTicket}
                 onSubmit={submitAdd}
@@ -66,19 +66,21 @@ const Add = (params: { close: Function }) => {
                                 <Field name="idequipo">
                                     {({ field, form, meta }: FieldProps) => (
                                         <div>
-                                            <input type="search" list="list" autoComplete="on" id="" 
+                                            <input type="search" list="list" autoComplete="on" id="" {...field} placeholder="Seleccionar equipo"
                                                 className={`ring-1 w-3/4 sm:w-full rounded-md outline-none focus:ring-2 focus:ring-blue-600 ${props.errors.idequipo && props.touched.idequipo ? "ring-red-600" : ""}`}
                                             />
                                             <datalist id="list">
+
                                                 {
                                                     dataEquipos.data?.map((item: DevicesDto, index: number) => {
-                                                        return <option key={index} data-value={item.id} value={item.model}>{item.model} {item.company}</option>
+                                                        return <option key={index} data-value={item.id} value={item.model}>{item.brand}</option>
                                                     })
                                                 }
                                             </datalist>
                                         </div>
                                     )}
                                 </Field>
+                                <ErrorMessage name="idequipo" />
                             </div>
                             <div className="m-1">
                                 <label className="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
@@ -98,7 +100,7 @@ const Add = (params: { close: Function }) => {
                                 <label className="block text-gray-700 text-sm font-bold mb-2">Telefono</label>
                                 <Field
                                     name="telefono"
-                                    className={`ring-1 w-3/4 rounded-md outline-none focus:ring-2 focus:ring-blue-600 ${props.errors.telefono && props.touched.telefono ? "ring-red-600" : ""}`}
+                                    className={`ring-1 w-full rounded-md outline-none focus:ring-2 focus:ring-blue-600 ${props.errors.telefono && props.touched.telefono ? "ring-red-600" : ""}`}
                                 ></Field>
                             </div>
                             <div className="m-1">
@@ -133,7 +135,7 @@ const Add = (params: { close: Function }) => {
                                     name="costototal"
                                     className={`ring-1 w-full rounded-md outline-none focus:ring-2 focus:ring-blue-600`}
                                 ></Field>
-                                <ErrorMessage name="costototal">{(msg) => (<div className="">{msg}</div>)}</ErrorMessage>
+                                <ErrorMessage name="costototal">{(msg) => (<div className="text-red-700">{msg}</div>)}</ErrorMessage>
                             </div>
 
                             <div className="flex items-center justify-center sm:justify-between mt-5">
@@ -151,7 +153,6 @@ const Add = (params: { close: Function }) => {
 
 export default Add
 
-
 const addTicketSchema = object({
     nombre: string().required('Campo Requerido'),
     apellido: string().required('Campo Requerido'),
@@ -164,7 +165,6 @@ const addTicketSchema = object({
 })
 
 const customDate = (props: FieldProps) => (
-
     <div className="relative max-w-sm w-3/4">
         <input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="date" {...props.field} />
     </div>
