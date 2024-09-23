@@ -1,6 +1,6 @@
 'use client'
 import { ReparacionFirstDto, ReparacionFirstInputDto } from "@/DTOS/reparaciones/reparacion";
-import { Field, Form, Formik, FormikProps, ErrorMessage, FieldProps } from "formik";
+import { Field, Form, Formik, FormikProps, ErrorMessage, FieldProps, FormikHelpers, FormikState } from "formik";
 import { date, number, object, string } from 'yup';
 import { addFetcher, fetcher } from '@/Utilities/FetchHelper/Fetch.helper'
 import CustomSelect from '@/NewComponents/SelectSearch'
@@ -25,7 +25,7 @@ const Add = (params: { close: Function }) => {
         idequipo: '0'
     } as ReparacionFirstInputDto
 
-    const submitAdd = async (values: ReparacionFirstInputDto) => {
+    const submitAdd = async (values: ReparacionFirstInputDto, {resetForm}: any) => {
 
         let newRepair = {
             nameClient: values.nombre,
@@ -38,16 +38,13 @@ const Add = (params: { close: Function }) => {
             idEquip: parseInt(values.idequipo.split(' ')[0])
         } as ReparacionFirstDto
         console.log(newRepair)
-        /*
-                addFetcher('/api/reparaciones/first', newRepair).then((data) => {
-                    console.log(data)
-                    if (data.succeeded) {
-                        params.close()
-                    }
-                }).catch((e) => {
-                    console.log(e)
-        
-                })*/
+
+        addFetcher('/api/reparaciones/first', newRepair).then((data) => {
+            resetForm()
+            params.close()
+        }).catch((e) => {
+
+        })
     }
     return (<>
         <div className="rounded-xl ">
@@ -64,13 +61,13 @@ const Add = (params: { close: Function }) => {
                                 <Field name="idequipo" >
                                     {({ field, form, meta }: FieldProps) => (
                                         <div>
-                                            <input type="search" list="list" autoComplete="on" id="" {...field} placeholder="Seleccionar equipo" 
-                                                className={`ring-1 w-3/4 sm:w-full rounded-md outline-none focus:ring-2 focus:ring-blue-600 ${props.errors.idequipo && props.touched.idequipo ? "ring-red-600" : ""}`}
+                                            <input type="search" list="list" autoComplete="on" id="" {...field} placeholder="Seleccionar equipo"
+                                                className={`ring-1 w-full sm:w-full rounded-md outline-none focus:ring-2 focus:ring-blue-600 ${props.errors.idequipo && props.touched.idequipo ? "ring-red-600" : ""}`}
                                             />
                                             <datalist id="list">
                                                 {
                                                     dataEquipos.data?.map((item: DevicesDto, index: number) => {
-                                                        return <option key={index} value={item.id + " " + item.model}>{item.company} {item.brand} {item.model}</option>
+                                                        return <option key={index} value={item.id + " " + item.model +" "+item.brand}>{item.model}</option>
                                                     })
                                                 }
                                             </datalist>
@@ -84,14 +81,14 @@ const Add = (params: { close: Function }) => {
                                 <label className="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
                                 <Field
                                     name="nombre"
-                                    className={`ring-1 w-3/4 sm:w-full rounded-md outline-none focus:ring-2 focus:ring-blue-600 ${props.errors.nombre && props.touched.nombre ? "ring-red-600" : ""}`}
+                                    className={`ring-1 w-full sm:w-full rounded-md outline-none focus:ring-2 focus:ring-blue-600 ${props.errors.nombre && props.touched.nombre ? "ring-red-600" : ""}`}
                                 ></Field>
                             </div>
                             <div className="m-1">
                                 <label className="block text-gray-700 text-sm font-bold mb-2">Apellido</label>
                                 <Field
                                     name="apellido"
-                                    className={`ring-1 w-3/4 sm:w-full rounded-md outline-none focus:ring-2 focus:ring-blue-600 ${props.errors.apellido && props.touched.apellido ? "ring-red-600" : ""}`}
+                                    className={`ring-1 w-full sm:w-full rounded-md outline-none focus:ring-2 focus:ring-blue-600 ${props.errors.apellido && props.touched.apellido ? "ring-red-600" : ""}`}
                                 ></Field>
                             </div>
                             <div className="m-1">
@@ -143,7 +140,6 @@ const Add = (params: { close: Function }) => {
                         </Form>
                     )
                 }
-
             </Formik>
         </div>
     </>)

@@ -5,10 +5,10 @@ import React from 'react'
 
 const Page = React.forwardRef<HTMLDivElement, ReparacionTicket>((
   {
-    costoTotal, 
-    modeloEquipo, 
-    descripcionReparacion, 
-    descripcionFalla, 
+    costoTotal,
+    modeloEquipo,
+    descripcionReparacion,
+    descripcionFalla,
     fechaEntrega,
     fechaRecepcion,
     nombreCliente,
@@ -22,47 +22,66 @@ const Page = React.forwardRef<HTMLDivElement, ReparacionTicket>((
 
 
   return (
-    <div ref={ref} className="">
-      <div className="">
-        <div style={{lineHeight: '1rem'}}>
-          <h1 className="">{nombreEmpresa}</h1>
+    <div ref={ref} className="w-2/4 p-8">
+      <div className=''>
+        <h1 className="mx-auto w-16 py-2 font-inspiration text-5xl">{nombreEmpresa}</h1>
+        <div className='flex flex-col justify-center items-center gap-2'>
           <p>{descripcionEmpresa}</p>
           <p>{direccionEmpresa}</p>
-          <p> Fecha Recepcion: {fechaRecepcion}</p>
-          <p> Fecha Entrega Aprox.: {fechaEntrega}</p>
         </div>
+      </div>
+      <div className='flex flex-col gap-3 border-b py-6 text-xs'>
+        <p className='flex justify-between'>
+          <span>Fecha Recepción</span>
+          <span>{fechaRecepcion}</span>
+        </p>
 
-        <div className="" style={{lineHeight: '0.5rem'}}>
-          <p>Datos Cliente</p>
-          <p>Nombre: {nombreCliente}</p>
-          <p>Telefono: {telCliente}</p>
-        </div>
+        <p className='flex justify-between'>
+          <span>Fecha Entrega Aprox..</span>
+          <span>{fechaEntrega}</span>
+        </p>
+      </div>
+      <div className=" border-b border border-dashed"></div>
+      <div className="">
+        <h2 className='py-2'>Datos Cliente</h2>
+        <p className='flex justify-between'>
+          <span>Nombre</span>
+          <span>{nombreCliente}</span>
+        </p>
+        <p className='flex justify-between'>
+          <span>Telefono</span>
+          <span>{telCliente}</span>
+        </p>
+      </div>
+      <div className=" border-b border border-dashed"></div>
+      <div className="" >
+        <h2 className='py-2'>Datos Dispositivo</h2>
+        <p className='flex justify-between'>
+          <span>Modelo</span>
+          <span>{modeloEquipo}</span>
+        </p>
+        <p className='flex justify-between'>
+          <span>Costo Reparacion</span>
+          <span>${costoTotal} mxn</span>
+        </p>
+      </div>
+      <div className=" border-b border border-dashed"></div>
 
-        <div className="" >
-          <p className='font-weight-bold'>Datos Dispositivo</p>
-          <p >Modelo: {modeloEquipo}</p>
-          <p>Falla Presentada:</p>
-          <textarea name="areaPres1" id="areaPres1" cols={30} rows={5} defaultValue={descripcionFalla}></textarea>
-        </div>
+      <div className="">
+        <p>Falla Presentada:</p>
+        <span>{descripcionFalla}</span>
+        <p>Reparación: </p>
 
-        <div className="">
-          <p>Prespuesto / Costo Reparacion</p>
-          <p>total: ${costoTotal} mxn</p>
-          <textarea name="areaPres" id="areaPres" cols={30} rows={5} defaultValue={descripcionReparacion}></textarea>
-        </div>
+        <span>{descripcionReparacion}</span>
+      </div>
 
-
-
-        <div>
-          <h5><i className="bi bi-browser-safari"></i> {webEmpresa}</h5>
-          <h4><i className="bi bi-whatsapp"></i> {telefonoEmpresa}</h4>
-        </div>
-
-       
+      <div className='py-4 justify-center items-center flex flex-col gap-2'>
+        <h5><i className="bi bi-browser-safari"></i> {webEmpresa}</h5>
+        <h4><i className="bi bi-whatsapp"></i> {telefonoEmpresa}</h4>
       </div>
     </div>
   )
 })
-Page.displayName='NotaLocalFix'
+Page.displayName = 'NotaLocalFix'
 
 export default Page

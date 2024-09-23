@@ -26,8 +26,6 @@ const Details = ({ params }: { params: { slug: string } }) => {
     if (reparacionDetail.data) allInfo = reparacionDetail.data
     if (empresaData.data) empresaInfo = empresaData.data
 
-    console.log(allInfo)
-
     return (<>
 
 
@@ -50,7 +48,9 @@ const Details = ({ params }: { params: { slug: string } }) => {
             ></ComponentNota>
         </div>
 
-
+        <div>
+            <button onClick={handlePrint}>Imprimir Ticket</button>
+        </div>
 
     </>)
 }
