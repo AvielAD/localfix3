@@ -2,6 +2,7 @@ export interface DevicesDto{
     id: number,
     model: string,
     brand: string,
-    company: string
+    company: string,
+    category: string
 }
 

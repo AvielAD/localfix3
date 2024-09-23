@@ -57,7 +57,7 @@ export interface ReparacionFirstDto{
     nameClient: string,
     lastNameClient: string,
     phoneNumberClient: string,
-    dateDelivery: Date,
+    dateDelivery: string,
     totalCost: number,
     failureDescription:string,
     repairDescription:string,

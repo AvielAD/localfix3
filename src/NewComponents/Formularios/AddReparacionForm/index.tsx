@@ -1,18 +1,19 @@
 'use client'
-import { DiagnosticoFormDto, DiagnosticoInputDto, DiagnosticosDto } from "@/DTOS/diagnosticos/diagnosticos";
-import { DevicesDto } from "@/DTOS/equipos/devices";
-import { modalpropsdto } from "@/DTOS/modalgeneral/modal.dto";
 import { ReparacionFirstDto, ReparacionFirstInputDto } from "@/DTOS/reparaciones/reparacion";
 import { Field, Form, Formik, FormikProps, ErrorMessage, FieldProps } from "formik";
-import { useRouter } from "next/navigation";
-import useSWR from "swr";
 import { date, number, object, string } from 'yup';
-import { fetcher, addFetcher } from '@/Utilities/FetchHelper/Fetch.helper'
+import { addFetcher, fetcher } from '@/Utilities/FetchHelper/Fetch.helper'
+import CustomSelect from '@/NewComponents/SelectSearch'
+import { useState } from "react";
+import { DevicesDto } from "@/DTOS/equipos/devices";
+import useSWR from "swr";
+import { DateTime } from "luxon";
 
 const Add = (params: { close: Function }) => {
-    const dataEquipos = useSWR('/api/equipos', fetcher)
+    const [IdEquipo, setIdEquipo] = useState(0)
+    const [nameEquipo, setNameEquipo] = useState("")
+    const dataEquipos = useSWR('/api/equipos/popular', fetcher)
 
-    const router = useRouter()
     const formTicket = {
         nombre: '',
         apellido: '',
@@ -25,32 +26,29 @@ const Add = (params: { close: Function }) => {
     } as ReparacionFirstInputDto
 
     const submitAdd = async (values: ReparacionFirstInputDto) => {
-        console.log(values)
+
         let newRepair = {
             nameClient: values.nombre,
             lastNameClient: values.apellido,
             phoneNumberClient: values.telefono,
-            dateDelivery: new Date(values.fechaentrega),
+            dateDelivery: DateTime.fromISO(values.fechaentrega).toString(),
             totalCost: parseFloat(values.costototal),
             failureDescription: values.descripcionfalla,
             repairDescription: values.sugerenciareparacion,
-            idEquip: parseInt(values.idequipo)
+            idEquip: parseInt(values.idequipo.split(' ')[0])
         } as ReparacionFirstDto
-
-        addFetcher('/api/reparaciones/first', newRepair).then((data) => {
-            console.log(data)
-            if (data.succeeded) {
-                params.close()
-            }
-        }).catch((e) => {
-            console.log(e)
-
-        })
-
-
+        console.log(newRepair)
+        /*
+                addFetcher('/api/reparaciones/first', newRepair).then((data) => {
+                    console.log(data)
+                    if (data.succeeded) {
+                        params.close()
+                    }
+                }).catch((e) => {
+                    console.log(e)
+        
+                })*/
     }
-    if (!dataEquipos.data) return <>loading...</>
-
     return (<>
         <div className="rounded-xl ">
             <Formik
@@ -63,24 +61,24 @@ const Add = (params: { close: Function }) => {
                         <Form>
                             <div className="m-1">
                                 <label className="block text-gray-700 text-sm font-bold mb-2">Equipo</label>
-                                <Field name="idequipo">
+                                <Field name="idequipo" >
                                     {({ field, form, meta }: FieldProps) => (
                                         <div>
                                             <input type="search" list="list" autoComplete="on" id="" {...field} placeholder="Seleccionar equipo" 
                                                 className={`ring-1 w-3/4 sm:w-full rounded-md outline-none focus:ring-2 focus:ring-blue-600 ${props.errors.idequipo && props.touched.idequipo ? "ring-red-600" : ""}`}
                                             />
                                             <datalist id="list">
-
                                                 {
                                                     dataEquipos.data?.map((item: DevicesDto, index: number) => {
-                                                        return <option key={index} value={item.id}>{item.company} {item.brand} {item.model}</option>
+                                                        return <option key={index} value={item.id + " " + item.model}>{item.company} {item.brand} {item.model}</option>
                                                     })
                                                 }
                                             </datalist>
                                         </div>
                                     )}
+
                                 </Field>
-                                <ErrorMessage name="idequipo" />
+
                             </div>
                             <div className="m-1">
                                 <label className="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
@@ -161,7 +159,8 @@ const addTicketSchema = object({
     descripcionfalla: string().required('Campo Requerido'),
     sugerenciareparacion: string().required('Campo Requerido'),
     costototal: number().min(1, 'El valor no puede ser negativo').required('Campo Requerido'),
-    idequipo: number().min(1, 'Seleccione una Opcion').typeError('Seleccione una Opcion').required('Seleccione una opcion')
+    //idequipo: number().min(1, 'Seleccione una Opcion').typeError('Seleccione una Opcion').required('Seleccione una opcion')
+    idequipo: string().required('Campo Requerido')
 })
 
 const customDate = (props: FieldProps) => (
