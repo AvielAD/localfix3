@@ -2,6 +2,7 @@ import imgWhatsapp from './assets/WB.jpeg'
 import Image from 'next/image'
 import { ReparacionTicket } from '@/DTOS/reparaciones/reparacion'
 import React from 'react'
+import { FormatMedDateString } from '@/Utilities/DateTimeHelpers/FormattingDate'
 
 const Page = React.forwardRef<HTMLDivElement, ReparacionTicket>((
   {
@@ -22,9 +23,9 @@ const Page = React.forwardRef<HTMLDivElement, ReparacionTicket>((
 
 
   return (
-    <div ref={ref} className="w-2/4 p-8">
+    <div ref={ref} className="w-[300pt] h-[580pt] p-8">
       <div className=''>
-        <h1 className="mx-auto w-16 py-2 font-inspiration text-5xl">{nombreEmpresa}</h1>
+        <h1 className="mx-auto w-16 py-2 font-inspiration text-5xl font-bold">{nombreEmpresa}</h1>
         <div className='flex flex-col justify-center items-center gap-2'>
           <p>{descripcionEmpresa}</p>
           <p>{direccionEmpresa}</p>
@@ -33,17 +34,17 @@ const Page = React.forwardRef<HTMLDivElement, ReparacionTicket>((
       <div className='flex flex-col gap-3 border-b py-6 text-xs'>
         <p className='flex justify-between'>
           <span>Fecha Recepción</span>
-          <span>{fechaRecepcion}</span>
+          <span>{FormatMedDateString(fechaRecepcion)}</span>
         </p>
 
         <p className='flex justify-between'>
           <span>Fecha Entrega Aprox..</span>
-          <span>{fechaEntrega}</span>
+          <span>{FormatMedDateString(fechaEntrega)}</span>
         </p>
       </div>
       <div className=" border-b border border-dashed"></div>
       <div className="">
-        <h2 className='py-2'>Datos Cliente</h2>
+        <h2 className='py-2 font-bold'>Datos Cliente</h2>
         <p className='flex justify-between'>
           <span>Nombre</span>
           <span>{nombreCliente}</span>
@@ -55,7 +56,7 @@ const Page = React.forwardRef<HTMLDivElement, ReparacionTicket>((
       </div>
       <div className=" border-b border border-dashed"></div>
       <div className="" >
-        <h2 className='py-2'>Datos Dispositivo</h2>
+        <h2 className='py-2 font-bold'>Datos Dispositivo</h2>
         <p className='flex justify-between'>
           <span>Modelo</span>
           <span>{modeloEquipo}</span>
@@ -66,13 +67,17 @@ const Page = React.forwardRef<HTMLDivElement, ReparacionTicket>((
         </p>
       </div>
       <div className=" border-b border border-dashed"></div>
-
       <div className="">
-        <p>Falla Presentada:</p>
-        <span>{descripcionFalla}</span>
-        <p>Reparación: </p>
+        <div>
+          <p className='py-2 font-bold'>Falla Presentada:</p>
+          <span>{descripcionFalla}</span>
 
-        <span>{descripcionReparacion}</span>
+        </div>
+        <div>
+          <p className='py-2 font-bold'>Reparación: </p>
+          <span>{descripcionReparacion}</span>
+        </div>
+
       </div>
 
       <div className='py-4 justify-center items-center flex flex-col gap-2'>
