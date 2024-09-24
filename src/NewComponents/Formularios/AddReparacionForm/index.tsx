@@ -31,14 +31,14 @@ const Add = (params: { close: Function }) => {
             nameClient: values.nombre,
             lastNameClient: values.apellido,
             phoneNumberClient: values.telefono,
-            dateDelivery: DateTime.fromISO(values.fechaentrega).toString(),
+            dateDelivery: values.fechaentrega+"T00:00:00Z",
             totalCost: parseFloat(values.costototal),
             failureDescription: values.descripcionfalla,
             repairDescription: values.sugerenciareparacion,
             idEquip: parseInt(values.idequipo.split(' ')[0])
         } as ReparacionFirstDto
         console.log(newRepair)
-
+        
         addFetcher('/api/reparaciones/first', newRepair).then((data) => {
             resetForm()
             params.close()
