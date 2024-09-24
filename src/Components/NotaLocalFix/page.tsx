@@ -2,7 +2,7 @@ import imgWhatsapp from './assets/WB.jpeg'
 import Image from 'next/image'
 import { ReparacionTicket } from '@/DTOS/reparaciones/reparacion'
 import React from 'react'
-import { FormatMedDateString } from '@/Utilities/DateTimeHelpers/FormattingDate'
+import { FormatMedDate, FormatMedDateString } from '@/Utilities/DateTimeHelpers/FormattingDate'
 
 const Page = React.forwardRef<HTMLDivElement, ReparacionTicket>((
   {
@@ -34,12 +34,12 @@ const Page = React.forwardRef<HTMLDivElement, ReparacionTicket>((
       <div className='flex flex-col gap-3 border-b py-6 text-xs'>
         <p className='flex justify-between'>
           <span>Fecha Recepción</span>
-          <span>{FormatMedDateString(fechaRecepcion)}</span>
+          <span>{FormatMedDate(fechaRecepcion)}</span>
         </p>
 
         <p className='flex justify-between'>
           <span>Fecha Entrega Aprox..</span>
-          <span>{FormatMedDateString(fechaEntrega)}</span>
+          <span>{FormatMedDate(fechaEntrega)}</span>
         </p>
       </div>
       <div className=" border-b border border-dashed"></div>
