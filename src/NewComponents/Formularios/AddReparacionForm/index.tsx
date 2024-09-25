@@ -31,7 +31,7 @@ const Add = (params: { close: Function }) => {
             nameClient: values.nombre,
             lastNameClient: values.apellido,
             phoneNumberClient: values.telefono,
-            dateDelivery: values.fechaentrega+"T00:00:00Z",
+            dateDelivery: DateTime.fromISO(values.fechaentrega).toString(),
             totalCost: parseFloat(values.costototal),
             failureDescription: values.descripcionfalla,
             repairDescription: values.sugerenciareparacion,
