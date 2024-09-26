@@ -2,7 +2,7 @@
 import { ReparacionFirstDto, ReparacionFirstInputDto } from "@/DTOS/reparaciones/reparacion";
 import { Field, Form, Formik, FormikProps, ErrorMessage, FieldProps, FormikHelpers, FormikState } from "formik";
 import { date, number, object, string } from 'yup';
-import { addFetcher, fetcher } from '@/Utilities/FetchHelper/Fetch.helper'
+import { postFetcher, fetcher } from '@/Utilities/FetchHelper/Fetch.helper'
 import CustomSelect from '@/NewComponents/SelectSearch'
 import { useState } from "react";
 import { DevicesDto } from "@/DTOS/equipos/devices";
@@ -39,7 +39,7 @@ const Add = (params: { close: Function }) => {
         } as ReparacionFirstDto
         console.log(newRepair)
         
-        addFetcher('/api/reparaciones/first', newRepair).then((data) => {
+        postFetcher('/api/reparaciones/first', newRepair).then((data) => {
             resetForm()
             params.close()
         }).catch((e) => {

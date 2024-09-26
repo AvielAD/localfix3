@@ -34,9 +34,13 @@ export interface ReparacionAllDto{
     budget: number,
     total: string,
     idEnterprise: number,
-
+    estado: EstadoDto
 }
 
+export interface EstadoDto{
+    id: number,
+    nombre: string
+}
 export interface ReparacionTicket{
     costoTotal: number,
     modeloEquipo: string,

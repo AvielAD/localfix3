@@ -4,16 +4,18 @@ import { ReparacionAllDto, ReparacionTicket } from "@/DTOS/reparaciones/reparaci
 import useSWR from "swr"
 import ReactToPrint, { useReactToPrint } from 'react-to-print'
 import ComponentNota from '@/Components/NotaLocalFix/page'
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { empresadto } from "@/DTOS/empresa/empresa.dto"
 import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
-
-const fetcher = (url: string) => fetch(url).then(r => r.json())
+import { putFetcher, fetcher } from "@/Utilities/FetchHelper/Fetch.helper"
+import { TreeDto, TreeStates } from '@/UtilitiesLocal/StateChange'
 
 const Details = ({ params }: { params: { slug: string } }) => {
+    const [dropdown, setdropDown] = useState(false)
     let allInfo = {} as ReparacionAllDto
     let empresaInfo = {} as empresadto
     const uuid = params.slug
+    let TreeState = {} as TreeDto | undefined
     const reparacionDetail = useSWR(`/api/reparaciones/${uuid}`, fetcher)
     const empresaData = useSWR(`/api/empresa`, fetcher)
 
@@ -25,6 +27,20 @@ const Details = ({ params }: { params: { slug: string } }) => {
     if (!reparacionDetail.data) return <>loading...</>
     if (reparacionDetail.data) allInfo = reparacionDetail.data
     if (empresaData.data) empresaInfo = empresaData.data
+
+    const changeState = (newstate: TreeDto) => {
+        
+        putFetcher(`/api/reparaciones/${uuid}/${newstate.index}`, {}).then(data => {
+            console.log(data)
+        })
+        
+        reparacionDetail.mutate()
+        setdropDown(false)
+    }
+
+    if (reparacionDetail.data) {
+        TreeState = TreeStates.find(x => x.name == allInfo.estado.nombre)
+    }
 
     return (<>
 
@@ -50,27 +66,44 @@ const Details = ({ params }: { params: { slug: string } }) => {
 
         <div className="flex justify-center items-center h-90">
             <div className="data w-full max-w-xl">
-                <button onClick={handlePrint} className="rounded-md flex items-center border border-slate-300 py-2 px-4 text-center text-sm transition-all shadow-sm hover:shadow-lg text-slate-600 hover:text-white hover:bg-slate-800 hover:border-slate-800 focus:text-white focus:bg-slate-800 focus:border-slate-800 active:border-slate-800 active:text-white active:bg-slate-800 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"><i className="mr-2 bi bi-printer"></i> Imprimir Ticket</button>
+                <div className="flex flex-col">
+                    <button onClick={handlePrint} className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Imprimir Ticket <i className="ml-2 bi bi-printer"></i> </button>
+
+                    <div className="relative inline-block text-left mt-5 mb-5">
+                        <button onClick={() => setdropDown(!dropdown)} className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"> Cambiar Estado <i className="bi bi-arrow-down"></i></button>
+                    </div>
+                </div>
+
+                <div className={`absolute ${dropdown ? "visible" : "invisible"} z-10 w-40 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}>
+                    <div className="py-1">
+                        {
+                            TreeState?.value.map((item: string, index) => (
+                                <button onClick={() => changeState(TreeStates.find(x => x.name == item) as any)} key={index} className="block px-4 py-2 text-sm text-gray-700">{item}</button>
+                            ))
+                        }
+                    </div>
+                </div>
 
                 <h2 className="font-bold text-3xl leading-10 text-gray-900 mb-2 capitalize">{allInfo.model} {allInfo.brand} </h2>
                 <h6 className="font-manrope font-semibold text-2xl leading-9 text-gray-900 pr-5 sm:border-r border-gray-200 mr-5"> ${allInfo.total} mxn</h6>
+                <h6 className="font-manrope font-semibold text-2xl leading-9 text-gray-900 pr-5 sm:border-r border-gray-200 mr-5"> {TreeStates.find(x => x.name == allInfo.estado.nombre)?.trad} </h6>
 
 
-                <p className="text-gray-500 text-base font-normal mb-5">
+                <div className="text-gray-500 text-base font-normal mb-5">
                     <h2 className='py-2 font-bold'>Diagnostico</h2>
 
                     {allInfo.failureDevice}
-                </p>
+                </div>
 
-                <p className="text-gray-500 text-base font-normal mb-5">
+                <div className="text-gray-500 text-base font-normal mb-5">
                     <h2 className='py-2 font-bold'>Reparacion</h2>
 
                     {allInfo.diagnosticDevice}
-                </p>
+                </div>
                 <div >
                     <p className="flex justify-between">
                         <span>Fecha Recepcion</span>
-                        <span>{ FormatMedDate(allInfo.dateReception)} </span>
+                        <span>{FormatMedDate(allInfo.dateReception)} </span>
                     </p>
                     <p className="flex justify-between">
                         <span>Fecha Entrega</span>
