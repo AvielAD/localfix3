@@ -37,9 +37,9 @@ const Details = ({ params }: { params: { slug: string } }) => {
 
         putFetcher(`/api/reparaciones/${uuid}/${newstate.index}`, {}).then(data => {
             changeToast({ Message: data.message, Succedded: data.succedded })
+            reparacionDetail.mutate()
+            setdropDown(false)
         })
-        reparacionDetail.mutate()
-        setdropDown(false)
     }
 
     if (reparacionDetail.data) {
