@@ -4,7 +4,9 @@ const Index = (props: {Show: boolean, ServerMessage: {Succedded: boolean, Messag
     return (
     <div className={`${props.Show ? "visible": "invisible"} 
     z-40 absolute right-4 text-xs sm:text-base sm:right-24 md:right-56 lg:right-[350px] 
-    bg-${props.ServerMessage.Succedded ? "green" : "red"}-100 text-${props.ServerMessage.Succedded ? "green" : "red"}-700 rounded-lg border-${props.ServerMessage.Succedded ? "green" : "red"}-200 
+    ${props.ServerMessage.Succedded ? "bg-green-100" : "bg-red-100"} 
+    ${props.ServerMessage.Succedded ? "text-green-700" : "text-red-700"} rounded-lg 
+    ${props.ServerMessage.Succedded ? "border-green-200" : "border-red-200"} 
     px-4 py-3`}>
         <div>
             <div className=''>
