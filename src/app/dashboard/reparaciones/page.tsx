@@ -7,6 +7,7 @@ import { fetcher } from '@/Utilities/FetchHelper/Fetch.helper'
 import { useState } from "react"
 import Modal from '@/NewComponents/Modal'
 import FormReparacion from '@/NewComponents/Formularios/AddReparacionForm'
+
 const Reparaciones = () => {
     const [showModal, setShowModal] = useState(false)
     const router = useRouter()
@@ -16,7 +17,8 @@ const Reparaciones = () => {
 
     if (!infoRepairs.data) return <>loading...</>
 
-    return (
+    return (<>
+        
         <div className="flex justify-center items-center h-90">
             <table className='shadow-2xl rounded-lg w-8/12 overflow-hidden'>
                 <thead>
@@ -38,15 +40,15 @@ const Reparaciones = () => {
                     }
                 </tbody>
             </table>
-
+        
             <Modal show={showModal} close={()=>setShowModal(false)}>
-                    <FormReparacion close={()=>setShowModal(false)}/>
+                    <FormReparacion close={()=>{setShowModal(false); infoRepairs.mutate();}}/>
             </Modal>
 
             <div className="fixed justify-center items-center bottom-5 xl:right-52 lg:right-20 md:right-14 sm:right-10 right-5 cursor-pointer text-blue-800 text-6xl rounded-full">
                 <i className="bi bi-plus-circle-fill" onClick={()=>setShowModal(true)}></i>
             </div>
-        </div>)
+        </div></>)
 }
 
 export default Reparaciones

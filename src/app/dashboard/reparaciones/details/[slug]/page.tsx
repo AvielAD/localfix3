@@ -1,17 +1,22 @@
 'use client'
 
-import { ReparacionAllDto, ReparacionTicket } from "@/DTOS/reparaciones/reparacion"
+import { ReparacionAllDto } from "@/DTOS/reparaciones/reparacion"
 import useSWR from "swr"
-import ReactToPrint, { useReactToPrint } from 'react-to-print'
+import { useReactToPrint } from 'react-to-print'
 import ComponentNota from '@/Components/NotaLocalFix/page'
 import { useRef, useState } from "react"
 import { empresadto } from "@/DTOS/empresa/empresa.dto"
 import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
 import { putFetcher, fetcher } from "@/Utilities/FetchHelper/Fetch.helper"
 import { TreeDto, TreeStates } from '@/UtilitiesLocal/StateChange'
+import Toast from '@/NewComponents/Toast'
+import useToast from "@/Utilities/CustomHooks/useToast"
+
 
 const Details = ({ params }: { params: { slug: string } }) => {
     const [dropdown, setdropDown] = useState(false)
+    const { toast, changeToast } = useToast()
+
     let allInfo = {} as ReparacionAllDto
     let empresaInfo = {} as empresadto
     const uuid = params.slug
@@ -29,11 +34,10 @@ const Details = ({ params }: { params: { slug: string } }) => {
     if (empresaData.data) empresaInfo = empresaData.data
 
     const changeState = (newstate: TreeDto) => {
-        
-        putFetcher(`/api/reparaciones/${uuid}/${newstate.index}`, {}).then(data => {
-            console.log(data)
-        })
 
+        putFetcher(`/api/reparaciones/${uuid}/${newstate.index}`, {}).then(data => {
+            changeToast({ Message: data.message, Succedded: data.succedded })
+        })
         reparacionDetail.mutate()
         setdropDown(false)
     }
@@ -44,6 +48,7 @@ const Details = ({ params }: { params: { slug: string } }) => {
 
     return (<>
 
+        <Toast Show={toast.show} ServerMessage={{ ...toast.response }}></Toast>
 
         <div className="hidden">
 
