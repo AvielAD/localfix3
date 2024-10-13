@@ -14,7 +14,6 @@ const Index = (props: { elements: Array<{ id: number, uuid: string, dateReceptio
               className="text-xs font-semibold tracking-wide text-left text-secondary-500 uppercase border-b dark:border-secondary-700 bg-secondary-50 dark:text-secondary-400 dark:bg-secondary-800"
             >
               <th className="px-4 py-3">Equipo</th>
-              <th className="px-4 py-3">Status</th>
               <th className="px-4 py-3">Fecha Recepcion</th>
               <th className="px-4 py-3">Fecha Entrega</th>
             </tr>
@@ -24,7 +23,6 @@ const Index = (props: { elements: Array<{ id: number, uuid: string, dateReceptio
             props.elements.map((item, index) => (
               <tr key={index} onClick={()=>{router.push(`${props.urldetails}${item.uuid}`)}} className="text-secondary-700 dark:text-secondary-400 cursor-pointer hover:text-theme3-100 hover:bg-theme1-600">
                 <td className="px-4 py-3">{item.brand} {item.model}</td>
-                <td className="px-4 py-3">Iniciado</td>
                 <td className="px-4 py-3">{FormatMedDate( item.dateReception )}</td>
                 <td className="px-4 py-3">{FormatMedDate(item.dateDelivery)}</td>
               </tr>
