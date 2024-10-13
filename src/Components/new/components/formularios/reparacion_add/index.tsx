@@ -48,7 +48,7 @@ const Add = (params: { close: Function }) => {
         })
     }
     return (<>
-        <div className="h-full pb-16 overflow-y-auto">
+        <div className="">
             <Formik
                 initialValues={formTicket}
                 onSubmit={submitAdd}
@@ -58,10 +58,8 @@ const Add = (params: { close: Function }) => {
                 {
                     (props: FormikProps<any>) => (
                         <Form className="container px-6 mx-auto grid">
-                            <Banner1 title="Reparacion" starmessage="Agregar" arrowmessage="Reparacion"></Banner1>
-                            <div className="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-secondary-800">
-
-
+                            <Banner1 title="Reparacion" starmessage="Agregar" arrowmessage=""></Banner1>
+                            <div className="px-4 py-1 mb-8 bg-white rounded-lg shadow-md dark:bg-secondary-800">
                                 <label className="block text-sm">
                                     <span className="text-secondary-700 dark:text-secondary-400">Equipo</span>
                                     <Field name="idequipo" >
@@ -115,35 +113,35 @@ const Add = (params: { close: Function }) => {
                                     <ErrorMessage name="fechaentrega">{(msg) => (<div className="text-danger-700">{msg}</div>)}</ErrorMessage>
                                 </label>
 
-                                        <label className="block text-sm">
-                                            <span className="text-secondary-700 dark:text-secondary-400">Descripcion Falla</span>
-                                            <Field
-                                    name="descripcionfalla"
-                                    className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-none focus:ring-2 focus:ring-primary-600 ${props.errors.descripcionfalla && props.touched.descripcionfalla ? "ring-danger-600" : ""}`}
-                                    as="textarea"
-                                    rows={3}
-                                ></Field>
+                                <label className="block text-sm">
+                                    <span className="text-secondary-700 dark:text-secondary-400">Descripcion Falla</span>
+                                    <Field
+                                        name="descripcionfalla"
+                                        className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-none focus:ring-2 focus:ring-primary-600 ${props.errors.descripcionfalla && props.touched.descripcionfalla ? "ring-danger-600" : ""}`}
+                                        as="textarea"
+                                        rows={3}
+                                    ></Field>
 
-                                        </label>
+                                </label>
 
-                                        <label className="block text-sm">
-                                            <span className="text-secondary-700 dark:text-secondary-400">Sugerencia Reparacion</span>
-                                            <Field
-                                    name="sugerenciareparacion"
-                                    className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-none focus:ring-2 focus:ring-primary-600 ${props.errors.sugerenciareparacion && props.touched.sugerenciareparacion ? "ring-danger-600" : ""}`}
-                                    as="textarea"
-                                    rows={3}
-                                ></Field>
+                                <label className="block text-sm">
+                                    <span className="text-secondary-700 dark:text-secondary-400">Sugerencia Reparacion</span>
+                                    <Field
+                                        name="sugerenciareparacion"
+                                        className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-none focus:ring-2 focus:ring-primary-600 ${props.errors.sugerenciareparacion && props.touched.sugerenciareparacion ? "ring-danger-600" : ""}`}
+                                        as="textarea"
+                                        rows={3}
+                                    ></Field>
 
-                                        </label>
-                                        <label className="block text-sm">
-                                            <span className="text-secondary-700 dark:text-secondary-400">Costo Total</span>
-                                            <Field
-                                    name="costototal"
-                                    className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-none focus:ring-2 focus:ring-primary-600`}
-                                ></Field>
-                                <ErrorMessage name="costototal">{(msg) => (<div className="text-danger-700">{msg}</div>)}</ErrorMessage>
-                                        </label>
+                                </label>
+                                <label className="block text-sm">
+                                    <span className="text-secondary-700 dark:text-secondary-400">Costo Total</span>
+                                    <Field
+                                        name="costototal"
+                                        className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-none focus:ring-2 focus:ring-primary-600`}
+                                    ></Field>
+                                    <ErrorMessage name="costototal">{(msg) => (<div className="text-danger-700">{msg}</div>)}</ErrorMessage>
+                                </label>
                             </div>
 
                             <div className="flex items-center justify-between sm:justify-between ">
