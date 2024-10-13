@@ -1,4 +1,10 @@
-const Index = (props: { elements: Array<{ title: string, status: string, fecha1: string, fecha2: string }> }) => (
+import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
+import { useRouter } from "next/navigation"
+
+const Index = (props: { elements: Array<{ id: number, uuid: string, dateReception: Date, dateDelivery: Date, model: string, brand: string }>, urldetails: string }) => {
+  const router = useRouter()
+
+  return (
   <div className="h-full pb-16">
     <div className="w-full mb-8 rounded-lg shadow-xs">
       <div className="w-full">
@@ -14,19 +20,21 @@ const Index = (props: { elements: Array<{ title: string, status: string, fecha1:
             </tr>
           </thead>
           <tbody className="bg-white divide-y dark:divide-secondary-700 dark:bg-secondary-800">
-            {props.elements.map((item, index) => (
-              <tr key={index} className="text-secondary-700 dark:text-secondary-400">
-                <td className="px-4 py-3">{item.title}</td>
-                <td className="px-4 py-3">{item.status}</td>
-                <td className="px-4 py-3">{item.fecha1}</td>
-                <td className="px-4 py-3">{item.fecha2}</td>
+            {
+            props.elements.map((item, index) => (
+              <tr key={index} onClick={()=>{router.push(`${props.urldetails}${item.uuid}`)}} className="text-secondary-700 dark:text-secondary-400 cursor-pointer hover:text-theme3-100 hover:bg-theme1-600">
+                <td className="px-4 py-3">{item.brand} {item.model}</td>
+                <td className="px-4 py-3">Iniciado</td>
+                <td className="px-4 py-3">{FormatMedDate( item.dateReception )}</td>
+                <td className="px-4 py-3">{FormatMedDate(item.dateDelivery)}</td>
               </tr>
-            ))}
+            ))
+            }
           </tbody>
         </table>
       </div>
     </div>
   </div>
 )
-
+}
 export default Index
