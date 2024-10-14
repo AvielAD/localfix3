@@ -3,16 +3,12 @@ import { ReparacionFirstDto, ReparacionFirstInputDto } from "@/DTOS/reparaciones
 import { Field, Form, Formik, FormikProps, ErrorMessage, FieldProps, FormikHelpers, FormikState } from "formik";
 import { date, number, object, string } from 'yup';
 import { postFetcher, fetcher } from '@/Utilities/FetchHelper/Fetch.helper'
-import CustomSelect from '@/NewComponents/SelectSearch'
-import { useState } from "react";
 import { DevicesDto } from "@/DTOS/equipos/devices";
 import useSWR from "swr";
 import { DateTime } from "luxon";
 import Banner1 from '@/Components/new/components/barbanner'
 
 const Add = (params: { close: Function }) => {
-    const [IdEquipo, setIdEquipo] = useState(0)
-    const [nameEquipo, setNameEquipo] = useState("")
     const dataEquipos = useSWR('/api/equipos/popular', fetcher)
 
     const formTicket = {

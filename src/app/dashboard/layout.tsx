@@ -1,11 +1,5 @@
 'use client'
-import { Providers } from "./provider";
 import { useState } from 'react';
-import HeaderPersonal from '@/NewComponents/Header'
-import SidebarPersonal from '@/NewComponents/Sidebar'
-import MainPersonal from '@/NewComponents/UI/Main'
-import ContentPersonal from '@/NewComponents/UI/Content'
-import Profile from '@/NewComponents/UI/Profile'
 
 import SideBarNew from '@/Components/new/components/sidebar'
 import HeaderBarNew from '@/Components/new/components/haderbar'
