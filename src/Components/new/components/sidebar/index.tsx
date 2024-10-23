@@ -1,15 +1,10 @@
 import Link from "next/link"
 import { useState } from "react"
 
-const Index = (props: { routes: Array<{ route: string, nameroute: string, icon: string }>, actions: Array<{ nameaction: string, action: boolean, setaction: Function }> }) => {
-    const [show, setShow] = useState({ toglemenu: false, notimenu: false, profilemenu: false })
-
-    const closeMenus = ()=>{
-        setShow({ toglemenu: false, notimenu: false, profilemenu: false })
-    }
+const Index = (props: { routes: Array<{ route: string, nameroute: string, icon: string }>, actions: Array<{ nameaction: string, action: boolean, setaction: ()=>void }> }) => {
 
     return (
-        <div className="bg-secondary-50 dark:bg-secondary-900" onClick={()=> closeMenus()}>
+        <div className="bg-secondary-50 dark:bg-secondary-900">
             <aside className="bg-white dark:bg-secondary-800 " onClick={(e)=> e.stopPropagation()}>
                 <div className="py-4 text-secondary-500 dark:text-secondary-400">
                     <a className="ml-6 text-lg font-bold text-secondary-800 dark:text-secondary-200" href="">Empresa</a>

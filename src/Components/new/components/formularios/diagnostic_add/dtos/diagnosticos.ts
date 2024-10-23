@@ -16,7 +16,6 @@ export interface DiagnosticoInputDto{
 }
 
 export interface DiagnosticoFormDto{
-    cliente: string,
     descripcionfalla: string,
     sugerenciareparacion: string,
     costopresupuesto: string,
