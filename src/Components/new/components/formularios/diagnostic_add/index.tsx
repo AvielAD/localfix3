@@ -57,7 +57,7 @@ const Add = (params: { close: Function }) => {
                                                 <datalist id="list">
                                                     {
                                                         dataEquipos.data?.map((item: DevicesDto, index: number) => {
-                                                            return <option key={index} value={item.id + " " + item.model + " " + item.brand}>{item.model}</option>
+                                                            return <option key={index} value={item.id + " " + item.brand + " " + item.model}>{item.model}</option>
                                                         })
                                                     }
                                                 </datalist>
