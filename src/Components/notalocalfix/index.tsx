@@ -4,7 +4,7 @@ import { ReparacionTicket } from '@/DTOS/reparaciones/reparacion'
 import React from 'react'
 import { FormatMedDate, FormatMedDateString } from '@/Utilities/DateTimeHelpers/FormattingDate'
 
-const Page = React.forwardRef<HTMLDivElement, ReparacionTicket>((
+const Index = React.forwardRef<HTMLDivElement, ReparacionTicket>((
   {
     costoTotal,
     modeloEquipo,
@@ -87,6 +87,6 @@ const Page = React.forwardRef<HTMLDivElement, ReparacionTicket>((
     </div>
   )
 })
-Page.displayName = 'NotaLocalFix'
+Index.displayName = 'NotaLocalFix'
 
-export default Page
+export default Index

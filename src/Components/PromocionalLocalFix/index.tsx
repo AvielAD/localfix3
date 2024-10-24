@@ -2,7 +2,7 @@ import imgWhatsapp from './assets/WB.jpeg'
 import Image from 'next/image'
 import React from 'react'
 
-const Page = React.forwardRef<HTMLDivElement>((props, ref) => {
+const Index = React.forwardRef<HTMLDivElement>((props, ref) => {
   return (
     <div ref={ref} className="w-[340pt] h-[380pt] p-8">
       <div className="flex flex-col justify-center items-center">
@@ -26,6 +26,6 @@ const Page = React.forwardRef<HTMLDivElement>((props, ref) => {
     </div>
   )
 })
-Page.displayName='PromocionalLocalFix'
+Index.displayName='PromocionalLocalFix'
 
-export default Page
+export default Index
