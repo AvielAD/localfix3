@@ -6,12 +6,13 @@ import FormRepairNew from '@/components/formularios/reparacion_add'
 import FormDiagnosticNew from '@/components/formularios/diagnostic_add'
 import { SideBar, HeaderBar, Modal } from '@avielad/componentspublish'
 import { useReactToPrint } from 'react-to-print';
-
+import { Toast, useToast } from '@avielad/componentspublish';
 
 export default function Dashboard({ children, }: { children: React.ReactNode }) {
   const [showModalRepair, setShowModalRepair] = useState(false)
   const [showModalDiag, setShowModalDiag] = useState(false)
   const componentRef = useRef<HTMLDivElement>(null);
+  const Toast1 = useToast();
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -47,13 +48,14 @@ export default function Dashboard({ children, }: { children: React.ReactNode }) 
         <Promocional ref={componentRef}></Promocional>
       </div>
       <Modal show={showModalRepair} close={() => setActionModalRepair()}>
-        <FormRepairNew close={() => setActionModalRepair()}></FormRepairNew>
+        <FormRepairNew toast={Toast1.changeToast} close={() => setActionModalRepair()}></FormRepairNew>
       </Modal>
 
       <Modal show={showModalDiag} close={() => setActionModalDiag()}>
-        <FormDiagnosticNew close={() => setActionModalDiag()}></FormDiagnosticNew>
+        <FormDiagnosticNew toast={Toast1.changeToast} close={() => setActionModalDiag()}></FormDiagnosticNew>
       </Modal>
 
+      <Toast Show={Toast1.toast.show} ServerMessage={Toast1.toast.response}></Toast>
 
       <div className="hidden lg:grid lg:row-span-2 text-center p-2">
         <SideBar routes={routes} actions={actions}></SideBar>

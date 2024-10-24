@@ -7,7 +7,9 @@ import { DevicesDto } from "@/DTOS/equipos/devices";
 import useSWR from "swr";
 import { DateTime } from "luxon";
 import { BarBanner } from "@avielad/componentspublish";
-const Add = (params: { close: Function }) => {
+import { ServerResponseDto } from "@avielad/componentspublish/dist/customhooks/Dtos/ServerResponse.dto";
+
+const Add = (params: { close: Function,toast: (params: ServerResponseDto) => void  }) => {
     const dataEquipos = useSWR('/api/equipos/popular', fetcher)
 
     const formTicket = {
@@ -36,8 +38,11 @@ const Add = (params: { close: Function }) => {
         console.log(newRepair)
 
         postFetcher('/api/reparaciones/first', newRepair).then((data) => {
-            resetForm()
-            params.close()
+            params.toast({ Message: data.message, Succedded: data.succedded })
+            if(data.succedded){
+                resetForm()
+                params.close()
+            }
         }).catch((e) => {
 
         })

@@ -1,13 +1,14 @@
 'use client'
-import { Field, Form, Formik, FormikProps, ErrorMessage, FieldProps} from "formik";
-import {  number, object, string } from 'yup';
+import { Field, Form, Formik, FormikProps, ErrorMessage, FieldProps } from "formik";
+import { number, object, string } from 'yup';
 import { postFetcher, fetcher } from '@/Utilities/FetchHelper/Fetch.helper'
 import { DevicesDto } from "@/DTOS/equipos/devices";
 import useSWR from "swr";
 import { BarBanner } from "@avielad/componentspublish";
 import { DiagnosticoFormDto, DiagnosticoInputDto } from "@/components/formularios/diagnostic_add/dtos/diagnosticos";
+import { ServerResponseDto } from "@avielad/componentspublish/dist/customhooks/Dtos/ServerResponse.dto";
 
-const Add = (params: { close: Function }) => {
+const Add = (params: { close: Function, toast: (params: ServerResponseDto) => void }) => {
     const dataEquipos = useSWR('/api/equipos/popular', fetcher)
 
     const formTicket = {
@@ -22,14 +23,17 @@ const Add = (params: { close: Function }) => {
         let newDiag = {
             nameClient: "Na",
             failureDescription: values.descripcionfalla,
-            repairDescription:values.sugerenciareparacion,
+            repairDescription: values.sugerenciareparacion,
             budgetCost: parseFloat(values.costopresupuesto),
             idEquip: parseInt(values.idequipo)
         } as DiagnosticoInputDto
 
         postFetcher('/api/diagnosticos/', newDiag).then((data) => {
-            resetForm()
-            params.close()
+            params.toast({ Message: data.message, Succedded: data.succedded })
+            if (data.succedded) {
+                resetForm()
+                params.close()
+            }
         }).catch((e) => {
 
         })

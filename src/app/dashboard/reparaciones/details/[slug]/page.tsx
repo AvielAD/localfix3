@@ -34,6 +34,7 @@ const Details = ({ params }: { params: { slug: string } }) => {
     const changeState = (newstate: TreeDto) => {
 
         putFetcher(`/api/reparaciones/${uuid}/${newstate.index}`, {}).then(data => {
+            
             changeToast({ Message: data.message, Succedded: data.succedded })
             reparacionDetail.mutate()
             setdropDown(false)
