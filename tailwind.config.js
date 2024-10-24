@@ -2,7 +2,8 @@
 import colors from 'tailwindcss/colors'
 module.exports = {
   content: [
-    "./src/**/*.tsx"
+    "./src/**/*.tsx",
+    "./node_modules/@avielad/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
     extend: {
@@ -21,7 +22,7 @@ module.exports = {
       white: colors.white,
       black: colors.black,
       primary: colors.blue,
-      secondary: colors.gray,
+      secondary: colors.gray, 
       warning: colors.orange,
       danger: colors.red,
       success: colors.green,

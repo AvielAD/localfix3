@@ -1,15 +1,10 @@
 'use client'
 import { useRef, useState } from 'react';
 
-import HeaderBarNew from '@/components/new/components/haderbar'
-import ModalNew from '@/components/new/components/modal'
 import Promocional from '@/components/PromocionalLocalFix/page'
-
-import FormRepairNew from '@/components/new/components/formularios/reparacion_add'
-import FormDiagnosticNew from '@/components/new/components/formularios/diagnostic_add'
-
-import { SideBar } from '@avielad/componentspublish'
-
+import FormRepairNew from '@/components/formularios/reparacion_add'
+import FormDiagnosticNew from '@/components/formularios/diagnostic_add'
+import { SideBar, HeaderBar, Modal } from '@avielad/componentspublish'
 import { useReactToPrint } from 'react-to-print';
 
 
@@ -51,20 +46,20 @@ export default function Dashboard({ children, }: { children: React.ReactNode }) 
       <div className='hidden'>
         <Promocional ref={componentRef}></Promocional>
       </div>
-      <ModalNew show={showModalRepair} close={() => setActionModalRepair()}>
+      <Modal show={showModalRepair} close={() => setActionModalRepair()}>
         <FormRepairNew close={() => setActionModalRepair()}></FormRepairNew>
-      </ModalNew>
+      </Modal>
 
-      <ModalNew show={showModalDiag} close={() => setActionModalDiag()}>
+      <Modal show={showModalDiag} close={() => setActionModalDiag()}>
         <FormDiagnosticNew close={() => setActionModalDiag()}></FormDiagnosticNew>
-      </ModalNew>
+      </Modal>
 
 
       <div className="hidden lg:grid lg:row-span-2 text-center p-2">
         <SideBar routes={routes} actions={actions}></SideBar>
       </div>
       <div className="">
-        <HeaderBarNew routes={routes} actions={actions}></HeaderBarNew>
+        <HeaderBar routes={routes} actions={actions}></HeaderBar>
       </div>
       <div className="p-2">
         {children}

@@ -1,8 +1,7 @@
 'use client'
 import useSWR from "swr"
-import TableDiag from '@/components/new/components/tablas/table_diag'
-import BanerNew from '@/components/new/components/barbanner'
-
+import TableDiag from '@/components/tablas/table_diag'
+import { BarBanner } from "@avielad/componentspublish"
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 
 
@@ -12,7 +11,7 @@ const Diagnosticos = () => {
 
     return (<>
             <div className="max-w-screen-lg mx-auto text-black">
-            <BanerNew title="Diagnosticos" starmessage="Filtrado" arrowmessage="Iniciadas Terminadas"></BanerNew>
+            <BarBanner title="Diagnosticos" starmessage="Filtrado" arrowmessage="Iniciadas Terminadas"></BarBanner>
             <TableDiag elements={diagnosticosData.data} ></TableDiag>
         </div>
     </>)

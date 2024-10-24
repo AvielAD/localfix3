@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { DiagnosticoInputDto, DiagnosticosDto, UpdateDiagnosticoInputDto } from "@/components/new/components/formularios/diagnostic_add/dtos/diagnosticos";
+import { DiagnosticoInputDto, DiagnosticosDto, UpdateDiagnosticoInputDto } from "@/components/formularios/diagnostic_add/dtos/diagnosticos";
 import { response } from "@/DTOS/response/response";
 
 export async function GET() {

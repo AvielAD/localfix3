@@ -9,9 +9,7 @@ import { empresadto } from "@/DTOS/empresa/empresa.dto"
 import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
 import { putFetcher, fetcher } from "@/Utilities/FetchHelper/Fetch.helper"
 import { TreeDto, TreeStates } from '@/UtilitiesLocal/StateChange'
-import Toast from '@/NewComponents/Toast'
-import useToast from "@/Utilities/CustomHooks/useToast"
-
+import { Toast, useToast } from "@avielad/componentspublish"
 
 const Details = ({ params }: { params: { slug: string } }) => {
     const [dropdown, setdropDown] = useState(false)

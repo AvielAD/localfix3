@@ -6,8 +6,7 @@ import { postFetcher, fetcher } from '@/Utilities/FetchHelper/Fetch.helper'
 import { DevicesDto } from "@/DTOS/equipos/devices";
 import useSWR from "swr";
 import { DateTime } from "luxon";
-import Banner1 from '@/components/new/components/barbanner'
-
+import { BarBanner } from "@avielad/componentspublish";
 const Add = (params: { close: Function }) => {
     const dataEquipos = useSWR('/api/equipos/popular', fetcher)
 
@@ -54,7 +53,7 @@ const Add = (params: { close: Function }) => {
                 {
                     (props: FormikProps<any>) => (
                         <Form className="container px-6 mx-auto grid">
-                            <Banner1 title="Reparacion" starmessage="Agregar" arrowmessage=""></Banner1>
+                            <BarBanner title="Reparacion" starmessage="Agregar" arrowmessage=""></BarBanner>
                             <div className="px-4 py-1 mb-8 bg-white rounded-lg shadow-md dark:bg-secondary-800">
                                 <label className="block text-sm">
                                     <span className="text-secondary-700 dark:text-secondary-400">Equipo</span>

@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 import { ReparacionInputDto } from '@/DTOS/reparaciones/reparacion';
-import { UpdateDiagnosticoInputDto } from '@/components/new/components/formularios/diagnostic_add/dtos/diagnosticos';
+import { UpdateDiagnosticoInputDto } from '@/components/formularios/diagnostic_add/dtos/diagnosticos';
 
 const addFetcher = async (url: string, data: ReparacionInputDto) => fetch(url, { method: "POST", body: JSON.stringify(data) }).then(r => r.json())
 const updateFetcherDiag = async (url: string, data: UpdateDiagnosticoInputDto) => fetch(url, { method: "PUT", body: JSON.stringify(data) }).then(r => r.json())
