@@ -1,12 +1,10 @@
 'use client'
 import { useRef, useState } from 'react';
-
-import Promocional from '@/components/PromocionalLocalFix/page'
-import FormRepairNew from '@/components/formularios/reparacion_add'
-import FormDiagnosticNew from '@/components/formularios/diagnostic_add'
-import { SideBar, HeaderBar, Modal } from '@avielad/componentspublish'
+import Promocional from '../../components/PromocionalLocalFix/page'
+import FormRepairNew from '../../components/formularios/diagnostic_add'
+import FormDiagnosticNew from '../../components/formularios/diagnostic_add'
+import { SideBar, HeaderBar, Modal, Toast, useToast } from '@avielad/componentspublish'
 import { useReactToPrint } from 'react-to-print';
-import { Toast, useToast } from '@avielad/componentspublish';
 
 export default function Dashboard({ children, }: { children: React.ReactNode }) {
   const [showModalRepair, setShowModalRepair] = useState(false)
