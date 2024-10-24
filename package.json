@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@avielad/componentspublish": "^0.1.2",
+    "@avielad/componentspublish": "^0.1.5",
     "@types/luxon": "^3.4.2",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.7",

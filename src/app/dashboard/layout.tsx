@@ -1,14 +1,15 @@
 'use client'
 import { useRef, useState } from 'react';
 
-import HeaderBarNew from '@/Components/new/components/haderbar'
-import ModalNew from '@/Components/new/components/modal'
-import Promocional from '@/Components/PromocionalLocalFix/page'
+import HeaderBarNew from '@/components/new/components/haderbar'
+import ModalNew from '@/components/new/components/modal'
+import Promocional from '@/components/PromocionalLocalFix/page'
 
-import FormRepairNew from '@/Components/new/components/formularios/reparacion_add'
-import FormDiagnosticNew from '@/Components/new/components/formularios/diagnostic_add'
+import FormRepairNew from '@/components/new/components/formularios/reparacion_add'
+import FormDiagnosticNew from '@/components/new/components/formularios/diagnostic_add'
 
 import { SideBar } from '@avielad/componentspublish'
+
 import { useReactToPrint } from 'react-to-print';
 
 
@@ -57,6 +58,7 @@ export default function Dashboard({ children, }: { children: React.ReactNode }) 
       <ModalNew show={showModalDiag} close={() => setActionModalDiag()}>
         <FormDiagnosticNew close={() => setActionModalDiag()}></FormDiagnosticNew>
       </ModalNew>
+
 
       <div className="hidden lg:grid lg:row-span-2 text-center p-2">
         <SideBar routes={routes} actions={actions}></SideBar>

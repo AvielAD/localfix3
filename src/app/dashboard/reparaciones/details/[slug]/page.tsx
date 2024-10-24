@@ -3,7 +3,7 @@
 import { ReparacionAllDto } from "@/DTOS/reparaciones/reparacion"
 import useSWR from "swr"
 import { useReactToPrint } from 'react-to-print'
-import ComponentNota from '@/Components/NotaLocalFix/page'
+import ComponentNota from '@/components/NotaLocalFix/page'
 import { useRef, useState } from "react"
 import { empresadto } from "@/DTOS/empresa/empresa.dto"
 import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"

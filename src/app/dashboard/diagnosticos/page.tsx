@@ -1,7 +1,7 @@
 'use client'
 import useSWR from "swr"
-import TableDiag from '@/Components/new/components/tablas/table_diag'
-import BanerNew from '@/Components/new/components/barbanner'
+import TableDiag from '@/components/new/components/tablas/table_diag'
+import BanerNew from '@/components/new/components/barbanner'
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 

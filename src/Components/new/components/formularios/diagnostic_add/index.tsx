@@ -4,8 +4,8 @@ import {  number, object, string } from 'yup';
 import { postFetcher, fetcher } from '@/Utilities/FetchHelper/Fetch.helper'
 import { DevicesDto } from "@/DTOS/equipos/devices";
 import useSWR from "swr";
-import Banner1 from '@/Components/new/components/barbanner'
-import { DiagnosticoFormDto, DiagnosticoInputDto } from "@/Components/new/components/formularios/diagnostic_add/dtos/diagnosticos";
+import Banner1 from '@/components/new/components/barbanner'
+import { DiagnosticoFormDto, DiagnosticoInputDto } from "@/components/new/components/formularios/diagnostic_add/dtos/diagnosticos";
 
 const Add = (params: { close: Function }) => {
     const dataEquipos = useSWR('/api/equipos/popular', fetcher)

@@ -6,7 +6,7 @@ import { postFetcher, fetcher } from '@/Utilities/FetchHelper/Fetch.helper'
 import { DevicesDto } from "@/DTOS/equipos/devices";
 import useSWR from "swr";
 import { DateTime } from "luxon";
-import Banner1 from '@/Components/new/components/barbanner'
+import Banner1 from '@/components/new/components/barbanner'
 
 const Add = (params: { close: Function }) => {
     const dataEquipos = useSWR('/api/equipos/popular', fetcher)
