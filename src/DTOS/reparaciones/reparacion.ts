@@ -1,4 +1,3 @@
-import { DateTime } from "luxon"
 import { GenericModelDto } from "../genericdto/generic.dto"
 
 export interface ReparacionDto{
@@ -8,6 +7,7 @@ export interface ReparacionDto{
     dateDelivery: Date,
     model: string,
     brand: string,
+    state: GenericModelDto
 }
 
 export interface ReparacionInputDto{

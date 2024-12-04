@@ -2,7 +2,7 @@
 import colors from 'tailwindcss/colors'
 module.exports = {
   content: [
-    "./src/**/*.tsx",
+    "./src/**/*.{ts,tsx}",
     "./node_modules/@avielad/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
@@ -28,9 +28,11 @@ module.exports = {
       success: colors.green,
       theme1: colors.purple,
       theme2: colors.indigo,
-      theme3: colors.purple,
+      theme3: colors.orange,
       theme4: colors.red,
-      theme5: colors.orange
+      theme5: colors.orange,
+      theme6: colors.green,
+      theme7: colors.black
     }
   },
   plugins: [],
