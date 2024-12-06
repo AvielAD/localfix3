@@ -15,12 +15,16 @@ const Add = (params: { setValues: (params: ReparacionInputByFilters) => void }) 
     }
 
     const submitAdd = async (values: ReparacionInputByFiltersForm, { resetForm }: any) => {
+
+        console.log(values)
         let filter = {
             dateStart: values.dateStart === "" ? null : DateTime.fromISO(values.dateStart).toISODate(),
             dateEnd: values.dateStart === "" ? null : DateTime.fromISO(values.dateEnd).toISODate(),
             name: values.name,
-            idState: parseInt(values.idState)
+            idState: values.idState === "" ? 0 : parseInt(values.idState)
         } as ReparacionInputByFilters
+        console.log(filter)
+
         params.setValues(filter)
     }
     return (<>
