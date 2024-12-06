@@ -1,4 +1,4 @@
-import { GenericModelDto } from "../genericdto/generic.dto"
+import { GenericModel2Dto, GenericModelDto } from "../genericdto/generic.dto"
 
 export interface ReparacionDto{
     id: number,
@@ -7,7 +7,7 @@ export interface ReparacionDto{
     dateDelivery: Date,
     model: string,
     brand: string,
-    state: GenericModelDto
+    state: GenericModel2Dto
 }
 
 export interface ReparacionInputDto{
@@ -81,3 +81,16 @@ export interface ReparacionFirstInputDto{
     estado: GenericModelDto
 }
 
+export interface ReparacionInputByFilters{
+    idState: number,
+    name: string,
+    dateStart: string | null,
+    dateEnd: string | null
+}
+
+export interface ReparacionInputByFiltersForm{
+    idState: string,
+    name: string,
+    dateStart: string,
+    dateEnd: string
+}

@@ -86,7 +86,7 @@ const routes = [
     icon: "bi bi-chat-left-quote"
   },
   {
-    route: "/dashboard",
+    route: "/dashboard/reports",
     nameroute: "Reportes",
     icon: "bi bi-file-earmark-bar-graph-fill"
   },

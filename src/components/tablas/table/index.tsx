@@ -1,8 +1,9 @@
+import { ReparacionDto } from "@/DTOS/reparaciones/reparacion"
 import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
-import { AssingStateColor, ITreeStatesColors, TreeStatesColors } from "@/UtilitiesLocal/StateChange"
+import { AssingStateColor } from "@/UtilitiesLocal/StateChange"
 import { useRouter } from "next/navigation"
 
-const Index = (props: { elements: Array<{ id: number, uuid: string, dateReception: Date, dateDelivery: Date, model: string, brand: string, state: { id: number, nombre: string } }>, urldetails: string }) => {
+const Index = (props: { elements: Array<ReparacionDto>, urldetails: string }) => {
   const router = useRouter()
   console.log()
   return (
