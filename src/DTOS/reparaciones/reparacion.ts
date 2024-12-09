@@ -85,12 +85,14 @@ export interface ReparacionInputByFilters{
     idState: number,
     name: string,
     dateStart: string | null,
-    dateEnd: string | null
+    dateEnd: string | null,
+    typeDateSearch: number
 }
 
 export interface ReparacionInputByFiltersForm{
     idState: string,
     name: string,
     dateStart: string,
-    dateEnd: string
+    dateEnd: string,
+    typeDateSearch: string
 }
