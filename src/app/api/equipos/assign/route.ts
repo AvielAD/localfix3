@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { DeviceInputDto, DevicesDto } from "@/DTOS/equipos/devices";
+import { DevicesAssignDto } from "@/DTOS/equipos/devices";
 import { response } from "@/DTOS/response/response";
 
 export async function GET() {
-    let EventosView: Array<DevicesDto> = []
+    let EventosView: Array<DevicesAssignDto> = []
     const testcookies = cookies().get('token')
     try {
         if (testcookies)
-            await fetch('https://localfixback2.localfix.mx/api/Device', {
+            await fetch('https://localfixback2.localfix.mx/api/Device/Assign', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${testcookies.value}`
@@ -26,15 +26,14 @@ export async function GET() {
     }
 }
 
-
-export async function POST(req: NextRequest) {
+export async function PUT(req: NextRequest) {
     let Response = {} as response
     const testcookies = cookies().get('token')
-    const data:DeviceInputDto = await req.json()
+    const data:DevicesAssignDto = await req.json()
     try {
         if (testcookies)
-            await fetch('https://localfixback2.localfix.mx/api/Device', {
-                method: "POST",
+            await fetch('https://localfixback2.localfix.mx/api/Device/Assign', {
+                method: "PUT",
                 body: JSON.stringify(data),
                 headers: {
                     'Authorization': `Bearer ${testcookies.value}`,

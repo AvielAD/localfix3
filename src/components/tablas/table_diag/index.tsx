@@ -1,4 +1,4 @@
-import { FormatMedDateString } from "@/Utilities/DateTimeHelpers/FormattingDate"
+import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
 import { useRouter } from "next/navigation"
 
 const Index = (props: { elements: Array<{ id: number, nameDiagnostic: string, namePopular: string, failureDescription: string, dateDiagnostic: Date }> }) => {
@@ -24,7 +24,7 @@ const Index = (props: { elements: Array<{ id: number, nameDiagnostic: string, na
                   <tr key={index} className="text-secondary-700 dark:text-secondary-400 cursor-pointer hover:text-theme3-100 hover:bg-theme1-600">
                     <td className="px-4 py-3">{item.nameDiagnostic}</td>
                     <td className="px-4 py-3">{item.namePopular}</td>
-                    <td className="px-4 py-3">{ item.dateDiagnostic?.toString()}</td>
+                    <td className="px-4 py-3">{ FormatMedDate(item.dateDiagnostic)}</td>
                   </tr>
                 ))
               }
