@@ -16,17 +16,17 @@ const Dashboard = () => {
         {
             title: "Pausadas",
             value: infoRepairs.data?.paused ?? "0",
-            icon: "bi bi-pie-chart-fill"
+            icon: "bi bi-alarm-fill"
         },
         {
             title: "Terminadas",
             value: infoRepairs.data?.doneMounthCurrent ?? "0",
-            icon: "bi bi-bar-chart-steps"
+            icon: "bi bi-clipboard-data-fill"
         },
         {
             title: "Entregadas",
             value: infoRepairs.data?.deliveredMounthCurrent ?? "0",
-            icon: "bi bi-graph-up-arrow"
+            icon: "bi bi-box2-heart-fill"
         },
         {
             title: "Reparaciones",
@@ -35,8 +35,8 @@ const Dashboard = () => {
         },
         {
             title: "Diagnosticos",
-            value: infoRepairs.data?.repairsMounthCurrent ?? "0",
-            icon: "bi bi-graph-up-arrow"
+            value: infoRepairs.data?.diagnosticsMounthCurrent ?? "0",
+            icon: "bi bi-diagram-3-fill"
         }
     ]
 

@@ -25,12 +25,12 @@ export default function Dashboard({ children, }: { children: React.ReactNode }) 
   }
   const actions = [
     {
-      nameaction: "Agregar Reparacion",
+      nameaction: "Reparacion",
       action: showModalRepair,
       setaction: setActionModalRepair
     },
     {
-      nameaction: "Agregar Diagnostico",
+      nameaction: "Diagnostico",
       action: showModalDiag,
       setaction: setActionModalDiag
     },
@@ -73,21 +73,31 @@ const routes = [
   {
     route: "/dashboard",
     nameroute: "Dashboard",
-    icon: "bi bi-house"
+    icon: "bi bi-house-fill"
+  },
+  {
+    route: "/dashboard",
+    nameroute: "Panel Presupuestos",
+    icon: "bi bi-calculator-fill"
   },
   {
     route: "/dashboard/diagnosticos",
     nameroute: "Diagnosticos",
-    icon: "bi bi-wrench-adjustable"
+    icon: "bi bi-chat-left-quote-fill"
   },
   {
     route: "/dashboard/reparaciones",
     nameroute: "Reparaciones",
-    icon: "bi bi-chat-left-quote"
+    icon: "bi bi-wrench-adjustable"
   },
   {
     route: "/dashboard/reports",
     nameroute: "Reportes",
     icon: "bi bi-file-earmark-bar-graph-fill"
+  },
+  {
+    route: "/dashboard/configuration",
+    nameroute: "Configuracion",
+    icon: "bi bi-gear-fill"
   },
 ]
