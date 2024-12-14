@@ -1,4 +1,4 @@
-export interface DevicesDto{
+export interface DevicesDto {
     id: number,
     model: string,
     brand: string,
@@ -6,7 +6,7 @@ export interface DevicesDto{
     category: string
 }
 
-export interface DevicesAssignDto{
+export interface DevicesAssignDto {
     id: number,
     model: string,
     brand: string,
@@ -17,16 +17,16 @@ export interface DevicesAssignDto{
 }
 
 
-export interface DevicesAssignInputDto{
-        idEquipo: number,
-        cost1: number,
-        cost2: number,
-        cost3: number,
-        costSale: number,
-        visiblePanelPublic: boolean
+export interface DevicesAssignInputDto {
+    idEquipo: number,
+    cost1: number,
+    cost2: number,
+    cost3: number,
+    costSale: number,
+    visiblePanelPublic: boolean
 }
 
-export interface DevicesAssignFormDto{
+export interface DevicesAssignFormDto {
     idEquipo: string,
     cost1: string,
     cost2: string,
@@ -35,21 +35,32 @@ export interface DevicesAssignFormDto{
     visiblePanelPublic: boolean
 }
 
-export interface InfoModalDevice{
+export interface InfoModalDevice {
     show: boolean,
     info: DevicesAssignDto | null
 }
 
-export interface DeviceInputDto{
+export interface DeviceInputDto {
     idBrand: number,
-    popularModel:string,
+    popularModel: string,
     model: string,
     idCategory: number
 }
 
-export interface DeviceInputFormDto{
+export interface DeviceInputFormDto {
     idBrand: string,
-    popularModel:string,
+    popularModel: string,
     model: string,
     idCategory: string
+}
+
+export interface DevicePublicDto {
+    id: number,
+    brand: string,
+    model: string,
+    price: number,
+    price2: number,
+    price3: number,
+    price4: number,
+    description: string | null
 }

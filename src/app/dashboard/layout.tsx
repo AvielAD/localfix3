@@ -76,7 +76,7 @@ const routes = [
     icon: "bi bi-house-fill"
   },
   {
-    route: "/dashboard",
+    route: "/dashboard/public",
     nameroute: "Panel Presupuestos",
     icon: "bi bi-calculator-fill"
   },
