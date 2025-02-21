@@ -1,6 +1,5 @@
 'use client'
 import { fetcher } from '@/Utilities/FetchHelper/Fetch.helper'
-import TableRepair from '@/components/tablas/table'
 import { BarBanner } from "@avielad/componentspublish"
 import { useEffect, useState } from "react"
 import FormFilters from '@/components/formularios/device_public'
