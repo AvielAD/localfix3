@@ -3,8 +3,16 @@ import useSWR from "swr"
 import { fetcher } from '@/Utilities/FetchHelper/Fetch.helper'
 import TableRepair from '@/components/tablas/table'
 import { BarBanner } from "@avielad/componentspublish"
+import { useContext, useEffect } from "react"
+import { RefreshContext } from "../layout"
 const Reparaciones = () => {
     const infoRepairs = useSWR('/api/reparaciones', fetcher)
+    const useRefreshContext = useContext(RefreshContext)
+
+    useEffect(()=>{
+        if(infoRepairs.data) infoRepairs.mutate()
+    },[useRefreshContext?.refreshValue,infoRepairs])
+
     if (!infoRepairs.data) return <>loading...</>
 
     return (

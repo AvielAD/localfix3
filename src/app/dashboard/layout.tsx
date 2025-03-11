@@ -1,16 +1,24 @@
 'use client'
-import { useRef, useState } from 'react';
+import { createContext, Dispatch, SetStateAction, useRef, useState } from 'react';
 import Promocional from '@/components/promocionallocalfix'
 import FormRepairNew from '@/components/formularios/reparacion_add'
 import FormDiagnosticNew from '@/components/formularios/diagnostic_add'
 import { SideBar, HeaderBar, Modal, Toast, useToast } from '@avielad/componentspublish'
 import { useReactToPrint } from 'react-to-print';
 
+export interface RefreshProps{
+  refreshValue: boolean,
+  setRefreshValue: Dispatch<SetStateAction<boolean>>
+}
+
+export const RefreshContext = createContext<RefreshProps | undefined>(undefined)
+
 export default function Dashboard({ children, }: { children: React.ReactNode }) {
   const [showModalRepair, setShowModalRepair] = useState(false)
   const [showModalDiag, setShowModalDiag] = useState(false)
   const componentRef = useRef<HTMLDivElement>(null);
   const Toast1 = useToast();
+  const [refreshValue, setRefreshValue]= useState<boolean>(true)
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -18,6 +26,7 @@ export default function Dashboard({ children, }: { children: React.ReactNode }) 
 
   const setActionModalRepair = async () => {
     setShowModalRepair(!showModalRepair)
+    setRefreshValue(!refreshValue)
   }
 
   const setActionModalDiag = async () => {
@@ -62,7 +71,9 @@ export default function Dashboard({ children, }: { children: React.ReactNode }) 
         <HeaderBar routes={routes} actions={actions}></HeaderBar>
       </div>
       <div className="p-2">
+        <RefreshContext.Provider value={{refreshValue, setRefreshValue}}>
         {children}
+        </RefreshContext.Provider>
       </div>
     </div>
   )

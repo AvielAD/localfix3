@@ -35,7 +35,6 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
             repairDescription: values.sugerenciareparacion,
             idEquip: parseInt(values.idequipo.split(' ')[0])
         } as ReparacionFirstDto
-        console.log(newRepair)
 
         postFetcher('/api/reparaciones/first', newRepair).then((data) => {
             params.toast({ Message: data.message, Succedded: data.succedded })
