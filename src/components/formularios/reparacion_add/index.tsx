@@ -58,14 +58,14 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                     (props: FormikProps<any>) => (
                         <Form className="container px-6 mx-auto grid">
                             <BarBanner title="Reparacion" starmessage="Agregar" arrowmessage=""></BarBanner>
-                            <div className="px-4 py-1 mb-8 bg-white rounded-lg shadow-md dark:bg-secondary-800">
+                            <div className="bg-white rounded-lg shadow-md dark:bg-secondary-800">
                                 <label className="block text-sm">
                                     <span className="text-secondary-700 dark:text-secondary-400">Equipo</span>
                                     <Field name="idequipo" >
                                         {({ field, form, meta }: FieldProps) => (
                                             <div>
                                                 <input type="search" list="list" autoComplete="on" id="" {...field} placeholder="Seleccionar equipo"
-                                                    className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input ${props.errors.idequipo && props.touched.idequipo ? "ring-danger-600" : ""}`}
+                                                    className={`w-full py-2 px-3 text-sm focus:border-primary-600 form-input`}
                                                 />
                                                 <datalist id="list">
                                                     {
@@ -79,44 +79,49 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                                     </Field>
                                 </label>
 
-                                <label className="block text-sm">
-                                    <span className="text-secondary-700 dark:text-secondary-400">Nombre</span>
-                                    <Field
-                                        name="nombre"
-                                        className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-none focus:ring-2 focus:ring-primary-600 ${props.errors.nombre && props.touched.nombre ? "ring-red-600" : ""}`}
-                                    ></Field>
-                                </label>
+                                <div className="grid grid-cols-2 gap-1">
+                                    <label className="block text-sm">
+                                        <span className="text-secondary-700 dark:text-secondary-400">Nombre</span>
+                                        <Field
+                                            name="nombre"
+                                            className={`shadow appearance-none border rounded w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-none focus:shadow-outline`}
+                                        ></Field>
+                                    </label>
 
-                                <label className="block text-sm">
-                                    <span className="text-secondary-700 dark:text-secondary-400">Apellido</span>
-                                    <Field
-                                        name="apellido"
-                                        className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-none focus:ring-2 focus:ring-primary-600 ${props.errors.apellido && props.touched.apellido ? "ring-danger-600" : ""}`}
-                                    ></Field>
-                                </label>
+                                    <label className="block text-sm">
+                                        <span className="text-secondary-700 dark:text-secondary-400">Apellido</span>
+                                        <Field
+                                            name="apellido"
+                                            className={`shadow appearance-none border rounded w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-none focus:shadow-outline`}
+                                        ></Field>
+                                    </label>
 
-                                <label className="block text-sm">
-                                    <span className="text-secondary-700 dark:text-secondary-400">Telefono</span>
-                                    <Field
-                                        name="telefono"
-                                        className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-none focus:ring-2 focus:ring-primary-600 ${props.errors.telefono && props.touched.telefono ? "ring-danger-600" : ""}`}
-                                    ></Field>
-                                </label>
+                                </div>
+                                <div className="grid grid-cols-2 gap-1">
+                                    <label className="block text-sm">
+                                        <span className="text-secondary-700 dark:text-secondary-400">Telefono</span>
+                                        <Field
+                                            name="telefono"
+                                            className={`shadow appearance-none border rounded w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-none focus:shadow-outline`}
+                                        ></Field>
+                                    </label>
 
-                                <label className="block text-sm">
-                                    <span className="text-secondary-700 dark:text-secondary-400">Fecha Entrega</span>
-                                    <Field
-                                        name="fechaentrega"
-                                        component={customDate}
-                                    ></Field>
-                                    <ErrorMessage name="fechaentrega">{(msg) => (<div className="text-danger-700">{msg}</div>)}</ErrorMessage>
-                                </label>
+                                    <label className="block text-sm">
+                                        <span className="text-secondary-700 dark:text-secondary-400">Fecha Entrega</span>
+                                        <Field
+                                            name="fechaentrega"
+                                            component={customDate}
+                                        ></Field>
+                                        <ErrorMessage name="fechaentrega">{(msg) => (<div className="text-danger-700">{msg}</div>)}</ErrorMessage>
+                                    </label>
+
+                                </div>
 
                                 <label className="block text-sm">
                                     <span className="text-secondary-700 dark:text-secondary-400">Descripcion Falla</span>
                                     <Field
                                         name="descripcionfalla"
-                                        className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-none focus:ring-2 focus:ring-primary-600 ${props.errors.descripcionfalla && props.touched.descripcionfalla ? "ring-danger-600" : ""}`}
+                                        className={`shadow appearance-none border rounded w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-none focus:shadow-outline`}
                                         as="textarea"
                                         rows={3}
                                     ></Field>
@@ -127,7 +132,7 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                                     <span className="text-secondary-700 dark:text-secondary-400">Sugerencia Reparacion</span>
                                     <Field
                                         name="sugerenciareparacion"
-                                        className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-none focus:ring-2 focus:ring-primary-600 ${props.errors.sugerenciareparacion && props.touched.sugerenciareparacion ? "ring-danger-600" : ""}`}
+                                        className={`shadow appearance-none border rounded w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-none focus:shadow-outline`}
                                         as="textarea"
                                         rows={3}
                                     ></Field>
@@ -137,7 +142,7 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                                     <span className="text-secondary-700 dark:text-secondary-400">Costo Total</span>
                                     <Field
                                         name="costototal"
-                                        className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-none focus:ring-2 focus:ring-primary-600`}
+                                        className={`shadow appearance-none border rounded w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-none focus:shadow-outline`}
                                     ></Field>
                                     <ErrorMessage name="costototal">{(msg) => (<div className="text-danger-700">{msg}</div>)}</ErrorMessage>
                                 </label>
@@ -172,6 +177,6 @@ const addTicketSchema = object({
 
 const customDate = (props: FieldProps) => (
     <div className="relative max-w-sm w-3/4">
-        <input className="block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-none focus:ring-2 focus:ring-blue-600" type="date" {...props.field} />
+        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-none focus:shadow-outline" type="date" {...props.field} />
     </div>
 )
