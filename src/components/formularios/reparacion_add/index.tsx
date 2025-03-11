@@ -9,7 +9,7 @@ import { DateTime } from "luxon";
 import { BarBanner } from "@avielad/componentspublish";
 import { ServerResponseDto } from "@avielad/componentspublish/dist/customhooks/Dtos/ServerResponse.dto";
 
-const Add = (params: { close: Function,toast: (params: ServerResponseDto) => void  }) => {
+const Add = (params: { close: Function, toast: (params: ServerResponseDto) => void }) => {
     const dataEquipos = useSWR('/api/equipos/popular', fetcher)
 
     const formTicket = {
@@ -39,7 +39,7 @@ const Add = (params: { close: Function,toast: (params: ServerResponseDto) => voi
 
         postFetcher('/api/reparaciones/first', newRepair).then((data) => {
             params.toast({ Message: data.message, Succedded: data.succedded })
-            if(data.succedded){
+            if (data.succedded) {
                 resetForm()
                 params.close()
             }
@@ -142,12 +142,13 @@ const Add = (params: { close: Function,toast: (params: ServerResponseDto) => voi
                                     ></Field>
                                     <ErrorMessage name="costototal">{(msg) => (<div className="text-danger-700">{msg}</div>)}</ErrorMessage>
                                 </label>
+                                <div className="flex items-center justify-between sm:justify-between mt-2">
+                                    <button type="submit" className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Agregar</button>
+                                    <button type="button" className="bg-danger-500 hover:bg-danger-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => params.close()}>Cancelar</button>
+                                </div>
                             </div>
 
-                            <div className="flex items-center justify-between sm:justify-between ">
-                                <button type="submit" className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Agregar</button>
-                                <button type="button" className="bg-danger-500 hover:bg-danger-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => params.close()}>Cancelar</button>
-                            </div>
+
                         </Form>
                     )
                 }
