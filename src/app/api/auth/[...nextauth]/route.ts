@@ -1,10 +1,9 @@
 import axios from "axios";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import type { NextApiRequest, NextApiResponse } from "next"
 import { cookies } from 'next/headers'
 const instanceAxios = axios.create({
-    baseURL: 'https://authmodule.localfix.mx',
+    baseURL: `${process.env.NEXT_SERVICE_AUTH_URL}`,
     //baseURL: 'http://localhost:3000',
     withCredentials: true
 })
