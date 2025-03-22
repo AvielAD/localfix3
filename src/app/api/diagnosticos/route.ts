@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
     
     try {
         if (testcookies)
-            await fetch('https://localfixback2.localfix.mx/api/Diagnostic', {
+            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Diagnostic`, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
@@ -64,7 +64,7 @@ export async function PUT(req: NextRequest) {
     
     try {
         if (testcookies)
-            await fetch('https://localfixback2.localfix.mx/api/diagnostico', {
+            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/diagnostico`, {
                 method: "PUT",
                 body: JSON.stringify(data),
                 headers: {
