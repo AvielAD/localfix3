@@ -40,7 +40,7 @@ export async function PUT(req: NextRequest, { params }: { params: { uuidsearch: 
     const uuidsearch = params.uuidsearch
     try {
         if (testcookies)
-            await fetch(`https://localfixback2.localfix.mx/api/Repair/${uuidsearch[0]}/State/${uuidsearch[1]}`, {
+            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Repair/${uuidsearch[0]}/State/${uuidsearch[1]}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${testcookies.value}`

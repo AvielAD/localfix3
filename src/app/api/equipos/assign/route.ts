@@ -32,7 +32,7 @@ export async function PUT(req: NextRequest) {
     const data:DevicesAssignDto = await req.json()
     try {
         if (testcookies)
-            await fetch('https://localfixback2.localfix.mx/api/Device/Assign', {
+            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Device/Assign`, {
                 method: "PUT",
                 body: JSON.stringify(data),
                 headers: {
