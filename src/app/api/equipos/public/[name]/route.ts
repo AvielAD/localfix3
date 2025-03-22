@@ -9,7 +9,7 @@ export async function GET(req: NextRequest, { params }: { params: { name: string
 
     try {
         if (testcookies)
-            await fetch(`https://localfixback2.localfix.mx/api/Device/Public?name=${nameDevice}`, {
+            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Device/Public?name=${nameDevice}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${testcookies.value}`

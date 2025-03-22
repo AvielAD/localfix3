@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
     const data:ReparacionFirstDto = await req.json()
     try {
         if (testcookies)
-            await fetch('https://localfixback2.localfix.mx/api/Repair/First', {
+            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Repair/First`, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {

@@ -11,7 +11,7 @@ export async function GET(req: NextRequest, { params }: { params: { uuidsearch: 
 
     try {
         if (testcookies)
-            await fetch(`https://localfixback2.localfix.mx/api/Repair/${uuidsearch[0]}`, {
+            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Repair/${uuidsearch[0]}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${testcookies.value}`

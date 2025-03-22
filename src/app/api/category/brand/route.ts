@@ -7,7 +7,7 @@ export async function GET() {
     const testcookies = cookies().get('token')
     try {
         if (testcookies)
-            await fetch('https://localfixback2.localfix.mx/api/Brand', {
+            await fetch(`${process.env.NEXTBACK_URL}/api/Brand`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${testcookies.value}`
