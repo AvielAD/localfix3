@@ -1,4 +1,4 @@
-import imgWhatsapp from './assets/WB.jpeg'
+import imgWhatsapp from '../../../public/WB.jpeg'
 import Image from 'next/image'
 import React from 'react'
 
@@ -15,12 +15,12 @@ const Index = React.forwardRef<HTMLDivElement>((props, ref) => {
         </div>
 
         <div className=''>
-          <h5><i className="bi bi-browser-safari"></i> www.localfix.mx</h5>
+          <h5><i className="bi bi-browser-safari"></i> localfix.softwarp.net</h5>
           <h4><i className="bi bi-whatsapp"></i> 2229713533</h4>
         </div>
 
-        <div className="w-[200pt] h-[280pt]">
-            <Image src={imgWhatsapp} alt='sin imagen'></Image>
+        <div className="w-[200pt] h-[280pt] relative">
+            <Image src={"/WB.jpeg"} alt='sin imagen' fill></Image>
         </div>
       </div>
     </div>
