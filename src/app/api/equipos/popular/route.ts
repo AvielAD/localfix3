@@ -4,7 +4,8 @@ import { DevicesDto } from "@/DTOS/equipos/devices";
 
 export async function GET() {
     let EventosView: Array<DevicesDto> = []
-    const testcookies = cookies().get('token')
+     const cookieStore = await cookies()
+    const testcookies = cookieStore.get('token')
     try {
         if (testcookies)
             await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Device/Popular`, {

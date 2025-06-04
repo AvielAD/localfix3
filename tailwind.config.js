@@ -3,7 +3,7 @@ import colors from 'tailwindcss/colors'
 module.exports = {
   content: [
     "./src/**/*.{ts,tsx}",
-    "./node_modules/@avielad/**/*.{js,ts,jsx,tsx,mdx}"
+    "./node_modules/@avielad/componentspublish/dist/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
     extend: {
@@ -26,13 +26,18 @@ module.exports = {
       warning: colors.orange,
       danger: colors.red,
       success: colors.green,
-      theme1: colors.purple,
+      theme1: colors.orange,
       theme2: colors.indigo,
       theme3: colors.orange,
       theme4: colors.red,
       theme5: colors.orange,
       theme6: colors.green,
-      theme7: colors.black
+      theme7: colors.black,
+      notification1: colors.blue,//proceso
+      notification2: colors.green,//terminado
+      notification3: colors.yellow,//pausado
+      notification4: colors.gray,//cancelado
+      notification5: colors.purple,//entregado
     }
   },
   plugins: [],

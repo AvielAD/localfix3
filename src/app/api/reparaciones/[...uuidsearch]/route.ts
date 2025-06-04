@@ -5,7 +5,8 @@ import { response } from "@/DTOS/response/response";
 
 export async function GET(req: NextRequest, { params }: { params: { uuidsearch: Array<string> } }) {
     let EventosView = {} as ReparacionAllDto
-    const testcookies = cookies().get('token')
+     const cookieStore = await cookies()
+    const testcookies = cookieStore.get('token')
 
     const uuidsearch = params.uuidsearch
 
@@ -35,7 +36,8 @@ export async function GET(req: NextRequest, { params }: { params: { uuidsearch: 
 export async function PUT(req: NextRequest, { params }: { params: { uuidsearch: Array<string> } }) {
     let Response = {} as response
 
-    const testcookies = cookies().get('token')
+    const cookieStore = await cookies()
+    const testcookies = cookieStore.get('token')
 
     const uuidsearch = params.uuidsearch
     try {

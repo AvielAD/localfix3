@@ -33,7 +33,8 @@ const auth = NextAuth({
                         email: String(responseUserInfo.email),
                         token: String(responseUserInfo.token)
                     }
-                    cookies().set({
+                    var responseCookies = await cookies()
+                    responseCookies.set({
                         name: "token",
                         value: responseUserInfo.token,
                         sameSite: "lax",

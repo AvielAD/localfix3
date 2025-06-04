@@ -6,7 +6,8 @@ import { ReparacionDto, ReparacionFirstDto, ReparacionInputDto } from "@/DTOS/re
 
 export async function POST(req: NextRequest) {
     let Response = {} as response
-    const testcookies = cookies().get('token')
+     const cookieStore = await cookies()
+    const testcookies = cookieStore.get('token')
     const data:ReparacionFirstDto = await req.json()
     try {
         if (testcookies)

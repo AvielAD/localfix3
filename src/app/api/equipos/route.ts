@@ -5,7 +5,8 @@ import { response } from "@/DTOS/response/response";
 
 export async function GET() {
     let EventosView: Array<DevicesDto> = []
-    const testcookies = cookies().get('token')
+     const cookieStore = await cookies()
+    const testcookies = cookieStore.get('token')
     try {
         if (testcookies)
             await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Device`, {
@@ -29,7 +30,8 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
     let Response = {} as response
-    const testcookies = cookies().get('token')
+     const cookieStore = await cookies()
+    const testcookies = cookieStore.get('token')
     const data:DeviceInputDto = await req.json()
     try {
         if (testcookies)

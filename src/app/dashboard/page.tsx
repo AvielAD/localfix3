@@ -42,7 +42,7 @@ const Dashboard = () => {
 
     return (<>
         <div className=''>
-        <BarBanner title='Estadisticas' starmessage='Métricas localfix' arrowmessage='consideraciones más importantes'></BarBanner>
+        <BarBanner title={{ message: "Estadisticas", icon: "bi bi-cart4" }}></BarBanner>
             <div className='grid gap-6 mb-8 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4'>
                 {
                     CardsBannerInfo.map((item, index) => (

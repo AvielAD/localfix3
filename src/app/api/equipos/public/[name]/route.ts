@@ -4,7 +4,8 @@ import { DevicePublicDto } from "@/DTOS/equipos/devices";
 
 export async function GET(req: NextRequest, { params }: { params: { name: string } }) {
     let EventosView: Array<DevicePublicDto> = []
-    const testcookies = cookies().get('token')
+     const cookieStore = await cookies()
+    const testcookies = cookieStore.get('token')
     const nameDevice = params.name
 
     try {

@@ -4,7 +4,8 @@ import {  ReparacionDto, ReparacionInputDto } from "@/DTOS/reparaciones/reparaci
 
 export async function POST(req: NextRequest) {
     let EventosView = [] as Array<ReparacionDto>
-    const testcookies = cookies().get('token')
+     const cookieStore = await cookies()
+    const testcookies = cookieStore.get('token')
     const data:ReparacionInputDto = await req.json()
     try {
         if (testcookies)
