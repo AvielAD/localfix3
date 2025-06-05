@@ -7,12 +7,15 @@ import { DevicesAssignDto, DevicesAssignInputDto, InfoModalDevice } from "@/DTOS
 import { useState } from "react"
 import { putFetcher } from "@/Utilities/FetchHelper/Fetch.helper"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+
 const fetcher = (url: string) => fetch(url).then(r => r.json())
 const Devices = () => {
 
     const [showModalDevice, setShowModalDevice] = useState({ show: false, info: null } as InfoModalDevice)
     const diagnosticosData = useSWR('/api/equipos/assign', fetcher)
     const Toast1 = useToast();
+    const router = useRouter()
 
     if (!diagnosticosData.data) return <>loading...</>
 
@@ -29,7 +32,12 @@ const Devices = () => {
         })
 
     }
-
+    const ActionButton = {
+        action: () => { router.push(`/dashboard/configuration/devices/add`) },
+        title: "Nuevo",
+        icon: "bi bi-clipboard2-plus",
+        disabled: false
+    }
     return (<>
         <div className="max-w-screen-lg mx-auto text-black">
             <Modal show={showModalDevice.show} close={() => setShowModalDevice({ show: false, info: null })}>
@@ -37,10 +45,8 @@ const Devices = () => {
             </Modal>
 
             <Toast Show={Toast1.toast.show} ServerMessage={Toast1.toast.response}></Toast>
-            <li className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                <Link href={'/dashboard/configuration/devices/add'}>Agregar Dispositivo</Link>
-            </li>
-            <BarBanner title="Asignacion de Dispositivos" starmessage="Filtrado" arrowmessage=""></BarBanner>
+            
+            <BarBanner button={ActionButton} title={{ message: "Nuevo Dispositivo", icon: "bi bi-calculator-fill" }} buttonback={{action: ()=>router.back()}} ></BarBanner>
             <TableDevice elements={diagnosticosData.data} Open={OpenModal}></TableDevice>
         </div>
     </>)

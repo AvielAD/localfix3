@@ -16,13 +16,11 @@ export const RefreshContext = createContext<RefreshProps | undefined>(undefined)
 export default function Dashboard({ children, }: { children: React.ReactNode }) {
   const [showModalRepair, setShowModalRepair] = useState(false)
   const [showModalDiag, setShowModalDiag] = useState(false)
-  const componentRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const Toast1 = useToast();
   const [refreshValue, setRefreshValue]= useState<boolean>(true)
 
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  })
+  const handlePrint = useReactToPrint({contentRef})
 
   const setActionModalRepair = async () => {
     setShowModalRepair(!showModalRepair)
@@ -52,7 +50,7 @@ export default function Dashboard({ children, }: { children: React.ReactNode }) 
   return (
     <div className="grid grid-cols-sidebar grid-rows-header lg:grid-cols-sidebarlx lg:grid-rows-headerlx gap-4 h-screen">
       <div className='hidden'>
-        <Promocional ref={componentRef}></Promocional>
+        <Promocional ref={contentRef}></Promocional>
       </div>
       <Modal show={showModalRepair} close={() => setActionModalRepair()}>
         <FormRepairNew toast={Toast1.changeToast} close={() => setActionModalRepair()}></FormRepairNew>
@@ -68,7 +66,7 @@ export default function Dashboard({ children, }: { children: React.ReactNode }) 
         <SideBar routes={routes} actions={actions}></SideBar>
       </div>
       <div className="">
-        <HeaderBar routes={routes} actions={actions}></HeaderBar>
+        <HeaderBar routes={routes} actions={actions} uriconfigs={[]}></HeaderBar>
       </div>
       <div className="p-2">
         <RefreshContext.Provider value={{refreshValue, setRefreshValue}}>

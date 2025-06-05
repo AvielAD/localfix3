@@ -1,13 +1,16 @@
 'use client'
 import { useRouter } from 'next/navigation';
-import { FormEvent, useState } from 'react';
+import { FormEvent, use, useState } from 'react';
 import { ReparacionInputDto } from '@/DTOS/reparaciones/reparacion';
 import { UpdateDiagnosticoInputDto } from '@/components/formularios/diagnostic_add/dtos/diagnosticos';
 
 const addFetcher = async (url: string, data: ReparacionInputDto) => fetch(url, { method: "POST", body: JSON.stringify(data) }).then(r => r.json())
 const updateFetcherDiag = async (url: string, data: UpdateDiagnosticoInputDto) => fetch(url, { method: "PUT", body: JSON.stringify(data) }).then(r => r.json())
+type DetailsProps = Promise<{ slug: string }>
 
-const FormularioDynamic = ({ params }: { params: { slug: string } }) => {
+const FormularioDynamic = (props: { params: DetailsProps }) => {
+    const params = use(props.params)
+    
     const [formRepair, setFormRepair] = useState({
         nameClient: "",
         lastNameClient: "",

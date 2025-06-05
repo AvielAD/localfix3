@@ -3,16 +3,17 @@ import { ReparacionAllDto } from "@/DTOS/reparaciones/reparacion";
 import { NextRequest, NextResponse } from "next/server";
 import { response } from "@/DTOS/response/response";
 
-export async function GET(req: NextRequest, { params }: { params: { uuidsearch: Array<string> } }) {
+type Params = Promise<{uuidsearch: string}>
+
+export async function GET(req: NextRequest, props:{ params:Params}) {
     let EventosView = {} as ReparacionAllDto
-     const cookieStore = await cookies()
+    const cookieStore = await cookies()
     const testcookies = cookieStore.get('token')
-
+    const params = await props.params
     const uuidsearch = params.uuidsearch
-
     try {
         if (testcookies)
-            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Repair/${uuidsearch[0]}`, {
+            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Repair/${uuidsearch}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${testcookies.value}`
@@ -33,12 +34,12 @@ export async function GET(req: NextRequest, { params }: { params: { uuidsearch: 
     }
 }
 
-export async function PUT(req: NextRequest, { params }: { params: { uuidsearch: Array<string> } }) {
+export async function PUT(req: NextRequest, props:{ params:Params}) {
     let Response = {} as response
 
     const cookieStore = await cookies()
     const testcookies = cookieStore.get('token')
-
+     const params = await props.params
     const uuidsearch = params.uuidsearch
     try {
         if (testcookies)
