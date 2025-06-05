@@ -48,7 +48,8 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                 {
                     (props: FormikProps<any>) => (
                         <Form className="container px-6 mx-auto grid">
-                            <BarBanner title="Reparacion" starmessage="Agregar" arrowmessage=""></BarBanner>
+                            <BarBanner title={{ message: `Diagnostico`, icon: "bi bi-clipboard2-pulse-fill" }}></BarBanner>
+
                             <div className="px-4 py-1 mb-8 bg-white rounded-lg shadow-md dark:bg-secondary-800">
                                 <label className="block text-sm">
                                     <span className="text-secondary-700 dark:text-secondary-400">Equipo</span>

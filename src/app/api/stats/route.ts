@@ -4,7 +4,8 @@ import { StatsGeneral } from "@/DTOS/stats/stats.dto";
 
 export async function GET() {
     let EventosView = {} as StatsGeneral
-    const testcookies = cookies().get('token')
+    const cookieStore = await cookies()
+    const testcookies = cookieStore.get('token')
     try {
         if (testcookies)
             await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/StatsGeneral`, {

@@ -21,7 +21,7 @@ const Reparaciones = () => {
     }, [filters])
     return (
         <div className="max-w-screen-lg mx-auto">
-            <BarBanner title="Reparaciones" starmessage="Filtrado" arrowmessage="Default Activas"></BarBanner>
+            <BarBanner title={{ message: "Reportes", icon: "bi bi-calculator-fill" }}></BarBanner>
             <FormFilters setValues={setFilters}></FormFilters>
             <TableRepair elements={history} urldetails="/dashboard/reparaciones/details/"></TableRepair>
         </div>
