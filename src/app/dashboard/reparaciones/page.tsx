@@ -17,11 +17,7 @@ const Reparaciones = () => {
     useEffect(()=>{
         if(infoRepairs.data) infoRepairs.mutate()
     },[useRefreshContext?.refreshValue,infoRepairs])
-
     if (!infoRepairs.data) return <>loading...</>
-
-//            <TableRepair elements={infoRepairs.data} urldetails="/dashboard/reparaciones/details/"></TableRepair>
-
     return (
         <div className="mx-auto">
             <BarBanner title={{ message: "Reparaciones", icon: "bi bi-cart4" }} ></BarBanner>
@@ -31,7 +27,7 @@ const Reparaciones = () => {
                         (<ElementList
                             title={`${item.brand} ${item.model}`}
                             state={{ info: item.state.nombre , message: item.state.nombre }}
-                            bannermessage={`${item.state.nombre}`}
+                            bannermessage={``}
                             buttons={[{ action: () => { router.push(`/dashboard/reparaciones/details/${item.uuid}`) }, title: "Ver Detalles", disabled: false }]}
                             messages={[
                                 { title: "Fecha Recepcion", message: ` ${FormatMedDate(item.dateReception)}` },

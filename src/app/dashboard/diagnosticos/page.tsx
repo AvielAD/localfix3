@@ -11,7 +11,7 @@ const Diagnosticos = () => {
 
     return (<>
             <div className="max-w-screen-lg mx-auto text-black">
-            <BarBanner title="Diagnosticos" starmessage="Filtrado" arrowmessage="Iniciadas Terminadas"></BarBanner>
+            <BarBanner title={{ message: "Diagnosticos", icon: "bi bi-calculator-fill" }}></BarBanner>
             <TableDiag elements={diagnosticosData.data} ></TableDiag>
         </div>
     </>)

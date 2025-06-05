@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { DevicePublicDto } from "@/DTOS/equipos/devices";
+type Params = Promise<{name: string}>
 
-export async function GET(req: NextRequest, { params }: { params: { name: string } }) {
+export async function GET(req: NextRequest, props:{ params:Params}) {
     let EventosView: Array<DevicePublicDto> = []
      const cookieStore = await cookies()
     const testcookies = cookieStore.get('token')
+    const params = await props.params
     const nameDevice = params.name
 
     try {

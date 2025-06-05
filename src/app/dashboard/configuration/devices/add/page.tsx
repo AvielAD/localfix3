@@ -31,7 +31,7 @@ const Page = () => {
     return (<>
         <div className="max-w-screen-xl mx-auto">
             <Toast Show={toast.toast.show} ServerMessage={toast.toast.response}></Toast>
-            <BarBanner title="Dispositivo" starmessage="Nuevo" arrowmessage=""></BarBanner>
+            <BarBanner title={{ message: "Nuevo Dispositivo", icon: "bi bi-calculator-fill" }}></BarBanner>
             <FormDeviceAdd OnSubmit={SubmitValues}></FormDeviceAdd>
         </div>
     </>)
