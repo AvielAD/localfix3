@@ -17,7 +17,6 @@ export async function GET() {
                 .then((response) => response.json())
                 .then((userInfo) => {
                     EventosView = userInfo
-                    console.log(EventosView)
                 })
 
                 return NextResponse.json(EventosView)

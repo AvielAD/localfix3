@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { DiagnosticoInputDto, DiagnosticosDto, UpdateDiagnosticoInputDto } from "@/components/formularios/diagnostic_add/dtos/diagnosticos";
+import { DiagnosticosDto, UpdateDiagnosticoInputDto } from "@/components/formularios/diagnostic_add/dtos/diagnosticos";
 import { response } from "@/DTOS/response/response";
+import { DiagnosticInput } from "@/application/diagnostics/dtos/diagnostic.dto";
 
 export async function GET() {
     let EventosView: Array<DiagnosticosDto> = []
@@ -34,7 +35,7 @@ export async function POST(req: NextRequest) {
     let Response = {} as response
      const cookieStore = await cookies()
     const testcookies = cookieStore.get('token')
-    const data:DiagnosticoInputDto = await req.json()
+    const data:DiagnosticInput = await req.json()
     
     try {
         if (testcookies)

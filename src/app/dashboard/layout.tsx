@@ -90,19 +90,9 @@ const routes = [
     icon: "bi bi-calculator-fill"
   },
   {
-    route: "/dashboard/diagnosticos",
-    nameroute: "Diagnosticos",
-    icon: "bi bi-chat-left-quote-fill"
-  },
-  {
     route: "/dashboard/reparaciones",
     nameroute: "Reparaciones",
     icon: "bi bi-wrench-adjustable"
-  },
-  {
-    route: "/dashboard/reports",
-    nameroute: "Reportes",
-    icon: "bi bi-file-earmark-bar-graph-fill"
   },
   {
     route: "/dashboard/configuration",

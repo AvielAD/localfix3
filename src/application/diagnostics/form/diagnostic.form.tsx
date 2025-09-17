@@ -2,38 +2,50 @@
 import { number, object, string } from 'yup';
 import { postFetcher, fetcher } from '@/Utilities/FetchHelper/Fetch.helper'
 import useSWR from "swr";
-import { BarBanner } from "@avielad/componentspublish";
+import { BarBanner, SkeletonTable } from "@avielad/componentspublish";
 import { ServerResponseDto } from "@avielad/componentspublish/dist/customhooks/Dtos/ServerResponse.dto";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { DiagnosticInput } from "../dtos/diagnostic.dto";
 import { DeviceDto } from "../../devices/dtos/devices.dto";
 import { GroupServiceDto } from '../../groupservice/dto/groupservice.dto';
+import { useEffect, useState } from 'react';
 
-const loginSchema = object({
-    failureDescription: string().email('Correo no valido').required('Correo obligatorio'),
-    repairDescription: string().required('Contraseña obligatoria'),
-    idEquip: number().required('Seleccione equipo'),
-    idGroupService: number().required('Seleccione equipo'),
-    budgetCost: number().required('Costo presupuesto requerido')
+const schemaValidation = object({
+    failureDescription: string(),
+    repairDescription: string(),
+    nameEquip: string(),
+    idEquip: number(),
+    idGroupService: number(),
+    budgetCost: number()
 })
 
 const Add = (params: { close: Function, toast: (params: ServerResponseDto) => void }) => {
-    const dataEquipos = useSWR('/api/equipos/popular', fetcher)
+    const { data: DataEquipos } = useSWR<Array<DeviceDto>>('/api/equipos/popular', fetcher)
+    const [FilterEquipos, setFilterEquipos] = useState<Array<DeviceDto>>()
     const dataGroupService = useSWR('/api/group_service', fetcher)
-    const {
-        register,
-        handleSubmit,
-        //watch,
-        formState: {
-            errors,
-            isSubmitting,
-            //isSubmitted
-        } } = useForm({ resolver: yupResolver(loginSchema) })
+    const [queryFilter, setQueryFilter] = useState<string>("")
+    const [onFocusFilter, setOnFocusFilter] = useState<boolean>(false)
 
+    const { register, handleSubmit, setValue, formState: {errors} } = 
+    useForm({ resolver: yupResolver(schemaValidation,), defaultValues:{ budgetCost: 0 } })
 
-    const submitAdd = async (values: DiagnosticInput, { resetForm }: any) => {
+    useEffect(() => {
+        if (queryFilter !== "")
+            setFilterEquipos(
+                DataEquipos?.filter(x =>
+                    x.company?.toLocaleLowerCase().includes(queryFilter.toLocaleLowerCase()) ||
+                    x.brand?.toLocaleLowerCase().includes(queryFilter.toLocaleLowerCase()) ||
+                    x.model?.toLocaleLowerCase().includes(queryFilter.toLocaleLowerCase())
+                ))
+        if(DataEquipos && queryFilter === "")
+            setFilterEquipos(DataEquipos?.slice(0, 10))
+    }, [queryFilter])
 
+    const SelectDeviceFilter = (idEquip: number, nameEquip: string) => {
+        setValue("idEquip", idEquip)
+        setValue("nameEquip", nameEquip)
+    }
+    const submitAdd = async (values: any) => {
         postFetcher('/api/diagnosticos/', { ...values }).then((data) => {
             params.toast({ Message: data.message, Succedded: data.succedded })
             if (data.succedded) {
@@ -43,6 +55,8 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
 
         })
     }
+    if(!DataEquipos) return <SkeletonTable></SkeletonTable>
+
     return (<>
         <div className="">
             <form onSubmit={handleSubmit(submitAdd)} className="container px-6 mx-auto grid ">
@@ -50,22 +64,36 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                 <div className="px-4 py-1 mb-8 bg-white rounded-lg shadow-md dark:bg-secondary-800">
                     <label className="block text-sm mt-2">
                         <span className="text-secondary-700">Seleccionar Dispositivo</span>
-                        <select {...register("idEquip")}
-                            className=" border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
-                        >
-                            <option value="">Seleccionar...</option>
-                            {
-                                dataEquipos.data?.map((item: DeviceDto, index: number) => (
-                                    <option key={index} value={item.id}>{item.company} {item.brand} {item.model}</option>
-                                ))
-                            }
-                        </select>
+                        <input
+                            className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                            type='text'
+                            autoComplete='off'
+                            {...register("nameEquip")}
+                            onChange={(e) => setQueryFilter(e.target.value)}
+                            onFocus={() => setOnFocusFilter(true)}
+                            onBlur={() => setOnFocusFilter(false)}
+                        ></input>
+
+                        <div className={`${onFocusFilter ? "" : "hidden"} absolute`}>
+                            <ul
+                                className="relative bg-white border border-secondary-300 text-black text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
+                            >
+                                {
+                                    FilterEquipos?.map((item: DeviceDto, index: number) => (
+                                        <li key={index} value={item.id}
+                                            className='hover:bg-primary-500 rounded-md py-2 px-1'
+                                            onMouseDown={() => SelectDeviceFilter(item.id, item.brand + " " + item.model)}>{item.company} {item.brand} {item.model}</li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
                         {errors.idEquip ? <span className="text-danger-700"> {errors.idEquip.message}</span> : null}
 
                     </label>
-                    <label className="block text-sm mt-2">
-                        <span className="text-secondary-700">Seleccionar Categoria Diagnostico</span>
-                        <select {...register("idEquip")}
+                    <div className='grid grid-cols-2 mt-2 gap-2'>
+                    <label className="block text-sm ">
+                        <span className="text-secondary-700">Tipo Diagnostico</span>
+                        <select {...register("idGroupService")}
                             className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
                         >
                             <option value="">Seleccionar...</option>
@@ -79,6 +107,18 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
 
                     </label>
 
+                    <label className="block text-sm">
+                        <span className="text-secondary-700 ">Costo Presupuesto</span>
+                        <input
+                            //name="name"
+                            {...register("budgetCost")}
+                            className=" border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                        ></input>
+                        {errors.budgetCost ? <span className="text-danger-700"> {errors.budgetCost.message}</span> : null}
+
+                    </label>
+
+                    </div>
                     <label className="block text-sm">
                         <span className="text-secondary-700 ">Descripcion Falla</span>
                         <textarea
@@ -113,12 +153,4 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
 }
 
 export default Add
-
-const addTicketSchema = object({
-    descripcionfalla: string().required('Campo Requerido'),
-    sugerenciareparacion: string().required('Campo Requerido'),
-    costopresupuesto: number().min(1, 'El valor no puede ser negativo').required('Campo Requerido'),
-    idequipo: string().required('Campo Requerido')
-})
-
 
