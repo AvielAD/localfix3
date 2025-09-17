@@ -1,19 +1,6 @@
 'use client'
-import { ReparacionInputByFilters, ReparacionInputByFiltersForm } from "@/DTOS/reparaciones/reparacion";
-import { Field, Form, Formik, FormikProps, ErrorMessage, FieldProps } from "formik";
-import { DateTime } from "luxon";
 import { RepairByFilters } from "../dto/repair.dto";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { date, number, object, string } from "yup";
-
-const schemaValidation = object({
-    name: string(),
-    idState: number(),
-    dateStart: date().nullable(),
-    dateEnd: date(),
-    typeDateSearch: number()
-})
 
 const Add = (props: { OnSubmit: (values: RepairByFilters) => void }) => {
 

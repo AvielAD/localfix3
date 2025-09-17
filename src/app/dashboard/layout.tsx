@@ -1,7 +1,7 @@
 'use client'
 import { createContext, Dispatch, SetStateAction, useRef, useState } from 'react';
 import Promocional from '@/components/promocionallocalfix'
-import FormRepairNew from '@/components/formularios/reparacion_add'
+import FormRepairNew from '@/application/repairs/form/addrepair.form'
 import FormDiagnosticNew from '../../application/diagnostics/form/diagnostic.form'
 import { SideBar, HeaderBar, Modal, Toast, useToast } from '@avielad/componentspublish'
 import { useReactToPrint } from 'react-to-print';

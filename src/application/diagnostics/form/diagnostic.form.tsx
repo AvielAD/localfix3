@@ -26,8 +26,8 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
     const [queryFilter, setQueryFilter] = useState<string>("")
     const [onFocusFilter, setOnFocusFilter] = useState<boolean>(false)
 
-    const { register, handleSubmit, setValue, formState: {errors} } = 
-    useForm({ resolver: yupResolver(schemaValidation,), defaultValues:{ budgetCost: 0 } })
+    const { register, handleSubmit, setValue, formState: { errors } } =
+        useForm({ resolver: yupResolver(schemaValidation,), defaultValues: { budgetCost: 0 } })
 
     useEffect(() => {
         if (queryFilter !== "")
@@ -37,9 +37,9 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                     x.brand?.toLocaleLowerCase().includes(queryFilter.toLocaleLowerCase()) ||
                     x.model?.toLocaleLowerCase().includes(queryFilter.toLocaleLowerCase())
                 ))
-        if(DataEquipos && queryFilter === "")
+        if (DataEquipos && queryFilter === "")
             setFilterEquipos(DataEquipos?.slice(0, 10))
-    }, [queryFilter])
+    }, [queryFilter, DataEquipos])
 
     const SelectDeviceFilter = (idEquip: number, nameEquip: string) => {
         setValue("idEquip", idEquip)
@@ -55,7 +55,7 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
 
         })
     }
-    if(!DataEquipos) return <SkeletonTable></SkeletonTable>
+    if (!DataEquipos) return <SkeletonTable></SkeletonTable>
 
     return (<>
         <div className="">
@@ -91,32 +91,32 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
 
                     </label>
                     <div className='grid grid-cols-2 mt-2 gap-2'>
-                    <label className="block text-sm ">
-                        <span className="text-secondary-700">Tipo Diagnostico</span>
-                        <select {...register("idGroupService")}
-                            className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
-                        >
-                            <option value="">Seleccionar...</option>
-                            {
-                                dataGroupService.data?.map((item: GroupServiceDto, index: number) => (
-                                    <option key={index} value={item.id} className=''>{item.name}</option>
-                                ))
-                            }
-                        </select>
-                        {errors.idEquip ? <span className="text-danger-700"> {errors.idEquip.message}</span> : null}
+                        <label className="block text-sm ">
+                            <span className="text-secondary-700">Tipo Diagnostico</span>
+                            <select {...register("idGroupService")}
+                                className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
+                            >
+                                <option value="">Seleccionar...</option>
+                                {
+                                    dataGroupService.data?.map((item: GroupServiceDto, index: number) => (
+                                        <option key={index} value={item.id} className=''>{item.name}</option>
+                                    ))
+                                }
+                            </select>
+                            {errors.idEquip ? <span className="text-danger-700"> {errors.idEquip.message}</span> : null}
 
-                    </label>
+                        </label>
 
-                    <label className="block text-sm">
-                        <span className="text-secondary-700 ">Costo Presupuesto</span>
-                        <input
-                            //name="name"
-                            {...register("budgetCost")}
-                            className=" border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
-                        ></input>
-                        {errors.budgetCost ? <span className="text-danger-700"> {errors.budgetCost.message}</span> : null}
+                        <label className="block text-sm">
+                            <span className="text-secondary-700 ">Costo Presupuesto</span>
+                            <input
+                                //name="name"
+                                {...register("budgetCost")}
+                                className=" border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                            ></input>
+                            {errors.budgetCost ? <span className="text-danger-700"> {errors.budgetCost.message}</span> : null}
 
-                    </label>
+                        </label>
 
                     </div>
                     <label className="block text-sm">
