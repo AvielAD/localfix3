@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { StatsGeneral } from "@/DTOS/stats/stats.dto";
+import { GroupServiceDto } from "../../../application/groupservice/dto/groupservice.dto";
 
 export async function GET() {
-    let EventosView = {} as StatsGeneral
+    let EventosView: Array<GroupServiceDto> = []
     const cookieStore = await cookies()
     const testcookies = cookieStore.get('token')
     try {
         if (testcookies)
-            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Stats/General`, {
+            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/GroupService`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${testcookies.value}`
@@ -17,15 +17,11 @@ export async function GET() {
                 .then((response) => response.json())
                 .then((userInfo) => {
                     EventosView = userInfo
-                }).catch((error) => {
+                    console.log(EventosView)
                 })
-        if(EventosView)
-            return NextResponse.json(EventosView)
-        else
-            return NextResponse.json({})
-                
+
+                return NextResponse.json(EventosView)
     } catch (error) {
-        return NextResponse.json(EventosView)
+        return NextResponse.json(error)
     }
 }
-
