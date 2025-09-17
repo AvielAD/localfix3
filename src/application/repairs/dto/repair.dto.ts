@@ -24,7 +24,7 @@ export interface RepairResumeDto{
 }
 
 export interface RepairByFilters{
-    idState: number | null,
+    states: Array<number> | null,
     name: string | null,
     dateStart: string | null,
     dateEnd: string | null,
