@@ -21,7 +21,7 @@ const Reparaciones = () => {
     }, [filters])
     console.log(filters)
     return (
-        <div className="max-w-screen-lg mx-auto">
+        <div className="max-w-(--breakpoint-lg) mx-auto">
             <BarBanner title={{ message: "Panel Presupuestos", icon: "bi bi-calculator-fill" }}></BarBanner>
             <FormFilters setValues={setFilters}></FormFilters>
             <div>

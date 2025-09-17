@@ -71,7 +71,7 @@ const Details = (props: { params: DetailsProps }) => {
                 ></ComponentNota>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-[70%,30%] max-w-screen-2xl mx-auto gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-[70%_30%] max-w-(--breakpoint-2xl) mx-auto gap-2">
                 <div className="order-2 md:order-1">
                     <BarBanner title={{ message: `${allInfo.brand} ${allInfo.model}`, icon: "bi bi-cart4" }} messages={[
                         { title: "Fecha de Entrega", message: ` ${FormatMedDate(allInfo.dateReception)}` },
@@ -79,7 +79,7 @@ const Details = (props: { params: DetailsProps }) => {
                         { title: "Costo Reparacion", message: `$ ${allInfo.budget} mxn` }
                         //{ title: "Estado", message: ` ${TreeStates.find(x => x.name == allInfo.estado.nombre)?.trad}` }
                     ]}></BarBanner>
-                    <div className="rounded-lg border border-secondary-200 bg-white shadow-sm">
+                    <div className="rounded-lg border border-secondary-200 bg-white shadow-xs">
                         <div className="px-6 py-4 border-b border-secondary-200">
                             <h3 className="text-lg font-medium">Detalles del Servicio</h3>
                             <p className="text-sm text-secondary-500">{}</p>
@@ -125,7 +125,7 @@ const Details = (props: { params: DetailsProps }) => {
                         </div>
                     </div>
 
-                    <div className="rounded-lg border border-secondary-200 bg-white shadow-sm">
+                    <div className="rounded-lg border border-secondary-200 bg-white shadow-xs">
                         <div className="px-3 border-b border-secondary-200">
                             <h3 className="text-lg font-medium">Cliente</h3>
                         </div>

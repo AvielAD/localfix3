@@ -10,7 +10,7 @@ const Diagnosticos = () => {
     if (!diagnosticosData.data) return <>loading...</>
 
     return (<>
-            <div className="max-w-screen-lg mx-auto text-black">
+            <div className="max-w-(--breakpoint-lg) mx-auto text-black">
             <BarBanner title={{ message: "Diagnosticos", icon: "bi bi-calculator-fill" }}></BarBanner>
             <TableDiag elements={diagnosticosData.data} ></TableDiag>
         </div>

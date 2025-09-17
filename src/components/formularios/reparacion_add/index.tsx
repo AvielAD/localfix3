@@ -84,7 +84,7 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                                         <span className="text-secondary-700 dark:text-secondary-400">Nombre</span>
                                         <Field
                                             name="nombre"
-                                            className={`shadow appearance-none border rounded w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-none focus:shadow-outline`}
+                                            className={`shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-hidden focus:shadow-outline`}
                                         ></Field>
                                     </label>
 
@@ -92,7 +92,7 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                                         <span className="text-secondary-700 dark:text-secondary-400">Apellido</span>
                                         <Field
                                             name="apellido"
-                                            className={`shadow appearance-none border rounded w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-none focus:shadow-outline`}
+                                            className={`shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-hidden focus:shadow-outline`}
                                         ></Field>
                                     </label>
 
@@ -102,7 +102,7 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                                         <span className="text-secondary-700 dark:text-secondary-400">Telefono</span>
                                         <Field
                                             name="telefono"
-                                            className={`shadow appearance-none border rounded w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-none focus:shadow-outline`}
+                                            className={`shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-hidden focus:shadow-outline`}
                                         ></Field>
                                     </label>
 
@@ -121,7 +121,7 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                                     <span className="text-secondary-700 dark:text-secondary-400">Descripcion Falla</span>
                                     <Field
                                         name="descripcionfalla"
-                                        className={`shadow appearance-none border rounded w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-none focus:shadow-outline`}
+                                        className={`shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-hidden focus:shadow-outline`}
                                         as="textarea"
                                         rows={3}
                                     ></Field>
@@ -132,7 +132,7 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                                     <span className="text-secondary-700 dark:text-secondary-400">Sugerencia Reparacion</span>
                                     <Field
                                         name="sugerenciareparacion"
-                                        className={`shadow appearance-none border rounded w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-none focus:shadow-outline`}
+                                        className={`shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-hidden focus:shadow-outline`}
                                         as="textarea"
                                         rows={3}
                                     ></Field>
@@ -142,13 +142,13 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                                     <span className="text-secondary-700 dark:text-secondary-400">Costo Total</span>
                                     <Field
                                         name="costototal"
-                                        className={`shadow appearance-none border rounded w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-none focus:shadow-outline`}
+                                        className={`shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-hidden focus:shadow-outline`}
                                     ></Field>
                                     <ErrorMessage name="costototal">{(msg) => (<div className="text-danger-700">{msg}</div>)}</ErrorMessage>
                                 </label>
                                 <div className="flex items-center justify-between sm:justify-between mt-2">
-                                    <button type="submit" className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Agregar</button>
-                                    <button type="button" className="bg-danger-500 hover:bg-danger-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => params.close()}>Cancelar</button>
+                                    <button type="submit" className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded-sm focus:outline-hidden focus:shadow-outline">Agregar</button>
+                                    <button type="button" className="bg-danger-500 hover:bg-danger-700 text-white font-bold py-2 px-4 rounded-sm focus:outline-hidden focus:shadow-outline" onClick={() => params.close()}>Cancelar</button>
                                 </div>
                             </div>
 
@@ -177,6 +177,6 @@ const addTicketSchema = object({
 
 const customDate = (props: FieldProps) => (
     <div className="relative max-w-sm w-3/4">
-        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-none focus:shadow-outline" type="date" {...props.field} />
+        <input className="shadow appearance-none border rounded-sm w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-hidden focus:shadow-outline" type="date" {...props.field} />
     </div>
 )

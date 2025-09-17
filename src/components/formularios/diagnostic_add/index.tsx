@@ -57,7 +57,7 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                                         {({ field, form, meta }: FieldProps) => (
                                             <div>
                                                 <input type="search" list="list" autoComplete="on" id="" {...field} placeholder="Seleccionar equipo"
-                                                    className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input ${props.errors.idequipo && props.touched.idequipo ? "ring-danger-600" : ""}`}
+                                                    className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-hidden focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input ${props.errors.idequipo && props.touched.idequipo ? "ring-danger-600" : ""}`}
                                                 />
                                                 <datalist id="list">
                                                     {
@@ -76,7 +76,7 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                                     <span className="text-secondary-700 dark:text-secondary-400">Descripcion Falla</span>
                                     <Field
                                         name="descripcionfalla"
-                                        className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-none focus:ring-2 focus:ring-primary-600 ${props.errors.descripcionfalla && props.touched.descripcionfalla ? "ring-danger-600" : ""}`}
+                                        className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-hidden focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-hidden focus:ring-2 focus:ring-primary-600 ${props.errors.descripcionfalla && props.touched.descripcionfalla ? "ring-danger-600" : ""}`}
                                         as="textarea"
                                         rows={3}
                                     ></Field>
@@ -87,7 +87,7 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                                     <span className="text-secondary-700 dark:text-secondary-400">Sugerencia Reparacion</span>
                                     <Field
                                         name="sugerenciareparacion"
-                                        className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-none focus:ring-2 focus:ring-primary-600 ${props.errors.sugerenciareparacion && props.touched.sugerenciareparacion ? "ring-danger-600" : ""}`}
+                                        className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-hidden focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-hidden focus:ring-2 focus:ring-primary-600 ${props.errors.sugerenciareparacion && props.touched.sugerenciareparacion ? "ring-danger-600" : ""}`}
                                         as="textarea"
                                         rows={3}
                                     ></Field>
@@ -97,15 +97,15 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                                     <span className="text-secondary-700 dark:text-secondary-400">Costo Total</span>
                                     <Field
                                         name="costopresupuesto"
-                                        className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-none focus:ring-2 focus:ring-primary-600`}
+                                        className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-hidden focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input outline-hidden focus:ring-2 focus:ring-primary-600`}
                                     ></Field>
                                     <ErrorMessage name="costototal">{(msg) => (<div className="text-danger-700">{msg}</div>)}</ErrorMessage>
                                 </label>
                             </div>
 
                             <div className="flex items-center justify-between sm:justify-between ">
-                                <button type="submit" className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Agregar</button>
-                                <button type="button" className="bg-danger-500 hover:bg-danger-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={() => params.close()}>Cancelar</button>
+                                <button type="submit" className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded-sm focus:outline-hidden focus:shadow-outline">Agregar</button>
+                                <button type="button" className="bg-danger-500 hover:bg-danger-700 text-white font-bold py-2 px-4 rounded-sm focus:outline-hidden focus:shadow-outline" onClick={() => params.close()}>Cancelar</button>
                             </div>
                         </Form>
                     )
