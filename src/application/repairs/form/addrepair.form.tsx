@@ -85,9 +85,10 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
 
     return (<>
         <div className="">
-            <form onSubmit={handleSubmit(submitAdd)} className="container px-6 mx-auto grid " >
+        {
+            <form onSubmit={handleSubmit(submitAdd)} className="container px-6 mx-auto " >
                 <BarBanner title={{ message: `Reparacion`, icon: "bi bi-wrench-adjustable" }}></BarBanner>
-                <div className="bg-white rounded-lg shadow-md dark:bg-secondary-800">
+                <div className="rounded-lg ">
                     <div className="grid grid-cols-2 gap-2">
 
                         <label className="block text-sm">
@@ -138,7 +139,7 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
 
                     <div className="grid grid-cols-2 gap-1">
                         <label className="">
-                            <span className="text-secondary-700 dark:text-secondary-400">Nombre</span>
+                            <span className="text-secondary-700 ">Nombre</span>
                             <input
                                 {...register("nameClient")}
                                 className="bg-secondary-50 border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
@@ -146,7 +147,7 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                         </label>
 
                         <label className="">
-                            <span className="text-secondary-700 dark:text-secondary-400">Apellido</span>
+                            <span className="text-secondary-700 ">Apellido</span>
                             <input
                                 {...register("lastNameClient")}
                                 className="bg-secondary-50 border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
@@ -203,7 +204,7 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                     </label>
 
                     <label className="block text-sm">
-                        <span className="text-secondary-700 dark:text-secondary-400">Costo Total</span>
+                        <span className="text-secondary-700">Costo Total</span>
                         <input
                             {...register("totalCost")}
                             className={`shadow-sm appearance-none border rounded-sm w-full py-2 px-3 text-secondary-700 leading-tight focus:outline-hidden focus:shadow-outline`}
@@ -216,6 +217,8 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                     </div>
                 </div>
             </form>
+            
+        }
         </div>
     </>)
 

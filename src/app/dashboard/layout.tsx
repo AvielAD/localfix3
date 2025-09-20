@@ -1,12 +1,12 @@
 'use client'
-import { createContext, Dispatch, SetStateAction, useRef, useState } from 'react';
+import { createContext, Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import Promocional from '@/components/promocionallocalfix'
 import FormRepairNew from '@/application/repairs/form/addrepair.form'
 import FormDiagnosticNew from '../../application/diagnostics/form/diagnostic.form'
 import { SideBar, HeaderBar, Modal, Toast, useToast } from '@avielad/componentspublish'
 import { useReactToPrint } from 'react-to-print';
 
-export interface RefreshProps{
+export interface RefreshProps {
   refreshValue: boolean,
   setRefreshValue: Dispatch<SetStateAction<boolean>>
 }
@@ -18,9 +18,13 @@ export default function Dashboard({ children, }: { children: React.ReactNode }) 
   const [showModalDiag, setShowModalDiag] = useState(false)
   const contentRef = useRef<HTMLDivElement>(null);
   const Toast1 = useToast();
-  const [refreshValue, setRefreshValue]= useState<boolean>(true)
+  const [refreshValue, setRefreshValue] = useState<boolean>(true)
 
-  const handlePrint = useReactToPrint({contentRef})
+  useEffect(() => {
+    document.body.style.overflow = showModalRepair || showModalDiag ? "hidden" : "unset"
+  }, [showModalRepair, showModalDiag])
+
+  const handlePrint = useReactToPrint({ contentRef })
 
   const setActionModalRepair = async () => {
     setShowModalRepair(!showModalRepair)
@@ -47,17 +51,23 @@ export default function Dashboard({ children, }: { children: React.ReactNode }) 
       setaction: handlePrint
     }
   ]
+
   return (
     <div className="grid grid-cols-sidebar grid-rows-header lg:grid-cols-sidebarlx lg:grid-rows-headerlx gap-4 h-screen">
       <div className='hidden'>
         <Promocional ref={contentRef}></Promocional>
       </div>
-      <Modal show={showModalRepair} close={() => setActionModalRepair()}>
-        <FormRepairNew toast={Toast1.changeToast} close={() => setActionModalRepair()}></FormRepairNew>
+      <Modal show={showModalRepair} close={() => setActionModalRepair()} styles='p-2'>
+        <div className='overflow-y-scroll h-[400] '>
+          <FormRepairNew toast={Toast1.changeToast} close={() => setActionModalRepair()}></FormRepairNew>
+        </div>
       </Modal>
 
       <Modal show={showModalDiag} close={() => setActionModalDiag()}>
-        <FormDiagnosticNew toast={Toast1.changeToast} close={() => setActionModalDiag()}></FormDiagnosticNew>
+        <div className='overflow-y-scroll h-[400] '>
+
+          <FormDiagnosticNew toast={Toast1.changeToast} close={() => setActionModalDiag()}></FormDiagnosticNew>
+        </div>
       </Modal>
 
       <Toast Show={Toast1.toast.show} ServerMessage={Toast1.toast.response}></Toast>
@@ -69,8 +79,8 @@ export default function Dashboard({ children, }: { children: React.ReactNode }) 
         <HeaderBar routes={routes} actions={actions} uriconfigs={[]}></HeaderBar>
       </div>
       <div className="p-2">
-        <RefreshContext.Provider value={{refreshValue, setRefreshValue}}>
-        {children}
+        <RefreshContext.Provider value={{ refreshValue, setRefreshValue }}>
+          {children}
         </RefreshContext.Provider>
       </div>
     </div>

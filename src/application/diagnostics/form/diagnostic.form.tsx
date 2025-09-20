@@ -61,7 +61,7 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
         <div className="">
             <form onSubmit={handleSubmit(submitAdd)} className="container px-6 mx-auto grid ">
                 <BarBanner title={{ message: `Diagnostico`, icon: "bi bi-clipboard2-pulse-fill" }}></BarBanner>
-                <div className="px-4 py-1 mb-8 bg-white rounded-lg shadow-md dark:bg-secondary-800">
+                <div className="px-4 py-1 mb-8 bg-white rounded-lg shadow-md ">
                     <label className="block text-sm mt-2">
                         <span className="text-secondary-700">Seleccionar Dispositivo</span>
                         <input
