@@ -26,3 +26,18 @@ export const DictMonths: {[key: string]: {name: string, date: Date, num: number}
     November: {name: "Noviembre",date: new Date(DateTime.now().year, 10, 30), num: 11},
     December: {name: "Diciembre",date: new Date(DateTime.now().year, 11, 31), num: 12},
 }
+
+export const DictMonthsList = [
+    { Name: "Enero", Num: 1},
+    { Name: "Febrero", Num: 2},
+    { Name: "Marzo", Num: 3},
+    { Name: "Abril", Num: 4},
+    { Name: "Mayo", Num: 5},
+    { Name: "Junio", Num: 6},
+    { Name: "Julio", Num: 7},
+    { Name: "Agosto", Num: 8},
+    { Name: "Septiembre", Num: 9},
+    { Name: "Octubre", Num: 10},
+    { Name: "Noviembre", Num: 11},
+    { Name: "Diciembre", Num: 12},
+]

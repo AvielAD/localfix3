@@ -2,47 +2,16 @@
 import { fetcher } from "@/Utilities/FetchHelper/Fetch.helper"
 import { BarBanner, CardBaner, SkeletonTable } from "@avielad/componentspublish"
 import useSWR from "swr"
-
-import { Bar } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-  ChartOptions,
-} from 'chart.js';
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
 import { DiagnosticStats } from "@/application/stats/dto/diagnosticstats.dto";
-
-const options = {
-  responsive: true,
-  plugins: {
-    legend: { position: 'top' as const },
-    title: { display: true, text: 'Ventas Mensuales' },
-  },
-  scales: {
-    y: {
-      min: 0,      // Valor mínimo del eje Y
-      max: 150,    // Valor máximo del eje Y
-      ticks: {
-        stepSize: 1, // Espaciado entre marcas
-      },
-    },
-  },
-
-};
-
+import { DictMonths, DictMonthsList } from "@/Utilities/DateTimeHelpers/FormattingDate";
+import { GetValueObjectByKey } from "@/Utilities/json.helper";
+import { DateTime } from "luxon";
 
 
 const Dashboard = () => {
     const infoStatsGeneral = useSWR('/api/stats', fetcher)
-    const infoStatsDiagnostic = useSWR('/api/stats/diagnostics', fetcher)
-    const infoStatsDiagnosticMonth = useSWR('/api/stats/diagnostics/month', fetcher)
+    const StatsMonth = useSWR('/api/stats/2025/09/false', fetcher)
+    const StatsYear = useSWR('/api/stats/2025/00/false', fetcher)
 
     const CardsBannerInfo = [
         {
@@ -76,33 +45,10 @@ const Dashboard = () => {
             icon: "bi bi-diagram-3-fill"
         }
     ]
-
-    let data = {
-        labels: infoStatsDiagnosticMonth.data?.map((item: DiagnosticStats, index: number) => item.name),
-        datasets: [
-            
-            {
-                label: (new Date()).getFullYear().toString(),
-                data: infoStatsDiagnostic.data?.map((item: DiagnosticStats, index: number) => item.count),
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgb(255, 99, 132)',
-                pointBackgroundColor: 'rgb(255, 99, 132)',
-            },
-            {
-                label: `Mes: ${((new Date()).getMonth() + 1).toString()}`,
-                data: infoStatsDiagnosticMonth.data?.map((item: DiagnosticStats, index: number) => item.count),
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgb(54, 162, 235)',
-                pointBackgroundColor: 'rgb(54, 162, 235)',
-            },
-        ],
-    };
- 
-    if (!infoStatsDiagnostic.data && !infoStatsDiagnosticMonth.data) return <SkeletonTable></SkeletonTable>
-
+    if(!StatsMonth.data && !StatsYear.data && !infoStatsGeneral.data) return <SkeletonTable></SkeletonTable>
     return (<>
         <div className=''>
-            <BarBanner title={{ message: "Estadisticas", icon: "bi bi-file-bar-graph-fill" }}></BarBanner>
+            <BarBanner title={{ message: "Estadisticas Reparaciones", icon: "bi bi-file-bar-graph-fill" }}></BarBanner>
             <div className='grid gap-6 mb-8 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3'>
                 {
                     CardsBannerInfo.map((item, index) => (
@@ -110,22 +56,25 @@ const Dashboard = () => {
                     ))
                 }
             </div>
-            <div className="flex justify-center items-center max-w">
-                <div className="overflow-hidden w-full h-full">
-                    { data ? <Bar data={data} options={options}/> : null }
-                </div>
+            <BarBanner title={{ message: `Estadisticas Consultas ${(DictMonthsList.find(x => x.Num == (DateTime.now().month )))?.Name}`, icon: "bi bi-file-bar-graph-fill" }}></BarBanner>
+            <div className="grid gap-6 mb-8 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+                {
+                    StatsMonth.data?.map((item: DiagnosticStats, index:number)=>(
+                        <CardBaner key={index} title={item.name} value={item.count.toString()} icon="bi bi-graph-up-arrow"></CardBaner>
+                    ))
+                }
             </div>
-            
+             <BarBanner title={{ message: `Estadisticas Consultas ${DateTime.now().year}`, icon: "bi bi-file-bar-graph-fill" }}></BarBanner>
+            <div className="grid gap-6 mb-8 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+                {
+                    StatsYear.data?.map((item: DiagnosticStats, index:number)=>(
+                        <CardBaner key={index} title={item.name} value={item.count.toString()} icon="bi bi-graph-up-arrow"></CardBaner>
+                    ))
+                }
+            </div>
         </div>
     </>)
 }
 
 export default Dashboard
 
-/**
- * <div className="flex justify-center items-center ">
-                <div className="w-full h-full">
-                    { data ? <Bar data={data} options={options} width={20} height={20} /> : null }
-                </div>
-            </div>
- */
