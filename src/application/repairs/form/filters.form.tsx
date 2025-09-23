@@ -13,8 +13,7 @@ const Add = (props: { OnSubmit: (values: RepairByFilters) => void }) => {
         }})
 
     const submitAdd = async (values: any) => {
-        console.log(values)
-        props.OnSubmit(values)
+        props.OnSubmit({...values, states: [values.idState]})
     }
     return (
         <form onSubmit={handleSubmit(submitAdd)} className="container px-6 mx-auto grid ">

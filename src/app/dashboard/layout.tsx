@@ -5,6 +5,7 @@ import FormRepairNew from '@/application/repairs/form/addrepair.form'
 import FormDiagnosticNew from '../../application/diagnostics/form/diagnostic.form'
 import { SideBar, HeaderBar, Modal, Toast, useToast } from '@avielad/componentspublish'
 import { useReactToPrint } from 'react-to-print';
+import { signOut } from 'next-auth/react';
 
 export interface RefreshProps {
   refreshValue: boolean,
@@ -49,6 +50,11 @@ export default function Dashboard({ children, }: { children: React.ReactNode }) 
       nameaction: "Imprimir Promocional",
       action: false,
       setaction: handlePrint
+    },
+    {
+      nameaction: "Logout",
+      action: false,
+      setaction: () =>signOut()
     }
   ]
 

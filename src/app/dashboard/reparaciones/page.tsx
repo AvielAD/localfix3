@@ -26,7 +26,6 @@ const Reparaciones = () => {
             })
     }, [dataValuesFilter])
     
-    
     if (!dataRepair) return <SkeletonTable></SkeletonTable>
 
      const OnSubmitFilters = (values: RepairByFilters) => {
