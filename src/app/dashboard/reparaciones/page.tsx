@@ -29,6 +29,7 @@ const Reparaciones = () => {
     if (!dataRepair) return <SkeletonTable></SkeletonTable>
 
      const OnSubmitFilters = (values: RepairByFilters) => {
+        console.log(values)
         setDataValuesFilter(values)
     }
     const SetClientName = (name: string) => {
@@ -45,7 +46,7 @@ const Reparaciones = () => {
             </BarBanner>
             <div className='grid gap-3'>
                     {
-                        dataRepair ? dataRepair.map((item: ReparacionDto, index: number) =>
+                        dataRepair ? dataRepair?.map((item: ReparacionDto, index: number) =>
                         (<ElementList
                             title={`${item.brand} ${item.model}`}
                             state={{ info: item.state.nombre , message: item.state.nombre }}

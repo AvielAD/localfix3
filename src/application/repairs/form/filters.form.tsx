@@ -6,21 +6,21 @@ const Add = (props: { OnSubmit: (values: RepairByFilters) => void }) => {
 
     const { register, handleSubmit, formState: { errors } } =
         useForm({  defaultValues:{
-            idState: 0,
+            state: 0,
             dateStart: null,
             dateEnd: null,
             typeDateSearch:0
         }})
 
     const submitAdd = async (values: any) => {
-        props.OnSubmit({...values, states: [values.idState]})
+        props.OnSubmit({...values, states: [values.state]})
     }
     return (
         <form onSubmit={handleSubmit(submitAdd)} className="container px-6 mx-auto grid ">
                 <div className="grid grid-cols-2 gap-2 px-4 py-1 mb-8 bg-white rounded-lg shadow-md">
                     <label className="block text-sm">
                         <span className="text-secondary-700 dark:text-secondary-400">Estado</span>
-                        <select {...register("idState")} 
+                        <select {...register("state")} 
                         className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                             <option value="0">Todas</option>
                             <option value="2">Iniciadas</option>
