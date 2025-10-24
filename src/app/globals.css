@@ -1,8 +1,145 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@source '../../node_modules/@avielad/componentspublish/dist/**/*.{js,ts,jsx,tsx,mdx}';
+
+@theme {
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-white: #fff;
+  --color-black: #000;
+
+  --color-primary-50: oklch(0.97 0.014 254.604);
+  --color-primary-100: oklch(0.932 0.032 255.585);
+  --color-primary-200: oklch(0.882 0.059 254.128);
+  --color-primary-300: oklch(0.809 0.105 251.813);
+  --color-primary-400: oklch(0.707 0.165 254.624);
+  --color-primary-500: oklch(0.623 0.214 259.815);
+  --color-primary-600: oklch(0.546 0.245 262.881);
+  --color-primary-700: oklch(0.488 0.243 264.376);
+  --color-primary-800: oklch(0.424 0.199 265.638);
+  --color-primary-900: oklch(0.379 0.146 265.522);
+
+  --color-secondary-50: oklch(0.985 0.002 247.839);
+  --color-secondary-100: oklch(0.967 0.003 264.542);
+  --color-secondary-200: oklch(0.928 0.006 264.531);
+  --color-secondary-300: oklch(0.872 0.01 258.338);
+  --color-secondary-400: oklch(0.707 0.022 261.325);
+  --color-secondary-500: oklch(0.551 0.027 264.364);
+  --color-secondary-600: oklch(0.446 0.03 256.802);
+  --color-secondary-700: oklch(0.373 0.034 259.733);
+  --color-secondary-800: oklch(0.278 0.033 256.848);
+  --color-secondary-900: oklch(0.21 0.034 264.665);
+  --color-secondary-950: oklch(0.13 0.028 261.692);
+
+  --color-warning-50: oklch(0.98 0.016 73.684);
+  --color-warning-100: oklch(0.954 0.038 75.164);
+  --color-warning-200: oklch(0.901 0.076 70.697);
+  --color-warning-300: oklch(0.837 0.128 66.29);
+  --color-warning-400: oklch(0.75 0.183 55.934);
+  --color-warning-500: oklch(0.705 0.213 47.604);
+  --color-warning-600: oklch(0.646 0.222 41.116);
+  --color-warning-700: oklch(0.553 0.195 38.402);
+  --color-warning-800: oklch(0.47 0.157 37.304);
+  --color-warning-900: oklch(0.408 0.123 38.172);
+  --color-warning-950: oklch(0.266 0.079 36.259);
+
+  --color-danger-50: oklch(0.971 0.013 17.38);
+  --color-danger-100: oklch(0.936 0.032 17.717);
+  --color-danger-200: oklch(0.885 0.062 18.334);
+  --color-danger-300: oklch(0.808 0.114 19.571);
+  --color-danger-400: oklch(0.704 0.191 22.216);
+  --color-danger-500: oklch(0.637 0.237 25.331);
+  --color-danger-600: oklch(0.577 0.245 27.325);
+  --color-danger-700: oklch(0.505 0.213 27.518);
+  --color-danger-800: oklch(0.444 0.177 26.899);
+  --color-danger-900: oklch(0.396 0.141 25.723);
+  --color-danger-950: oklch(0.258 0.092 26.042);
+
+  --color-success-50: oklch(0.982 0.018 155.826);
+  --color-success-100: oklch(0.962 0.044 156.743);
+  --color-success-200: oklch(0.925 0.084 155.995);
+  --color-success-300: oklch(0.871 0.15 154.449);
+  --color-success-400: oklch(0.792 0.209 151.711);
+  --color-success-500: oklch(0.723 0.219 149.579);
+  --color-success-600: oklch(0.627 0.194 149.214);
+  --color-success-700: oklch(0.527 0.154 150.069);
+  --color-success-800: oklch(0.448 0.119 151.328);
+  --color-success-900: oklch(0.393 0.095 152.535);
+  --color-success-950: oklch(0.266 0.065 152.934);
+
+  --color-theme1-50: oklch(0.97 0.014 254.604);
+  --color-theme1-100: oklch(0.932 0.032 255.585);
+  --color-theme1-200: oklch(0.882 0.059 254.128);
+  --color-theme1-300: oklch(0.809 0.105 251.813);
+  --color-theme1-400: oklch(0.707 0.165 254.624);
+  --color-theme1-500: oklch(0.623 0.214 259.815);
+  --color-theme1-600: oklch(0.546 0.245 262.881);
+  --color-theme1-700: oklch(0.488 0.243 264.376);
+  --color-theme1-800: oklch(0.424 0.199 265.638);
+  --color-theme1-900: oklch(0.379 0.146 265.522);
+
+  --color-theme2-50: oklch(0.985 0.002 247.839);
+  --color-theme2-100: oklch(0.967 0.003 264.542);
+  --color-theme2-200: oklch(0.928 0.006 264.531);
+  --color-theme2-300: oklch(0.872 0.01 258.338);
+  --color-theme2-400: oklch(0.707 0.022 261.325);
+  --color-theme2-500: oklch(0.551 0.027 264.364);
+  --color-theme2-600: oklch(0.446 0.03 256.802);
+  --color-theme2-700: oklch(0.373 0.034 259.733);
+  --color-theme2-800: oklch(0.278 0.033 256.848);
+  --color-theme2-900: oklch(0.21 0.034 264.665);
+  --color-theme2-950: oklch(0.13 0.028 261.692);
+
+  --color-theme3-50: oklch(0.977 0.014 308.299);
+  --color-theme3-100: oklch(0.946 0.033 307.174);
+  --color-theme3-200: oklch(0.902 0.063 306.703);
+  --color-theme3-300: oklch(0.827 0.119 306.383);
+  --color-theme3-400: oklch(0.714 0.203 305.504);
+  --color-theme3-500: oklch(0.627 0.265 303.9);
+  --color-theme3-600: oklch(0.558 0.288 302.321);
+  --color-theme3-700: oklch(0.496 0.265 301.924);
+  --color-theme3-800: oklch(0.438 0.218 303.724);
+  --color-theme3-900: oklch(0.381 0.176 304.987);
+  --color-theme3-950: oklch(0.291 0.149 302.717);
+
+  --color-theme4-50: oklch(0.98 0.016 73.684);
+  --color-theme4-100: oklch(0.954 0.038 75.164);
+  --color-theme4-200: oklch(0.901 0.076 70.697);
+  --color-theme4-300: oklch(0.837 0.128 66.29);
+  --color-theme4-400: oklch(0.75 0.183 55.934);
+  --color-theme4-500: oklch(0.705 0.213 47.604);
+  --color-theme4-600: oklch(0.646 0.222 41.116);
+  --color-theme4-700: oklch(0.553 0.195 38.402);
+  --color-theme4-800: oklch(0.47 0.157 37.304);
+  --color-theme4-900: oklch(0.408 0.123 38.172);
+  --color-theme4-950: oklch(0.266 0.079 36.259);
+
+  --color-theme5: #0d6efd;
+
+  --grid-template-columns-sidebarlx: 20% 1fr;
+  --grid-template-columns-sidebar: 1fr;
+
+  --grid-template-rows-headerlx: 6% 1fr;
+  --grid-template-rows-header: 6% 1fr;
+
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+
+
+button:hover {
+  cursor: pointer;
+}
 
 @font-face {
-    font-family: 'Inspiration';
-    src: url('../Utilities//FontsFamily/Inspiration/Inspiration-Regular.ttf');
+  font-family: 'Inspiration';
+  src: url('../Utilities//FontsFamily/Inspiration/Inspiration-Regular.ttf');
 }

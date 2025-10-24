@@ -8,7 +8,7 @@ import { use, useRef, useState } from "react"
 import { empresadto } from "@/DTOS/empresa/empresa.dto"
 import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
 import { putFetcher, fetcher } from "@/Utilities/FetchHelper/Fetch.helper"
-import { TreeDto, TreeStates } from '@/UtilitiesLocal/StateChange'
+import { AssingStateColor, TreeDto, TreeStates } from '@/UtilitiesLocal/StateChange'
 import { Toast, useToast } from "@avielad/componentspublish"
 import { BarBanner } from "@avielad/componentspublish"
 
@@ -71,15 +71,15 @@ const Details = (props: { params: DetailsProps }) => {
                 ></ComponentNota>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-[70%,30%] max-w-screen-2xl mx-auto gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-[70%_30%] max-w-(--breakpoint-2xl) mx-auto gap-2">
                 <div className="order-2 md:order-1">
                     <BarBanner title={{ message: `${allInfo.brand} ${allInfo.model}`, icon: "bi bi-cart4" }} messages={[
                         { title: "Fecha de Entrega", message: ` ${FormatMedDate(allInfo.dateReception)}` },
                         { title: "Fecha de Recepcion", message: ` ${FormatMedDate(allInfo.dateReception)}` },
-                        { title: "Costo Reparacion", message: `$ ${allInfo.budget} mxn` },
-                        { title: "Estado", message: ` ${TreeStates.find(x => x.name == allInfo.estado.nombre)?.trad}` }
+                        { title: "Costo Reparacion", message: `$ ${allInfo.budget} mxn` }
+                        //{ title: "Estado", message: ` ${TreeStates.find(x => x.name == allInfo.estado.nombre)?.trad}` }
                     ]}></BarBanner>
-                    <div className="rounded-lg border border-secondary-200 bg-white shadow-sm">
+                    <div className="rounded-lg border border-secondary-200 bg-white shadow-xs">
                         <div className="px-6 py-4 border-b border-secondary-200">
                             <h3 className="text-lg font-medium">Detalles del Servicio</h3>
                             <p className="text-sm text-secondary-500">{}</p>
@@ -112,8 +112,8 @@ const Details = (props: { params: DetailsProps }) => {
 
                         <div className="relative inline-block text-left">
                             <button disabled={TreeState?.value.length ?? 0 == 0 ? false : true} onClick={() => setdropDown(!dropdown)}
-                                className="rounded-lg shadow-md p-2 ring-1 ring-theme1-500">Cambiar Estado <i className="bi bi-arrow-down"></i></button>
-                            <div className={`absolute ${dropdown ? "visible" : "invisible"} z-10 w-40 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}>
+                                className={`rounded-lg shadow-md p-2 ring-1 w-[150px] ${AssingStateColor(allInfo.estado.nombre)} `}>{allInfo.estado.nombre} <i className="self-end bi bi-arrow-down"></i></button>
+                            <div className={`absolute ${dropdown ? "visible" : "invisible"} z-10 w-40 rounded-md bg-white shadow-lg ring-1 ring-theme1-500 mt-3`}>
                                 <div className="py-1">
                                     {
                                         TreeState?.value.map((item: string, index) => (
@@ -125,7 +125,7 @@ const Details = (props: { params: DetailsProps }) => {
                         </div>
                     </div>
 
-                    <div className="rounded-lg border border-secondary-200 bg-white shadow-sm">
+                    <div className="rounded-lg border border-secondary-200 bg-white shadow-xs">
                         <div className="px-3 border-b border-secondary-200">
                             <h3 className="text-lg font-medium">Cliente</h3>
                         </div>

@@ -1,17 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { DiagnosticoInputDto, DiagnosticosDto } from "@/components/formularios/diagnostic_add/dtos/diagnosticos";
 import { response } from "@/DTOS/response/response";
-import { ReparacionDto, ReparacionFirstDto, ReparacionInputDto } from "@/DTOS/reparaciones/reparacion";
+import { RepairInput } from "@/application/repairs/dto/repair.dto";
 
 export async function POST(req: NextRequest) {
     let Response = {} as response
      const cookieStore = await cookies()
     const testcookies = cookieStore.get('token')
-    const data:ReparacionFirstDto = await req.json()
+    const data:RepairInput = await req.json()
     try {
         if (testcookies)
-            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Repair/First`, {
+            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Repair`, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {

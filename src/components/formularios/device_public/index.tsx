@@ -28,11 +28,11 @@ const Add = (params: { setValues: (params: {name: string}) => void }) => {
                                 <span className="text-secondary-700 dark:text-secondary-400">Busqueda</span>
                                 <Field
                                     name="name"
-                                    className={`shadow appearance-none border block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input focus:ring-2 focus:ring-primary-600`}
+                                    className={`shadow-sm appearance-none border block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-hidden focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input focus:ring-2 focus:ring-primary-600`}
                                 ></Field>
                             </label>
                             <div className="flex items-center justify-end sm:justify-end mt-4">
-                                <button type="submit" className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Buscar</button>
+                                <button type="submit" className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded-sm focus:outline-hidden focus:shadow-outline">Buscar</button>
                             </div>
 
                         </div>

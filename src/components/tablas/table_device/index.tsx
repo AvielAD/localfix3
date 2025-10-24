@@ -6,7 +6,7 @@ const Index = (props: { elements: Array<DevicesAssignDto>, Open: (item:DevicesAs
 
   return (
     <div className="h-full pb-16">
-      <div className="w-full mb-8 rounded-lg shadow-xs">
+      <div className="w-full mb-8 rounded-lg shadow-2xs">
         <div className="w-full">
           <table className="w-full whitespace-no-wrap overflow-hidden">
             <thead>

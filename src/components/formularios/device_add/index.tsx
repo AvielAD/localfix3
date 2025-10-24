@@ -28,7 +28,7 @@ const Add = (params: { OnSubmit: (values: DeviceInputFormDto, { resetForm }: any
 
                             <label className="block text-sm">
                                 <span className="text-secondary-700 dark:text-secondary-400">Categoria</span>
-                                <Field name="idCategory" component="select" className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input`}>
+                                <Field name="idCategory" component="select" className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-hidden focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input`}>
                                     <option value="0">Seleccionar</option>
                                     <option value="1">SmartPhone</option>
                                     <option value="2">Laptop</option>
@@ -43,7 +43,7 @@ const Add = (params: { OnSubmit: (values: DeviceInputFormDto, { resetForm }: any
 
                             <label className="block text-sm">
                                 <span className="text-secondary-700 dark:text-secondary-400">Marca</span>
-                                <Field name="idBrand" component="select" className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input`}>
+                                <Field name="idBrand" component="select" className={`block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-hidden focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input`}>
                                     <option value="0">Seleccionar</option>
                                     {
                                         catbrand.data?.map((item: GenericModel2Dto, index: number) => (
@@ -59,7 +59,7 @@ const Add = (params: { OnSubmit: (values: DeviceInputFormDto, { resetForm }: any
                                 <span className="text-secondary-700 dark:text-secondary-400">Modelo Tecnico</span>
                                 <Field
                                     name="cost3"
-                                    className={`shadow appearance-none border block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input focus:ring-2 focus:ring-primary-600`}
+                                    className={`shadow-sm appearance-none border block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-hidden focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input focus:ring-2 focus:ring-primary-600`}
                                 ></Field>
                                 <ErrorMessage name="cost3">{(msg) => (<div className="text-danger-700">{msg}</div>)}</ErrorMessage>
                             </label>
@@ -67,13 +67,13 @@ const Add = (params: { OnSubmit: (values: DeviceInputFormDto, { resetForm }: any
                                 <span className="text-secondary-700 dark:text-secondary-400">Nombre Popular</span>
                                 <Field
                                     name="popularModel"
-                                    className={`shadow appearance-none border block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-none focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input focus:ring-2 focus:ring-primary-600`}
+                                    className={`shadow-sm appearance-none border block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-hidden focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input focus:ring-2 focus:ring-primary-600`}
                                 ></Field>
                                 <ErrorMessage name="popularModel">{(msg) => (<div className="text-danger-700">{msg}</div>)}</ErrorMessage>
                             </label>
 
                             <div className="flex items-center justify-end sm:justify-end mt-4">
-                                <button type="submit" className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Agregar</button>
+                                <button type="submit" className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded-sm focus:outline-hidden focus:shadow-outline">Agregar</button>
                             </div>
 
                         </div>

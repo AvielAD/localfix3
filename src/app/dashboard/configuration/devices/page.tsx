@@ -39,7 +39,7 @@ const Devices = () => {
         disabled: false
     }
     return (<>
-        <div className="max-w-screen-lg mx-auto text-black">
+        <div className="max-w-(--breakpoint-lg) mx-auto text-black">
             <Modal show={showModalDevice.show} close={() => setShowModalDevice({ show: false, info: null })}>
                 <FormDevice values={showModalDevice.info} setValues={Submit}></FormDevice>
             </Modal>

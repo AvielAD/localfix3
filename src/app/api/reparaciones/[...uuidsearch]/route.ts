@@ -3,7 +3,7 @@ import { ReparacionAllDto } from "@/DTOS/reparaciones/reparacion";
 import { NextRequest, NextResponse } from "next/server";
 import { response } from "@/DTOS/response/response";
 
-type Params = Promise<{uuidsearch: string}>
+type Params = Promise<{uuidsearch: Array<string>}>
 
 export async function GET(req: NextRequest, props:{ params:Params}) {
     let EventosView = {} as ReparacionAllDto
@@ -13,7 +13,7 @@ export async function GET(req: NextRequest, props:{ params:Params}) {
     const uuidsearch = params.uuidsearch
     try {
         if (testcookies)
-            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Repair/${uuidsearch}`, {
+            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Repair/${uuidsearch[0]}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${testcookies.value}`
