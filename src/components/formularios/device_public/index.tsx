@@ -1,46 +1,27 @@
 'use client'
-import { ReparacionInputByFilters, ReparacionInputByFiltersForm } from "@/DTOS/reparaciones/reparacion";
-import { Field, Form, Formik, FormikProps, ErrorMessage, FieldProps } from "formik";
-import { DateTime } from "luxon";
+import { useForm } from "react-hook-form";
 
-const Add = (params: { setValues: (params: {name: string}) => void }) => {
+const Add = (params: { setValues: (params: { name: string }) => void }) => {
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm()
 
-    const formTicket: {name: string} = {name: ""}
+    const submitAdd = async (values: any) => {
 
-    const submitAdd = async (values: {name:string}, { resetForm }: any) => {
-        let filter = {
-            name: values.name,
-        } as {name: string}
-        params.setValues(filter)
+        params.setValues(values)
     }
     return (
-        <Formik
-            initialValues={formTicket}
-            onSubmit={submitAdd}
+        <form className="max-w-3xl mx-auto p-2"
+            onSubmit={handleSubmit(submitAdd)}
         >
-            {
-                (props: FormikProps<any>) => (
-                    <Form className="">
-                        <div className="grid grid-cols-2 px-4 py-1 mb-8 bg-white rounded-lg shadow-md dark:bg-secondary-800">
 
+            <div className="relative">
+                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <i className="bi bi-search"></i>
+                </div>
+                <input type="text" {...register("name")} className="block w-full p-3 ps-9 text-heading text-sm " placeholder="Search" />
+                <button type="submit" className="absolute end-1.5 bottom-1.5 bg-primary-500 text-white hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-md font-medium leading-5 rounded text-xs px-3 py-1.5 focus:outline-none">Search</button>
+            </div>
 
-                            <label className="block text-sm">
-                                <span className="text-secondary-700 dark:text-secondary-400">Busqueda</span>
-                                <Field
-                                    name="name"
-                                    className={`shadow-sm appearance-none border block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-hidden focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input focus:ring-2 focus:ring-primary-600`}
-                                ></Field>
-                            </label>
-                            <div className="flex items-center justify-end sm:justify-end mt-4">
-                                <button type="submit" className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded-sm focus:outline-hidden focus:shadow-outline">Buscar</button>
-                            </div>
-
-                        </div>
-
-                    </Form>
-                )
-            }
-        </Formik>)
+        </form>)
 }
 
 export default Add
