@@ -23,11 +23,6 @@ export interface DevicesAssignInputDto {
 
 export interface DevicesAssignFormDto {
     idEquipo: string,
-    cost1: string,
-    cost2: string,
-    cost3: string,
-    costSale: string,
-    visiblePanelPublic: boolean
 }
 
 export interface InfoModalDevice {
