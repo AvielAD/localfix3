@@ -45,9 +45,12 @@ const Devices = () => {
             </Modal>
 
             <Toast Show={Toast1.toast.show} ServerMessage={Toast1.toast.response}></Toast>
-            
-            <BarBanner button={ActionButton} title={{ message: "Nuevo Dispositivo", icon: "bi bi-calculator-fill" }} buttonback={{action: ()=>router.back()}} ></BarBanner>
-            <TableDevice elements={diagnosticosData.data} Open={OpenModal}></TableDevice>
+
+            <BarBanner button={ActionButton} title={{ message: "Nuevo Dispositivo", icon: "bi bi-calculator-fill" }} buttonback={{ action: () => router.back() }} ></BarBanner>
+            <TableDevice
+                elements={diagnosticosData.data}
+                Open={OpenModal}
+            ></TableDevice>
         </div>
     </>)
 }
