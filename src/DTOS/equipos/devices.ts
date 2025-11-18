@@ -19,11 +19,6 @@ export interface DevicesAssignDto {
 
 export interface DevicesAssignInputDto {
     idEquipo: number,
-    cost1: number,
-    cost2: number,
-    cost3: number,
-    costSale: number,
-    visiblePanelPublic: boolean
 }
 
 export interface DevicesAssignFormDto {
