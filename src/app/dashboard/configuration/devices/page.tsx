@@ -6,7 +6,6 @@ import { BarBanner, Modal, Toast, useToast } from "@avielad/componentspublish"
 import { DevicesAssignDto, DevicesAssignInputDto, InfoModalDevice } from "@/DTOS/equipos/devices"
 import { useState } from "react"
 import { putFetcher } from "@/Utilities/FetchHelper/Fetch.helper"
-import Link from "next/link"
 import { useRouter } from "next/navigation"
 
 const fetcher = (url: string) => fetch(url).then(r => r.json())

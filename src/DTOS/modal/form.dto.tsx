@@ -1,11 +1,5 @@
 import { response } from "../response/response"
 
-export interface dataFormsModalDto{
-    showModal: boolean,
-    close: Function,
-    children: string | JSX.Element | null,
-}
-
 export interface addDatadto{
     showModal: boolean,
     triggerToast: boolean

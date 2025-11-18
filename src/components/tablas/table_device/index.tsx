@@ -17,7 +17,6 @@ const Index = (props: { elements: Array<DevicesAssignDto>, Open: (item:DevicesAs
                 <th className="px-4 py-3">Marca</th>
                 <th className="px-4 py-3">Modelo</th>
                 <th className="px-4 py-3">Categoria</th>
-                <th className="px-4 py-3">Asignado</th>
                 <th className="px-4 py-3">Contador Reparaciones</th>
               </tr>
             </thead>
@@ -29,7 +28,6 @@ const Index = (props: { elements: Array<DevicesAssignDto>, Open: (item:DevicesAs
                     <td className="px-4 py-3">{item.brand}</td>
                     <td className="px-4 py-3 cursor-pointer">{item.model}</td>
                     <td className="px-4 py-3">{item.category}</td>
-                    <td className="px-4 py-3 cursor-pointer" onClick={()=> props.Open(item)}>{item.assign ? <i className="bi bi-toggle-on"></i> : <i className="bi bi-toggle-off"></i>}</td>
                     <td className="px-4 py-3">{item.counter}</td>
                   </tr>
                 ))
