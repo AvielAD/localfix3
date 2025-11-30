@@ -1,22 +1,27 @@
-import { DevicePublicDto } from "@/DTOS/equipos/devices"
 import { CardDto } from "../dto/card.dto"
 
-const Index = (props: { element: CardDto }) => {
+const Index = (props: { element: CardDto, consult: ()=>void, repair: ()=>void }) => {
     return (
-        <div className="w-full max-w-sm p-4 bg-white border border-secondary-200 rounded-lg shadow-lg sm:p-8">
-            <h5 className="mb-4 text-xl font-medium text-secondary-800 "> {props.element.Title}</h5>
-            <div className="">
-                <span className="text-5xl font-extrabold tracking-tight">{props.element.Subtitle}</span>
-            </div>
-            <ul role="list" className="space-y-5 my-7">
-                <li className="flex items-center">
-                    <i className="bi bi-check-circle-fill"></i>
-                    <span className="text-base font-normal leading-tight text-secondary-500 ms-3"> Precio $ {props.element.Cost} mxn</span>
-                </li>
+        <div className="h-[20rem] border border-secondary-300 rounded-lg shadow-lg">
+            <div className="grid grid-cols-1 grid-rows-4 h-full p-4">
+                <div className="">
+                    <h5 className="text-xl text-left"> {props.element.Title}</h5>
+                </div>
+                <div className="">
+                    <span className="font-bold">{props.element.Subtitle}</span>
+                    <div>
+                        <i className="bi bi-check-circle-fill"></i>
+                        <span className=""> Precio: $ {props.element.Cost} mxn</span>
+                    </div>
+                </div>
+                <div className="">
+                    <span className="">{props.element.Description} </span>
+                </div>
+                <div className="grid grid-cols-2 items-center gap-2">
+                    <button type="button" onClick={()=>props.consult()} className="rounded-xl bg-secondary-200 text-secondary-500 hover:bg-secondary-500 hover:text-white p-1">Consulta</button>
+                    <button type="button" onClick={()=>props.repair()} className="rounded-xl bg-warning-200 text-warning-500 hover:bg-warning-500 hover:text-white p-1">Reparacion</button>
 
-            </ul>
-            <div>
-                <span className="text-xs text-justify ms-3">{props.element.Description} </span>
+                </div>
 
             </div>
         </div>

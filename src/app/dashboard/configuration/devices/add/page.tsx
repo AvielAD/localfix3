@@ -1,6 +1,6 @@
 'use client'
-import FormDeviceAdd from '@/components/formularios/device_add'
-import { DeviceInputDto, DeviceInputFormDto } from '@/DTOS/equipos/devices'
+import FormDeviceAdd from '@/application/devices/forms/deviceadd.form'
+import { DeviceInputDto } from '@/DTOS/equipos/devices'
 import { postFetcher } from '@/Utilities/FetchHelper/Fetch.helper'
 import { BarBanner, Toast, useToast } from '@avielad/componentspublish'
 import { useRouter } from 'next/navigation'
@@ -8,18 +8,11 @@ import { useRouter } from 'next/navigation'
 const Page = () => {
     const toast = useToast()
     const router = useRouter()
-    const SubmitValues = (values: DeviceInputFormDto, { resetForm }: any) => {
 
-        const ChangeValues: DeviceInputDto = {
-            idBrand: values.idBrand === "" ? 0 : parseInt(values.idBrand),
-            popularModel: values.popularModel,
-            model: values.model,
-            idCategory: values.idCategory === "" ? 0 : parseInt(values.idCategory)
-        }
+    const SubmitValues = (values: DeviceInputDto) => {
         
-        postFetcher('/api/equipos', ChangeValues).then((data)=>{
+        postFetcher('/api/equipos', values).then((data)=>{
             if (data.succeeded) { 
-                resetForm()
                 const timerToast = setInterval(() => {
                     router.back()
                     clearInterval(timerToast)
