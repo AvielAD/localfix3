@@ -1,5 +1,16 @@
 import { GenericModel2Dto, GenericModelDto } from "../genericdto/generic.dto"
 
+export interface InputFill{
+    idEquip: number,
+    nameEquip: string,
+    idDiagnostic: number,
+    nameDiagnostic: string,
+    totalCost: number,
+    failureDescription: string,
+    repairDescription: string,
+    
+}
+
 export interface ReparacionDto{
     id: number,
     uuid: string,

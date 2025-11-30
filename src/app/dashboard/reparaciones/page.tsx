@@ -13,7 +13,7 @@ import FormFilters from '@/application/repairs/form/filters.form'
 const Reparaciones = () => {
     const [showFilters, setShowFilters] = useState(false)
     const [dataValuesFilter, setDataValuesFilter] = useState<RepairByFilters>({
-        states:[1,2]
+        states:[1,2,5]
     } as RepairByFilters)
     const [dataRepair, setDataRepair] = useState<Array<RepairResumeDto>>()
     const useRefreshContext = useContext(RefreshContext)

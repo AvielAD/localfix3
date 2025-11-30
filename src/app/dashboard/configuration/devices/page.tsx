@@ -12,7 +12,7 @@ const fetcher = (url: string) => fetch(url).then(r => r.json())
 const Devices = () => {
 
     const [showModalDevice, setShowModalDevice] = useState({ show: false, info: null } as InfoModalDevice)
-    const diagnosticosData = useSWR('/api/equipos/assign', fetcher)
+    const diagnosticosData = useSWR('/api/equipos/popular', fetcher)
     const Toast1 = useToast();
     const router = useRouter()
 
