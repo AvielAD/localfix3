@@ -6,7 +6,7 @@ import { BarBanner, SkeletonTable } from "@avielad/componentspublish";
 import { ServerResponseDto } from "@avielad/componentspublish/dist/customhooks/Dtos/ServerResponse.dto";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { DeviceDto } from "../../devices/dtos/devices.dto";
+import { DevicesDto } from "../../devices/dtos/devices.dto";
 import { GroupServiceDto } from '../../groupservice/dto/groupservice.dto';
 import { useEffect, useState } from 'react';
 
@@ -20,8 +20,8 @@ const schemaValidation = object({
 })
 
 const Add = (params: { close: Function, toast: (params: ServerResponseDto) => void }) => {
-    const { data: DataEquipos } = useSWR<Array<DeviceDto>>('/api/equipos/popular', fetcher)
-    const [FilterEquipos, setFilterEquipos] = useState<Array<DeviceDto>>()
+    const { data: DataEquipos } = useSWR<Array<DevicesDto>>('/api/equipos/popular', fetcher)
+    const [FilterEquipos, setFilterEquipos] = useState<Array<DevicesDto>>()
     const dataGroupService = useSWR('/api/group_service', fetcher)
     const [queryFilter, setQueryFilter] = useState<string>("")
     const [onFocusFilter, setOnFocusFilter] = useState<boolean>(false)
@@ -35,7 +35,8 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                 DataEquipos?.filter(x =>
                     x.company?.toLocaleLowerCase().includes(queryFilter.toLocaleLowerCase()) ||
                     x.brand?.toLocaleLowerCase().includes(queryFilter.toLocaleLowerCase()) ||
-                    x.model?.toLocaleLowerCase().includes(queryFilter.toLocaleLowerCase())
+                    x.technicalModel?.toLocaleLowerCase().includes(queryFilter.toLocaleLowerCase()) ||
+                    x.popularModel?.toLocaleLowerCase().includes(queryFilter.toLocaleLowerCase())
                 ))
         if (DataEquipos && queryFilter === "")
             setFilterEquipos(DataEquipos?.slice(0, 10))
@@ -79,10 +80,10 @@ const Add = (params: { close: Function, toast: (params: ServerResponseDto) => vo
                                 className="relative bg-white border border-secondary-300 text-black text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
                             >
                                 {
-                                    FilterEquipos?.map((item: DeviceDto, index: number) => (
+                                    FilterEquipos?.map((item: DevicesDto, index: number) => (
                                         <li key={index} value={item.id}
                                             className='hover:bg-primary-500 rounded-md py-2 px-1'
-                                            onMouseDown={() => SelectDeviceFilter(item.id, item.brand + " " + item.model)}>{item.company} {item.brand} {item.model}</li>
+                                            onMouseDown={() => SelectDeviceFilter(item.id, item.brand + " " + item.popularModel)}>{item.company} {item.brand} {item.popularModel}</li>
                                     ))
                                 }
                             </ul>
