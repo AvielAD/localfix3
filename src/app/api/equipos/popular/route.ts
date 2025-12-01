@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { DevicesDto } from "@/DTOS/equipos/devices";
+import { DevicesDto } from "@/application/devices/dtos/devices.dto";
 
 export async function GET() {
     let EventosView: Array<DevicesDto> = []

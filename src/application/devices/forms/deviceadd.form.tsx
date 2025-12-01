@@ -1,5 +1,5 @@
 'use client'
-import { DeviceInputDto } from "@/DTOS/equipos/devices";
+import { DeviceInputDto } from "@/application/devices/dtos/devices.dto";
 import { GenericModel2Dto } from "@/DTOS/genericdto/generic.dto";
 import { fetcher } from "@/Utilities/FetchHelper/Fetch.helper";
 import { yupResolver } from "@hookform/resolvers/yup";

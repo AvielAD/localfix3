@@ -3,7 +3,7 @@ import useSWR from "swr"
 import TableDevice from '@/application/devices/table/device.table'
 import FormDevice from '@/application/devices/forms/deviceupdate.form'
 import { BarBanner, Modal, Toast, useToast } from "@avielad/componentspublish"
-import { DevicesAssignInputDto, DevicesDto } from "@/DTOS/equipos/devices"
+import { DevicesDto, DeviceUpdateInputDto } from "@/application/devices/dtos/devices.dto"
 import { useState } from "react"
 import { fetcher, putFetcher } from "@/Utilities/FetchHelper/Fetch.helper"
 import { useRouter } from "next/navigation"
@@ -12,9 +12,7 @@ export interface InfoModalDevice {
     show: boolean,
     info: DevicesDto | null
 }
-
 const Devices = () => {
-
     const [showModalDevice, setShowModalDevice] = useState({ show: false, info: null } as InfoModalDevice)
     const diagnosticosData = useSWR('/api/equipos/popular', fetcher)
     const Toast1 = useToast();
@@ -26,14 +24,14 @@ const Devices = () => {
         setShowModalDevice({ show: true, info: item })
     }
 
-    const Submit = (item: DevicesAssignInputDto) => {
-        putFetcher('/api/equipos/assign', item).then(data => {
+    const Submit = (item: DeviceUpdateInputDto) => {
+        putFetcher('/api/equipos', item).then(data => {
             Toast1.changeToast({ Message: data.message, Succedded: data.succeeded })
-            setShowModalDevice({ show: false, info: null })
-            diagnosticosData.mutate()
-
+            if (data.succeeded) {
+                setShowModalDevice({ show: false, info: null })
+                diagnosticosData.mutate()
+            }
         })
-
     }
     const ActionButton = {
         action: () => { router.push(`/dashboard/configuration/devices/add`) },

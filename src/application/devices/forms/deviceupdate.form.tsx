@@ -1,5 +1,5 @@
 'use client'
-import { DevicesAssignInputDto, DevicesDto } from "@/DTOS/equipos/devices";
+import { DevicesDto, DeviceUpdateInputDto } from "@/application/devices/dtos/devices.dto";
 import { BarBanner } from "@avielad/componentspublish";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
@@ -10,10 +10,9 @@ const schemaValidation = object({
     id: number(),
     popularModel: string(),
     technicalModel: string(),
-    description: string(),
 })
 
-const Add = (params: { values: DevicesDto | null, setValues: (params: DevicesAssignInputDto) => void }) => {
+const Add = (params: { values: DevicesDto | null, setValues: (params: DeviceUpdateInputDto) => void }) => {
     const { register, handleSubmit, setValue, formState: { errors } } =
         useForm({
             resolver: yupResolver(schemaValidation),
@@ -24,11 +23,12 @@ const Add = (params: { values: DevicesDto | null, setValues: (params: DevicesAss
         })
 
     useEffect(() => {
+        setValue("id", params.values?.id)
         setValue("popularModel", "" + params.values?.popularModel)
         setValue("technicalModel", "" + (params.values?.technicalModel ?? ""))
     })
     const submitAdd = async (values: any) => {
-
+        params.setValues({ ...values })
     }
     return (
         <form onSubmit={handleSubmit(submitAdd)} className="container px-6 mx-auto ">
@@ -53,7 +53,7 @@ const Add = (params: { values: DevicesDto | null, setValues: (params: DevicesAss
                     {errors.popularModel ? <span className="text-danger-700"> {errors.popularModel.message}</span> : null}
                 </label>
                 <div className="flex items-center justify-end sm:justify-end mt-4">
-                    <button type="submit" className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded-sm focus:outline-hidden focus:shadow-outline">Agregar</button>
+                    <button type="submit" className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded-sm focus:outline-hidden focus:shadow-outline">Actualizar</button>
                 </div>
             </div>
         </form>)

@@ -1,4 +1,4 @@
-import { DevicesAssignDto, DevicesDto } from "@/DTOS/equipos/devices"
+import {  DevicesDto } from "@/application/devices/dtos/devices.dto"
 import { useRouter } from "next/navigation"
 
 const Index = (props: { elements: Array<DevicesDto>, Open: (item: DevicesDto) => void }) => {
