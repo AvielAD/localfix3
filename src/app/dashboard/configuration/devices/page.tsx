@@ -1,14 +1,18 @@
 'use client'
 import useSWR from "swr"
-import TableDevice from '@/components/tablas/table_device'
-import FormDevice from '@/components/formularios/device_update'
+import TableDevice from '@/application/devices/table/device.table'
+import FormDevice from '@/application/devices/forms/deviceupdate.form'
 import { BarBanner, Modal, Toast, useToast } from "@avielad/componentspublish"
-import { DevicesAssignDto, DevicesAssignInputDto, InfoModalDevice } from "@/DTOS/equipos/devices"
+import { DevicesAssignInputDto, DevicesDto } from "@/DTOS/equipos/devices"
 import { useState } from "react"
-import { putFetcher } from "@/Utilities/FetchHelper/Fetch.helper"
+import { fetcher, putFetcher } from "@/Utilities/FetchHelper/Fetch.helper"
 import { useRouter } from "next/navigation"
 
-const fetcher = (url: string) => fetch(url).then(r => r.json())
+export interface InfoModalDevice {
+    show: boolean,
+    info: DevicesDto | null
+}
+
 const Devices = () => {
 
     const [showModalDevice, setShowModalDevice] = useState({ show: false, info: null } as InfoModalDevice)
@@ -18,7 +22,7 @@ const Devices = () => {
 
     if (!diagnosticosData.data) return <>loading...</>
 
-    const OpenModal = (item: DevicesAssignDto) => {
+    const OpenModal = (item: DevicesDto) => {
         setShowModalDevice({ show: true, info: item })
     }
 
@@ -38,7 +42,7 @@ const Devices = () => {
         disabled: false
     }
     return (<>
-        <div className="max-w-(--breakpoint-lg) mx-auto text-black">
+        <div className="">
             <Modal show={showModalDevice.show} close={() => setShowModalDevice({ show: false, info: null })}>
                 <FormDevice values={showModalDevice.info} setValues={Submit}></FormDevice>
             </Modal>

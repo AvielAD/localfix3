@@ -1,9 +1,9 @@
 'use client'
-import { DevicesAssignDto, DevicesAssignFormDto, DevicesAssignInputDto } from "@/DTOS/equipos/devices";
+import { DevicesAssignFormDto, DevicesAssignInputDto, DevicesDto } from "@/DTOS/equipos/devices";
 import { Field, Form, Formik, FormikProps, ErrorMessage, FieldProps } from "formik";
 import { number, object, string } from "yup";
 
-const Add = (params: { values:DevicesAssignDto | null, setValues: (params: DevicesAssignInputDto) => void}) => {
+const Add = (params: { values:DevicesDto | null, setValues: (params: DevicesAssignInputDto) => void}) => {
 
     const formTicket: DevicesAssignFormDto = {
         idEquipo: "",

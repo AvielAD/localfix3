@@ -3,7 +3,8 @@ export interface DevicesDto {
     model: string,
     brand: string,
     company: string,
-    category: string
+    category: string,
+    counter: number
 }
 
 export interface DevicesAssignDto {

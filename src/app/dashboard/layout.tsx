@@ -42,12 +42,7 @@ export default function Dashboard({ children, }: { children: React.ReactNode }) 
       setaction: setActionModalRepair
     },
     {
-      nameaction: "Diagnostico",
-      action: showModalDiag,
-      setaction: setActionModalDiag
-    },
-    {
-      nameaction: "Imprimir Promocional",
+      nameaction: "Promocional",
       action: false,
       setaction: handlePrint
     },
@@ -109,6 +104,11 @@ const routes = [
     route: "/dashboard/reparaciones",
     nameroute: "Reparaciones",
     icon: "bi bi-wrench-adjustable"
+  },
+    {
+    route: "/dashboard/diagnosticos",
+    nameroute: "Consultas",
+    icon: "bi bi-clock-history"
   },
   {
     route: "/dashboard/configuration",
