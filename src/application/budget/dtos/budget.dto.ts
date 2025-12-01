@@ -7,7 +7,16 @@ export interface BudgetInput {
     description: string,
     cost: number
 }
-
+export interface BudgetInputFill {
+    idBudget: number,
+    idEquip: number,
+    nameEquipo: string,
+    idGroupService: number,
+    nameGroupService: string,
+    title: string,
+    description: string,
+    cost: number
+}
 export interface BudgetDto {
     id: number,
     equip: GenericCatalogV1Dto,
@@ -19,4 +28,11 @@ export interface BudgetDto {
 
 export interface BudgetByFilters{
     title: string
+}
+
+export interface BudgetUpdateDto{
+    idBudget: number,
+    title: string,
+    cost: number,
+    description: string
 }

@@ -1,6 +1,6 @@
 'use client'
 import FormDeviceAdd from '@/application/devices/forms/deviceadd.form'
-import { DeviceInputDto } from '@/DTOS/equipos/devices'
+import { DeviceInputDto } from '@/application/devices/dtos/devices.dto'
 import { postFetcher } from '@/Utilities/FetchHelper/Fetch.helper'
 import { BarBanner, Toast, useToast } from '@avielad/componentspublish'
 import { useRouter } from 'next/navigation'

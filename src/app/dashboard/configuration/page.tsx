@@ -18,7 +18,7 @@ const Page = () => {
                 </Link>
             </div>
             <div className="rounded-xl bg-white p-6 text-center shadow-xl">
-                <Link href={'/dashboard/configuration/budget/add'}>
+                <Link href={'/dashboard/configuration/budget/edit'}>
                     <div
                         className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-teal-400 shadow-lg shadow-teal-500/40">
                         <i className="bi bi-heart-pulse-fill text-3xl"></i>

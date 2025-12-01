@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { DiagnosticosDto, UpdateDiagnosticoInputDto } from "@/components/formularios/diagnostic_add/dtos/diagnosticos";
 import { response } from "@/DTOS/response/response";
-import { DiagnosticInput } from "@/application/diagnostics/dtos/diagnostic.dto";
+import { DiagnosticInput, DiagnosticosDto, UpdateDiagnosticoInputDto } from "@/application/diagnostics/dtos/diagnostic.dto";
 
 export async function GET() {
     let EventosView: Array<DiagnosticosDto> = []

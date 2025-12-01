@@ -17,8 +17,6 @@ const Reparaciones = () => {
     const [showModalDiag, setShowModalDiag] = useState(false)
     const Toast1 = useToast();
 
-
-
     useEffect(() => {
 
         if (filters.name !== "") {

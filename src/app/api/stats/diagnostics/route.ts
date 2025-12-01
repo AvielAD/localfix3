@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { DevicesDto } from "@/application/devices/dtos/devices.dto";
+import { DiagnosticStats } from "@/application/stats/dto/diagnosticstats.dto";
 
 export async function GET() {
-    let EventosView: Array<DevicesDto> = []
-     const cookieStore = await cookies()
+    let EventosView: Array<DiagnosticStats> = [] 
+    const cookieStore = await cookies()
     const testcookies = cookieStore.get('token')
     try {
         if (testcookies)
-            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Device/Popular`, {
+            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Stats/Diagnostics?year=${(new Date()).getFullYear()}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${testcookies.value}`
@@ -19,9 +19,13 @@ export async function GET() {
                     EventosView = userInfo
                 }).catch((error) => {
                 })
-
-                return NextResponse.json(EventosView)
+        if(EventosView)
+            return NextResponse.json(EventosView)
+        else
+            return NextResponse.json({})
+                
     } catch (error) {
         return NextResponse.json(EventosView)
     }
 }
+

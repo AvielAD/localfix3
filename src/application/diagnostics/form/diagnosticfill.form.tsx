@@ -1,12 +1,10 @@
 'use client'
 import { number, object, string } from 'yup';
 import { postFetcher, fetcher } from '@/Utilities/FetchHelper/Fetch.helper'
-import useSWR from "swr";
 import { BarBanner, SkeletonTable, Toast } from "@avielad/componentspublish";
 import { ServerResponseDto } from "@avielad/componentspublish/dist/customhooks/Dtos/ServerResponse.dto";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { DeviceDto } from "../../devices/dtos/devices.dto";
 import { useEffect } from 'react';
 import { InputFill } from '@/DTOS/reparaciones/reparacion';
 
