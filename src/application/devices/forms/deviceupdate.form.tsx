@@ -1,66 +1,62 @@
 'use client'
-import { DevicesAssignFormDto, DevicesAssignInputDto, DevicesDto } from "@/DTOS/equipos/devices";
-import { Field, Form, Formik, FormikProps, ErrorMessage, FieldProps } from "formik";
+import { DevicesAssignInputDto, DevicesDto } from "@/DTOS/equipos/devices";
+import { BarBanner } from "@avielad/componentspublish";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { number, object, string } from "yup";
 
-const Add = (params: { values:DevicesDto | null, setValues: (params: DevicesAssignInputDto) => void}) => {
+const schemaValidation = object({
+    id: number(),
+    popularModel: string(),
+    technicalModel: string(),
+    description: string(),
+})
 
-    const formTicket: DevicesAssignFormDto = {
-        idEquipo: "",
-    }
+const Add = (params: { values: DevicesDto | null, setValues: (params: DevicesAssignInputDto) => void }) => {
+    const { register, handleSubmit, setValue, formState: { errors } } =
+        useForm({
+            resolver: yupResolver(schemaValidation),
+            defaultValues: {
+                popularModel: "",
+                technicalModel: "",
+            }
+        })
 
-    const submitAdd = async (values: DevicesAssignFormDto, { resetForm }: any) => {
-        
-        let dataupdate:DevicesAssignInputDto = {
-            idEquipo: params.values?.id ?? 0,
-        } 
-        params.setValues(dataupdate)
-        resetForm()
+    useEffect(() => {
+        setValue("popularModel", "" + params.values?.popularModel)
+        setValue("technicalModel", "" + (params.values?.technicalModel ?? ""))
+    })
+    const submitAdd = async (values: any) => {
+
     }
     return (
-        <Formik
-            initialValues={formTicket}
-            onSubmit={submitAdd}
-            validationSchema={addSchema}
-        >
-            {
-                (props: FormikProps<any>) => (
-                    <Form className="">
-                        <div className="grid grid-cols-1 px-4 py-1 mb-8 bg-white rounded-lg shadow-md dark:bg-secondary-800">
-                            <label htmlFor="">{params.values?.brand + " " + params.values?.model}</label>
-                            <label className="block text-sm">
-                                <span className="text-secondary-700 dark:text-secondary-400">Costo OLED</span>
-                                <Field
-                                    name="costSale"
-                                    className={`shadow-sm appearance-none border block w-full mt-1 text-sm dark:border-secondary-600 dark:bg-secondary-700 focus:border-theme3-400 focus:outline-hidden focus:shadow-outline-theme3 dark:text-secondary-300 dark:focus:shadow-outline-secondary form-input focus:ring-2 focus:ring-primary-600`}
-                                ></Field>
-                                <ErrorMessage name="costSale">{(msg) => (<div className="text-danger-700">{msg}</div>)}</ErrorMessage>
-                            </label>
+        <form onSubmit={handleSubmit(submitAdd)} className="container px-6 mx-auto ">
+            <BarBanner title={{ message: `Dispositivo`, icon: "bi bi-wrench-adjustable" }}></BarBanner>
+            <div className="grid grid-cols-1 px-4 py-1 mb-8 bg-white rounded-lg shadow-md">
 
-                            <div className="flex items-center justify-end sm:justify-end mt-4">
-                                <button type="submit" className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded-sm focus:outline-hidden focus:shadow-outline">Actualizar</button>
-                            </div>
+                <label className="block text-sm">
+                    <span className="text-secondary-700 dark:text-secondary-400">Modelo Tecnico</span>
+                    <input
+                        {...register("technicalModel")}
+                        className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                    ></input>
+                    {errors.technicalModel ? <span className="text-danger-700"> {errors.technicalModel.message}</span> : null}
+                </label>
 
-                        </div>
-
-                    </Form>
-                )
-            }
-        </Formik>)
+                <label className="block text-sm">
+                    <span className="text-secondary-700 dark:text-secondary-400">Modelo Popular</span>
+                    <input
+                        {...register("popularModel")}
+                        className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                    ></input>
+                    {errors.popularModel ? <span className="text-danger-700"> {errors.popularModel.message}</span> : null}
+                </label>
+                <div className="flex items-center justify-end sm:justify-end mt-4">
+                    <button type="submit" className="bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded-sm focus:outline-hidden focus:shadow-outline">Agregar</button>
+                </div>
+            </div>
+        </form>)
 }
 
 export default Add
-
-const addSchema = object({
-    cost1: number().typeError("Valor Incorrecto"),
-    cost2: number().typeError("Valor Incorrecto"),
-    cost3: number().typeError("Valor Incorrecto"),
-    costSale: number().typeError("Valor Incorrecto"),
-})
-
-
-const customCheck = (props: FieldProps) => (
-    <div className="relative max-w-sm w-3/4">
-        <input className="" type="checkbox" defaultChecked={true} {...props.field} />
-    </div>
-)

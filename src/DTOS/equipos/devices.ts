@@ -1,12 +1,12 @@
 export interface DevicesDto {
     id: number,
-    model: string,
+    popularModel: string,
+    technicalModel: string,
     brand: string,
     company: string,
     category: string,
     counter: number
 }
-
 export interface DevicesAssignDto {
     id: number,
     model: string,

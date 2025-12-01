@@ -13,7 +13,8 @@ const Index = (props: { elements: Array<DevicesDto>, Open: (item: DevicesDto) =>
           >
             <th className="px-4 py-3">Compañia</th>
             <th className="">Marca</th>
-            <th className="">Modelo</th>
+            <th className="">Modelo Tecnico</th>
+            <th className="">Modelo Popular</th>
             <th className="">Categoria</th>
             <th className="">Reparaciones</th>
             <th className="">Acciones</th>
@@ -25,7 +26,8 @@ const Index = (props: { elements: Array<DevicesDto>, Open: (item: DevicesDto) =>
               <tr key={index} className={`${index%2 === 1 ? 'bg-secondary-100' : 'bg-white'}`} >
                 <td className="px-4 py-3">{item.company}</td>
                 <td className="">{item.brand}</td>
-                <td className="">{item.model}</td>
+                <td className="">{item.technicalModel}</td>
+                <td className="">{item.popularModel}</td>
                 <td className="">{item.category}</td>
                 <td className="">{item.counter}</td>
                 <td className=""><button onClick={()=>props.Open(item)} className="text-primary-500">Editar</button></td>

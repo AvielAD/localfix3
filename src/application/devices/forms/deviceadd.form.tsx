@@ -33,7 +33,7 @@ const Add = (params: { OnSubmit: (values: DeviceInputDto) => void }) => {
 
     return (
         <form onSubmit={handleSubmit(SumbitInfo)} className="">
-            <div className="grid grid-cols-1 px-4 py-1 mb-8 bg-white rounded-lg shadow-md dark:bg-secondary-800">
+            <div className="grid grid-cols-1 px-4 py-1 mb-8 bg-white rounded-lg shadow-md ">
 
                 <label className="block text-sm">
                     <span className="text-secondary-700 dark:text-secondary-400">Categoria</span>
