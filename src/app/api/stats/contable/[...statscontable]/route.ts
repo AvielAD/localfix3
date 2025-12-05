@@ -16,7 +16,7 @@ export async function GET(req: NextRequest, props:{ params:Params}) {
     
     try {
         if (testcookies)
-            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Stats/Diagnostics/${Year}/${Month}`, {
+            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Stats/Contable/${Year}/${Month}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${testcookies.value}`
