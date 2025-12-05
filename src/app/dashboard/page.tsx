@@ -1,17 +1,60 @@
 'use client'
+import { GroupStats } from "@/application/stats/dto/diagnosticstats.dto"
+import VerticalBarChartRepairs from "@/components/charts/bar.chart"
+import VerticalBarChartDiagnostics from "@/components/charts/bar.chart"
 import { fetcher } from "@/Utilities/FetchHelper/Fetch.helper"
 import { BarBanner, CardBaner, SkeletonTable } from "@avielad/componentspublish"
+import { DateTime } from "luxon"
+import { useEffect, useEffectEvent, useState } from "react"
 import useSWR from "swr"
-import { DiagnosticStats } from "@/application/stats/dto/diagnosticstats.dto";
-import { DictMonths, DictMonthsList } from "@/Utilities/DateTimeHelpers/FormattingDate";
-import { GetValueObjectByKey } from "@/Utilities/json.helper";
-import { DateTime } from "luxon";
 
+interface DateState {
+    year: number,
+    month: number
+}
+interface StructBarGraph {
+    title: string,
+    labels: Array<string>,
+    data: Array<number>
+}
+interface LabelData {
+    repair: StructBarGraph,
+    diagnostic: StructBarGraph
+}
 
 const Dashboard = () => {
+    const NowDate = DateTime.now().plus({ months: -1 })
+    const [dateRepair, setDateRepair] = useState<DateState>({ year: NowDate.year, month: 0 })
+    const [dateDiagnostic, setDateDiagnostic] = useState<DateState>({ year: NowDate.year, month: 0 })
+
     const infoStatsGeneral = useSWR('/api/stats', fetcher)
-    const StatsMonth = useSWR('/api/stats/2025/09/false', fetcher)
-    const StatsYear = useSWR('/api/stats/2025/00/false', fetcher)
+    const { data: StatsRepair, mutate: mutateRepair } = useSWR<Array<GroupStats>>(`/api/stats/repair/${dateRepair.year}/${dateRepair.month}`, fetcher)
+    const { data: StatsDiagnostic, mutate: mutateDiagnostic } = useSWR(`/api/stats/diagnostic/${dateDiagnostic.year}/${dateDiagnostic.month}`, fetcher)
+
+
+
+    useEffect(() => {
+        mutateRepair()
+        mutateDiagnostic()
+    }, [dateRepair, dateDiagnostic])
+
+    const OnSelectRepair = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const Value = parseInt(e.target.value)
+        if (Value < 12)
+            setDateRepair({ ...dateRepair, month: Value })
+        else
+            setDateRepair({ ...dateRepair, year: Value })
+
+    }
+
+    const OnSelectDiagnostic = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const Value = parseInt(e.target.value)
+        if (Value < 12)
+            setDateDiagnostic({ ...dateDiagnostic, month: Value })
+        else
+            setDateDiagnostic({ ...dateDiagnostic, year: Value })
+
+    }
 
     const CardsBannerInfo = [
         {
@@ -45,7 +88,9 @@ const Dashboard = () => {
             icon: "bi bi-diagram-3-fill"
         }
     ]
-    if(!StatsMonth.data && !StatsYear.data && !infoStatsGeneral.data) return <SkeletonTable></SkeletonTable>
+
+    if (!infoStatsGeneral.data) return <SkeletonTable></SkeletonTable>
+
     return (<>
         <div className=''>
             <BarBanner title={{ message: "Estadisticas Reparaciones", icon: "bi bi-file-bar-graph-fill" }}></BarBanner>
@@ -56,25 +101,99 @@ const Dashboard = () => {
                     ))
                 }
             </div>
-            <BarBanner title={{ message: `Estadisticas Consultas ${(DictMonthsList.find(x => x.Num == (DateTime.now().month )))?.Name}`, icon: "bi bi-file-bar-graph-fill" }}></BarBanner>
-            <div className="grid gap-6 mb-8 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
-                {
-                    StatsMonth.data?.map((item: DiagnosticStats, index:number)=>(
-                        <CardBaner key={index} title={item.name} value={item.count.toString()} icon="bi bi-graph-up-arrow"></CardBaner>
-                    ))
-                }
-            </div>
-             <BarBanner title={{ message: `Estadisticas Consultas ${DateTime.now().year}`, icon: "bi bi-file-bar-graph-fill" }}></BarBanner>
-            <div className="grid gap-6 mb-8 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
-                {
-                    StatsYear.data?.map((item: DiagnosticStats, index:number)=>(
-                        <CardBaner key={index} title={item.name} value={item.count.toString()} icon="bi bi-graph-up-arrow"></CardBaner>
-                    ))
-                }
+            <div className="w-full grid grid-cols-1 gap-2">
+                <div className="grid grid-cols-1 shadow-md rounded-2xl my-5">
+                    <div className="grid grid-cols-2 gap-2 mx-auto">
+                        <div>
+                            <select onChange={OnSelectRepair} className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                                <option value="2025">2025</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select onChange={OnSelectRepair} className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                                <option value="0">Mes</option>
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="3">Abril</option>
+                                <option value="3">Mayo</option>
+                                <option value="3">Junio</option>
+                                <option value="3">Julio</option>
+                                <option value="3">Agosto</option>
+                                <option value="3">Septiembre</option>
+                                <option value="3">Octubre</option>
+                                <option value="3">Noviembre</option>
+                                <option value="3">Diciembre</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="h-[250px] w-[300px] md:h-[500px] md:w-[600px] xl:h-[750px] xl:w-[900px] 2xl:h-[1000px] 2xl:w-[1100px] mx-auto">
+                        {
+                            StatsRepair ?
+                                <VerticalBarChartRepairs
+                                    title="Reparaciones"
+                                    data={StatsRepair.map((item) => item.counter)}
+                                    labels={StatsRepair.map((item) => item.name)}
+                                ></VerticalBarChartRepairs> : null
+                        }
+                    </div>
+                </div>
+
+
+                <div className="grid grid-cols-1 shadow-md rounded-2xl my-5">
+                    <div className="grid grid-cols-2 gap-2 mx-auto">
+                        <div className="">
+                            <select onChange={OnSelectDiagnostic} className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                                <option value="2025">2025</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select onChange={OnSelectDiagnostic} className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                                <option value="0">Mes</option>
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="3">Abril</option>
+                                <option value="3">Mayo</option>
+                                <option value="3">Junio</option>
+                                <option value="3">Julio</option>
+                                <option value="3">Agosto</option>
+                                <option value="3">Septiembre</option>
+                                <option value="3">Octubre</option>
+                                <option value="3">Noviembre</option>
+                                <option value="3">Diciembre</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div className="h-[250px] w-[300px] md:h-[500px] md:w-[600px] xl:h-[750px] xl:w-[900px] 2xl:h-[1000px] 2xl:w-[1100px] mx-auto">
+                        {
+                            StatsDiagnostic ?
+                                <VerticalBarChartDiagnostics
+                                    title="Diagnosticos"
+                                    data={StatsDiagnostic.map((item: GroupStats) => item.counter)}
+                                    labels={StatsDiagnostic.map((item: GroupStats) => item.name)}
+                                ></VerticalBarChartDiagnostics> : null
+                        }
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </>)
 }
 
 export default Dashboard
+
+/**
+ * Estadisticas por año y mes 
+ * diagnosticos
+ * reparaciones
+ * contabilidad
+ */
 

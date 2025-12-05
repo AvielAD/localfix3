@@ -6,6 +6,7 @@ import FormFilters from '@/application/devices/forms/devicepublic.form'
 import { BudgetDto, BudgetInputFill, BudgetUpdateDto } from '@/application/budget/dtos/budget.dto'
 import TableBudget from '@/application/budget/tables/budget.table'
 import FormBudget from '@/application/budget/forms/budgetfill.form'
+import { useRouter } from 'next/navigation'
 
 
 export interface InfoModalDevice {
@@ -18,6 +19,7 @@ const Reparaciones = () => {
     const [history, setHistory] = useState([] as Array<BudgetDto>)
     const [filters, setFilters] = useState({ name: "" })
     const Toast1 = useToast();
+    const router = useRouter()
 
     useEffect(() => {
 
@@ -49,6 +51,12 @@ const Reparaciones = () => {
             }
         })
     }
+    const ActionButton = {
+        action: () => { router.push(`/dashboard/configuration/budget/add`) },
+        title: "Nuevo",
+        icon: "bi bi-clipboard2-plus",
+        disabled: false
+    }
 
     return (
         <div className="">
@@ -57,7 +65,7 @@ const Reparaciones = () => {
                 <FormBudget fill={showModalDevice.info} onSubmit={submitAdd} ></FormBudget>
             </Modal>
 
-            <BarBanner title={{ message: "Panel Presupuestos", icon: "bi bi-calculator-fill" }}>
+            <BarBanner title={{ message: "Panel Presupuestos", icon: "bi bi-calculator-fill" }} button={ActionButton} buttonback={{ action: () => router.back() }}>
                 <FormFilters setValues={setFilters}></FormFilters>
             </BarBanner>
 
