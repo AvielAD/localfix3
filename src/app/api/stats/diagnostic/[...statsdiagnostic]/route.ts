@@ -1,14 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { DiagnosticStats } from "@/application/stats/dto/diagnosticstats.dto";
+import { GroupStats } from "@/application/stats/dto/diagnosticstats.dto";
 
-export async function GET() {
-    let EventosView: Array<DiagnosticStats> = [] 
+type Params = Promise<{statsdiagnostic: Array<string>}>
+
+
+export async function GET(req: NextRequest, props:{ params:Params}) {
+    let EventosView: Array<GroupStats> = [] 
     const cookieStore = await cookies()
     const testcookies = cookieStore.get('token')
+    const ParamsStats = (await props.params).statsdiagnostic
+    const Year = parseInt(ParamsStats[0])
+    const Month = parseInt(ParamsStats[1] ?? 0)
+    
     try {
         if (testcookies)
-            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Stats/Diagnostics?year=${(new Date()).getFullYear()}`, {
+            await fetch(`${process.env.NEXT_SERVICE_BACK_URL}/api/Stats/Diagnostic/${Year}/${Month}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${testcookies.value}`
@@ -28,4 +35,3 @@ export async function GET() {
         return NextResponse.json(EventosView)
     }
 }
-

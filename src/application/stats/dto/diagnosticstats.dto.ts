@@ -1,5 +1,14 @@
-export interface DiagnosticStats{
-    id: number,
+export interface GroupStats{
+    idGroupService: number,
     name: string,
-    count: number,
+    counter: number,
+}
+
+export interface EconomicStats{
+    counterRepairs: number,
+    totalRepairs: number,
+    totalConsult: number,
+    totalRefaccionesCompra: number,
+    totalRefaccionesVenta: number,
+    ProfitRepairConsult: number
 }
