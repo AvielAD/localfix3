@@ -77,12 +77,12 @@ const Dashboard = () => {
                     </div>
                     <div className="h-[250px] w-[300px] md:h-[500px] md:w-[600px] xl:h-[750px] xl:w-[900px] 2xl:h-[1000px] 2xl:w-[1100px] mx-auto">
                         <div className='grid gap-6 mb-8 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3'>
-                            <CardBaner value={StatsContable?.counterRepairs?.toString()} title="Reparaciones" icon="bi bi-wallet"></CardBaner>
-                            <CardBaner value={StatsContable?.totalRepairs?.toString()} title="Reparaciones" icon="bi bi-wallet"></CardBaner>
-                            <CardBaner value={StatsContable?.totalConsult?.toString()} title="Reparaciones" icon="bi bi-wallet"></CardBaner>
-                            <CardBaner value={StatsContable?.totalRefaccionesCompra?.toString()} title="Reparaciones" icon="bi bi-wallet"></CardBaner>
-                            <CardBaner value={StatsContable?.totalRefaccionesVenta?.toString()} title="Reparaciones" icon="bi bi-wallet"></CardBaner>
-                            <CardBaner value={(ProfitValue)?.toString()} title="Reparaciones" icon="bi bi-wallet"></CardBaner>
+                            <CardBaner value={StatsContable?.counterRepairs?.toString()} title="Reparaciones Counter" icon="bi bi-wallet"></CardBaner>
+                            <CardBaner value={StatsContable?.totalRepairs?.toString()} title="Reparaciones Flujo" icon="bi bi-wallet"></CardBaner>
+                            <CardBaner value={StatsContable?.totalConsult?.toString()} title="Consultas Presupuesto" icon="bi bi-wallet"></CardBaner>
+                            <CardBaner value={StatsContable?.totalRefaccionesCompra?.toString()} title="Refacciones Compra" icon="bi bi-bag"></CardBaner>
+                            <CardBaner value={StatsContable?.totalRefaccionesVenta?.toString()} title="Refacciones Venta" icon="bi bi-wallet"></CardBaner>
+                            <CardBaner value={(ProfitValue)?.toString() + "%"} title="Profit" icon="bi bi-cash-stack"></CardBaner>
                         </div>
                     </div>
                 </div>
