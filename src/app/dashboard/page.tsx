@@ -117,15 +117,15 @@ const Dashboard = () => {
                                 <option value="1">Enero</option>
                                 <option value="2">Febrero</option>
                                 <option value="3">Marzo</option>
-                                <option value="3">Abril</option>
-                                <option value="3">Mayo</option>
-                                <option value="3">Junio</option>
-                                <option value="3">Julio</option>
-                                <option value="3">Agosto</option>
-                                <option value="3">Septiembre</option>
-                                <option value="3">Octubre</option>
-                                <option value="3">Noviembre</option>
-                                <option value="3">Diciembre</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
                             </select>
                         </div>
                     </div>
@@ -149,7 +149,7 @@ const Dashboard = () => {
                                 <option value="2025">2025</option>
                                 <option value="2024">2024</option>
                                 <option value="2023">2023</option>
-                            </select>
+                            </select> 
                         </div>
                         <div>
                             <select onChange={OnSelectDiagnostic} className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
@@ -157,15 +157,15 @@ const Dashboard = () => {
                                 <option value="1">Enero</option>
                                 <option value="2">Febrero</option>
                                 <option value="3">Marzo</option>
-                                <option value="3">Abril</option>
-                                <option value="3">Mayo</option>
-                                <option value="3">Junio</option>
-                                <option value="3">Julio</option>
-                                <option value="3">Agosto</option>
-                                <option value="3">Septiembre</option>
-                                <option value="3">Octubre</option>
-                                <option value="3">Noviembre</option>
-                                <option value="3">Diciembre</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
                             </select>
 
                         </div>
