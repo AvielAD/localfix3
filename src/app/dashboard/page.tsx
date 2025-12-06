@@ -31,8 +31,6 @@ const Dashboard = () => {
     const { data: StatsRepair, mutate: mutateRepair } = useSWR<Array<GroupStats>>(`/api/stats/repair/${dateRepair.year}/${dateRepair.month}`, fetcher)
     const { data: StatsDiagnostic, mutate: mutateDiagnostic } = useSWR(`/api/stats/diagnostic/${dateDiagnostic.year}/${dateDiagnostic.month}`, fetcher)
 
-
-
     useEffect(() => {
         mutateRepair()
         mutateDiagnostic()
@@ -41,18 +39,18 @@ const Dashboard = () => {
     const OnSelectRepair = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const Value = parseInt(e.target.value)
         if (Value < 12)
-            setDateRepair({ ...dateRepair, month: Value })
+            setDateRepair({ ...dateDiagnostic, month: Value })
         else
-            setDateRepair({ ...dateRepair, year: Value })
+            setDateRepair({ ...dateDiagnostic, year: Value })
 
     }
 
     const OnSelectDiagnostic = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const Value = parseInt(e.target.value)
         if (Value < 12)
-            setDateDiagnostic({ ...dateDiagnostic, month: Value })
+            setDateDiagnostic({ ...dateRepair, month: Value })
         else
-            setDateDiagnostic({ ...dateDiagnostic, year: Value })
+            setDateDiagnostic({ ...dateRepair, year: Value })
 
     }
 
