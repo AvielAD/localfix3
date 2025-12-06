@@ -38,7 +38,7 @@ const Dashboard = () => {
 
     const OnSelectRepair = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const Value = parseInt(e.target.value)
-        if (Value < 12)
+        if (Value <= 12)
             setDateRepair({ ...dateDiagnostic, month: Value })
         else
             setDateRepair({ ...dateDiagnostic, year: Value })
@@ -47,7 +47,7 @@ const Dashboard = () => {
 
     const OnSelectDiagnostic = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const Value = parseInt(e.target.value)
-        if (Value < 12)
+        if (Value <= 12)
             setDateDiagnostic({ ...dateRepair, month: Value })
         else
             setDateDiagnostic({ ...dateRepair, year: Value })

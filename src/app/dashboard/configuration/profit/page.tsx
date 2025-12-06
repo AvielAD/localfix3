@@ -34,7 +34,7 @@ const Dashboard = () => {
 
     const OnSelecContable = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const Value = parseInt(e.target.value)
-        if (Value < 12)
+        if (Value <= 12)
             setDateContable({ ...dateContable, month: Value })
         else
             setDateContable({ ...dateContable, year: Value })
