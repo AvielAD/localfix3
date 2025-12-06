@@ -12,15 +12,6 @@ interface DateState {
     year: number,
     month: number
 }
-interface StructBarGraph {
-    title: string,
-    labels: Array<string>,
-    data: Array<number>
-}
-interface LabelData {
-    repair: StructBarGraph,
-    diagnostic: StructBarGraph
-}
 
 const Dashboard = () => {
     const NowDate = DateTime.now().plus({ months: -1 })
@@ -38,7 +29,7 @@ const Dashboard = () => {
 
     const OnSelectRepair = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const Value = parseInt(e.target.value)
-        if (Value < 12)
+        if (Value <= 12)
             setDateRepair({ ...dateDiagnostic, month: Value })
         else
             setDateRepair({ ...dateDiagnostic, year: Value })
@@ -47,7 +38,7 @@ const Dashboard = () => {
 
     const OnSelectDiagnostic = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const Value = parseInt(e.target.value)
-        if (Value < 12)
+        if (Value <= 12)
             setDateDiagnostic({ ...dateRepair, month: Value })
         else
             setDateDiagnostic({ ...dateRepair, year: Value })
@@ -103,14 +94,14 @@ const Dashboard = () => {
                 <div className="grid grid-cols-1 shadow-md rounded-2xl my-5">
                     <div className="grid grid-cols-2 gap-2 mx-auto">
                         <div>
-                            <select onChange={OnSelectRepair} className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                            <select value={dateRepair.year} onChange={OnSelectRepair} className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                                 <option value="2025">2025</option>
                                 <option value="2024">2024</option>
                                 <option value="2023">2023</option>
                             </select>
                         </div>
                         <div>
-                            <select onChange={OnSelectRepair} className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                            <select value={dateRepair.month} onChange={OnSelectRepair} className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                                 <option value="0">Mes</option>
                                 <option value="1">Enero</option>
                                 <option value="2">Febrero</option>
@@ -143,14 +134,14 @@ const Dashboard = () => {
                 <div className="grid grid-cols-1 shadow-md rounded-2xl my-5">
                     <div className="grid grid-cols-2 gap-2 mx-auto">
                         <div className="">
-                            <select onChange={OnSelectDiagnostic} className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                            <select value={dateDiagnostic.year} onChange={OnSelectDiagnostic} className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                                 <option value="2025">2025</option>
                                 <option value="2024">2024</option>
                                 <option value="2023">2023</option>
                             </select> 
                         </div>
                         <div>
-                            <select onChange={OnSelectDiagnostic} className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                            <select value={dateDiagnostic.month} onChange={OnSelectDiagnostic} className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                                 <option value="0">Mes</option>
                                 <option value="1">Enero</option>
                                 <option value="2">Febrero</option>
