@@ -4,7 +4,7 @@ import { ReparacionAllDto } from "@/DTOS/reparaciones/reparacion"
 import useSWR from "swr"
 import { useReactToPrint } from 'react-to-print'
 import ComponentNota from '@/components/notalocalfix'
-import { use, useRef, useState } from "react"
+import { use, useEffect, useRef, useState } from "react"
 import { empresadto } from "@/DTOS/empresa/empresa.dto"
 import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
 import { putFetcher, fetcher } from "@/Utilities/FetchHelper/Fetch.helper"
@@ -34,6 +34,8 @@ const Details = (props: { params: DetailsProps }) => {
     const contentRef = useRef<HTMLDivElement>(null);
     const handlePrint = useReactToPrint({ contentRef })
 
+    
+
     if (!reparacionDetail.data) return <>loading...</>
     if (reparacionDetail.data) allInfo = reparacionDetail.data
     if (empresaData.data) empresaInfo = empresaData.data
@@ -58,7 +60,7 @@ const Details = (props: { params: DetailsProps }) => {
         <>
             <Modal show={showModalRefaction} close={() => setShowModalRefaction(false)} styles='p-2'>
                 <div className='overflow-y-scroll h-[400] '>
-                    <FormRepairNew idRepair={allInfo.id} toast={changeToast} close={() => setActionModalRefaction()}></FormRepairNew>
+                    <FormRepairNew uuidSearch={uuid} toast={changeToast} close={() =>{ setActionModalRefaction(); refactionList.mutate()}}></FormRepairNew>
                 </div>
             </Modal>
 
@@ -177,7 +179,7 @@ const Details = (props: { params: DetailsProps }) => {
                     </div>
                     {
                         refactionList.data && refactionList.data.length > 0 ?
-                            <div className="rounded-lg border border-secondary-200 bg-white shadow-xs p-2">
+                            <div className="rounded-lg border border-secondary-200 bg-white shadow-xs p-2 mt-2">
                                 <div className="px-3 border-b border-secondary-200">
                                     <h3 className="text-lg font-medium">Refacciones Incluidas</h3>
                                 </div>

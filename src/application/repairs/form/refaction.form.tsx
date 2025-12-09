@@ -14,7 +14,7 @@ const schemaValidation = object({
 
 })
 
-const Add = (params: { idRepair: number, close: Function, toast: (params: ServerResponseDto) => void }) => {
+const Add = (params: { uuidSearch: string, close: Function, toast: (params: ServerResponseDto) => void }) => {
 
 
     const { register, handleSubmit, setValue, formState: { errors } } =
@@ -30,7 +30,7 @@ const Add = (params: { idRepair: number, close: Function, toast: (params: Server
 
     const submitAdd = async (values: any) => {
 
-        postFetcher(`/api/reparaciones/${params.idRepair}/refaction`, values).then((data) => {
+        postFetcher(`/api/reparaciones/${params.uuidSearch}/refaction`, values).then((data) => {
             params.toast({ Message: data.message, Succedded: data.succeeded })
             if (data.succeeded) {
                 params.close()
