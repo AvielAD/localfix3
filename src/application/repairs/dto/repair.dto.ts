@@ -30,3 +30,17 @@ export interface RepairByFilters{
     dateEnd: string | null,
     typeDateSearch: number | null
 }
+
+export interface RefactionInput{
+    nombre: string,
+    descripcion: string,
+    costBuy: number,
+    costSale: number
+}
+
+export interface RefactionDto{
+    name: string,
+    description: string,
+    observations: string,
+    costSale: number
+}
