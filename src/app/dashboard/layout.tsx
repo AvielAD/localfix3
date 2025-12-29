@@ -6,6 +6,7 @@ import FormDiagnosticNew from '../../application/diagnostics/form/diagnostic.for
 import { SideBar, HeaderBar, Modal, Toast, useToast } from '@avielad/componentspublish'
 import { useReactToPrint } from 'react-to-print';
 import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export interface RefreshProps {
   refreshValue: boolean,
@@ -20,7 +21,7 @@ export default function Dashboard({ children, }: { children: React.ReactNode }) 
   const contentRef = useRef<HTMLDivElement>(null);
   const Toast1 = useToast();
   const [refreshValue, setRefreshValue] = useState<boolean>(true)
-
+  const router = useRouter()
   useEffect(() => {
     document.body.style.overflow = showModalRepair || showModalDiag ? "hidden" : "unset"
   }, [showModalRepair, showModalDiag])
@@ -45,11 +46,6 @@ export default function Dashboard({ children, }: { children: React.ReactNode }) 
       nameaction: "Promocional",
       action: false,
       setaction: handlePrint
-    },
-    {
-      nameaction: "Logout",
-      action: false,
-      setaction: () =>signOut()
     }
   ]
 
@@ -77,7 +73,20 @@ export default function Dashboard({ children, }: { children: React.ReactNode }) 
         <SideBar routes={routes} actions={actions}></SideBar>
       </div>
       <div className="">
-        <HeaderBar routes={routes} actions={actions} uriconfigs={[]}></HeaderBar>
+        <HeaderBar routes={routes} actions={actions} uriconfigs={
+          [
+            {
+              name: "Settings",
+              icon: "bi bi-gear-fill", 
+              action: () => router.push('/dashboard/configuration')
+            },
+            {
+              name: "Log out",
+              icon: "bi bi-box-arrow-left", 
+              action: () => signOut({callbackUrl: '/login'} )
+            }
+          ]
+        }></HeaderBar>
       </div>
       <div className="p-2">
         <RefreshContext.Provider value={{ refreshValue, setRefreshValue }}>
@@ -109,10 +118,6 @@ const routes = [
     route: "/dashboard/diagnosticos",
     nameroute: "Consultas",
     icon: "bi bi-clock-history"
-  },
-  {
-    route: "/dashboard/configuration",
-    nameroute: "Configuracion",
-    icon: "bi bi-gear-fill"
-  },
+  }
 ]
+
