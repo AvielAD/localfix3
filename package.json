@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@avielad/componentspublish": "^0.4.0",
+    "@avielad/componentspublish": "^0.4.1",
     "@hookform/resolvers": "^5.0.1",
     "@types/luxon": "^3.4.2",
     "axios": "^1.7.7",
