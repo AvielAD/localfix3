@@ -23,7 +23,7 @@ interface LabelData {
 }
 
 const Dashboard = () => {
-    const NowDate = DateTime.now().plus({ months: -1 })
+    const NowDate = DateTime.now()
     const [dateContable, setDateContable] = useState<DateState>({ year: NowDate.year, month: 0 })
 
     const { data: StatsContable, mutate: mutateContable } = useSWR<EconomicStats>(`/api/stats/contable/${dateContable.year}/${dateContable.month}`, fetcher)
