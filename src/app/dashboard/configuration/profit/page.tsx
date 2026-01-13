@@ -52,6 +52,7 @@ const Dashboard = () => {
                     <div className="grid grid-cols-2 gap-2 mx-auto">
                         <div>
                             <select value={dateContable.year} onChange={OnSelecContable} className="border border-secondary-300 text-secondary-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                                <option value="2025">2026</option>
                                 <option value="2025">2025</option>
                                 <option value="2024">2024</option>
                                 <option value="2023">2023</option>

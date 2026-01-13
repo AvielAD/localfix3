@@ -10,12 +10,12 @@ import { FormatMedDate } from "@/Utilities/DateTimeHelpers/FormattingDate"
 import { RepairByFilters, RepairInput, RepairResumeDto } from "@/application/repairs/dto/repair.dto"
 import FormFilters from '@/application/repairs/form/filters.form'
 const StatusInfo = {
-    "ACCEPT": "bg-notification1-200 text-notificacion1-800",
-    "START": "bg-notification1-200 text-notificacion1-800",
-    "DONE": "bg-notification2-200 text-notification2-800",
-    "PAUSE": "bg-notification3-200 text-notification3-800",
-    "CANCEL": "bg-notification4-200 text-notification4-800",
-    "DELIVERED": "bg-notification5-200 text-notification5-800"
+    "ACCEPT": "font-semibold bg-primary-100 text-primary-800",
+    "START": "font-semibold bg-danger-100 text-danger-800",
+    "DONE": "font-semibold text-success-800",
+    "PAUSE": "font-semibold bg-black text-white",
+    "CANCEL": "font-semibold bg-black text-white",
+    "DELIVERED": "font-semibold bg-primary-200 text-primary-800"
 }
 const Reparaciones = () => {
     const [showFilters, setShowFilters] = useState(false)
